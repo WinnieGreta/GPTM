@@ -1,0 +1,14 @@
+{
+    "name": "UI.MainMenu",
+    "rootNamespace": "",
+    "references": ["GUID:d1cfb217aab1ebd4185bdf655386a1f3"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

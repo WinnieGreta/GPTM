@@ -7,7 +7,8 @@ namespace GameManager
     internal enum GameState
     {
         Bootstrap,
-        MainMenu
+        MainMenu,
+        GamePlay
     }
     
     public class GameManager: IGameManager, IAppInitializedCallback
@@ -17,6 +18,11 @@ namespace GameManager
         public void OnAppInitialized()
         {
             _sceneLoadingManager.LoadScene("MainMenu").Forget();
+        }
+
+        public void LoadGameScene()
+        {
+            _sceneLoadingManager.LoadScene("GameplayScene").Forget();
         }
     }
 }
