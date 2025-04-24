@@ -4,39 +4,43 @@ using Zenject;
 
 namespace Gameplay.Player
 {
-    public class PlayerAnimatorComponent : IInitializable
+    public class PlayerAnimatorComponent : IInitializable, ILateTickable, IFixedTickable
     {
         [Inject] private Animator _animator;
-        [Inject] private PlayerInput _playerInput;
-
-        private InputAction _moveAction;
-        private Vector2 _moveInput;
+        //[Inject] private PlayerInput _playerInput;
+        [Inject] private Transform _transform;
+        
+        private Vector3 _moveOffset;
+        private Vector3 _lastPosition;
+        private bool _isMoving;
 
         public void Initialize()
         {
-            _moveAction = _playerInput.actions.FindAction("Move");
-            _moveAction.started += StartMove;
-            _moveAction.performed += Move;
-            _moveAction.canceled += StopMove;
-        }
-        public void Move(InputAction.CallbackContext context)
-        {
-            _moveInput = context.ReadValue<Vector2>();
-            Debug.Log(_moveInput);
-            _animator.SetFloat("InputX", _moveInput.x);
-            _animator.SetFloat("InputY", _moveInput.y);
-        }
-
-        public void StopMove(InputAction.CallbackContext context)
-        {
-            _animator.SetBool("isMoving", false);
+            _lastPosition = _transform.position;
         }
         
-        private void StartMove(InputAction.CallbackContext obj)
+        // By checking the character offset this frame we can determine its movement direction
+        // Would work without relying on direct or indirect controls scheme
+        // As we are checking for movement before addressing the animator, this wouldn't interfere with animation that is already playing
+        public void FixedTick()
         {
-            _animator.SetBool("isMoving", true);
+            _isMoving = false;
+            if (_lastPosition != _transform.position)
+            {
+                _moveOffset = _transform.position - _lastPosition;
+                _isMoving = true;
+            }
+            _lastPosition = _transform.position;
         }
-
-
+        
+        // We mustn't nullify the latest move offset because we need our idle animation have the same direction as the latest movement we had
+        public void LateTick()
+        {
+            Vector2 moveInput = _moveOffset.normalized;
+            _animator.SetFloat("InputX", moveInput.x);
+            _animator.SetFloat("InputY", moveInput.y);
+            _animator.SetBool("isMoving", _isMoving);
+        }
+        
     }
 }
