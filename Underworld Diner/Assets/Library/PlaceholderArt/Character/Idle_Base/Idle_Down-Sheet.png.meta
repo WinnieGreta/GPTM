@@ -84,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -138,9 +138,9 @@ TextureImporter:
       name: Idle_Down-Sheet_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 15
-        width: 18
+        x: 16
+        y: 16
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: Idle_Down-Sheet_1
       rect:
         serializedVersion: 2
-        x: 87
-        y: 15
-        width: 18
-        height: 31
+        x: 80
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: Idle_Down-Sheet_2
       rect:
         serializedVersion: 2
-        x: 151
-        y: 15
-        width: 18
-        height: 30
+        x: 144
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: Idle_Down-Sheet_3
       rect:
         serializedVersion: 2
-        x: 215
-        y: 15
-        width: 18
-        height: 31
+        x: 208
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6f78c9a941f05054c9f9db152752d2f8
     internalID: 0
     vertices: []
     indices: 

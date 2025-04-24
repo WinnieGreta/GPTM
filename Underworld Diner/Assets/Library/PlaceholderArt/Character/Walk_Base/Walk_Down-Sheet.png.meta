@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 6f2c37819afdb38439323ed585493010
+guid: 722a0e871a189bc4aab22a92dc5966e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -844476151356387296
-    second: Idle_Up-Sheet_0
+      213: 1700575455730732971
+    second: Walk_Down-Sheet_0
   - first:
-      213: -415074216041333801
-    second: Idle_Up-Sheet_1
+      213: -7386101599021286932
+    second: Walk_Down-Sheet_1
   - first:
-      213: -8615016751491977940
-    second: Idle_Up-Sheet_2
+      213: -8875157721869392182
+    second: Walk_Down-Sheet_2
   - first:
-      213: 4361388703586103009
-    second: Idle_Up-Sheet_3
+      213: 8442958877370630070
+    second: Walk_Down-Sheet_3
+  - first:
+      213: 4115956513579066173
+    second: Walk_Down-Sheet_4
+  - first:
+      213: 6722945030599479375
+    second: Walk_Down-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -135,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_Up-Sheet_0
+      name: Walk_Down-Sheet_0
       rect:
         serializedVersion: 2
         x: 16
@@ -150,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0201d112a61d744f0800000000000000
-      internalID: -844476151356387296
+      spriteID: baf0490fd58a99710800000000000000
+      internalID: 1700575455730732971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up-Sheet_1
+      name: Walk_Down-Sheet_1
       rect:
         serializedVersion: 2
         x: 80
@@ -172,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7dbbe6d133c5d3af0800000000000000
-      internalID: -415074216041333801
+      spriteID: ce9346b9abb4f7990800000000000000
+      internalID: -7386101599021286932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up-Sheet_2
+      name: Walk_Down-Sheet_2
       rect:
         serializedVersion: 2
         x: 144
@@ -194,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2de749a8ef417880800000000000000
-      internalID: -8615016751491977940
+      spriteID: ac6e866131b15d480800000000000000
+      internalID: -8875157721869392182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Up-Sheet_3
+      name: Walk_Down-Sheet_3
       rect:
         serializedVersion: 2
         x: 208
@@ -216,8 +222,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1eea6a41be3c68c30800000000000000
-      internalID: 4361388703586103009
+      spriteID: 6bf38e2cd5a6b2570800000000000000
+      internalID: 8442958877370630070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 16
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33e5de44a0de1930800000000000000
+      internalID: 4115956513579066173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 16
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f401c59b2e2bc4d50800000000000000
+      internalID: 6722945030599479375
       vertices: []
       indices: 
       edges: []
@@ -226,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 67ead82c7056bb243aa478805f0bd2b7
+    spriteID: 9be96e8cc116ff3469e4d3c4182f8092
     internalID: 0
     vertices: []
     indices: 
@@ -236,10 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Idle_Up-Sheet_0: -844476151356387296
-      Idle_Up-Sheet_1: -415074216041333801
-      Idle_Up-Sheet_2: -8615016751491977940
-      Idle_Up-Sheet_3: 4361388703586103009
+      Walk_Down-Sheet_0: 1700575455730732971
+      Walk_Down-Sheet_1: -7386101599021286932
+      Walk_Down-Sheet_2: -8875157721869392182
+      Walk_Down-Sheet_3: 8442958877370630070
+      Walk_Down-Sheet_4: 4115956513579066173
+      Walk_Down-Sheet_5: 6722945030599479375
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

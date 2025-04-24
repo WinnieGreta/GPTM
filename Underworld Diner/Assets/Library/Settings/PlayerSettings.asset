@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   _playerMovementSettings:
-    <MaxSpeed>k__BackingField: 5
+    <MaxSpeed>k__BackingField: 6.51
