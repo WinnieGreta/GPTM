@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - SerializeLayout
+  - LayoutRoot
   layers:
   - Default
   - TransparentFX
