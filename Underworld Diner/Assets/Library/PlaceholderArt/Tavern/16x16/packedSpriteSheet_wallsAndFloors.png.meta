@@ -1375,7 +1375,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: packedSpriteSheet_wallsAndFloors_2
+      name: Wall_pink_top
       rect:
         serializedVersion: 2
         x: 96
@@ -1397,7 +1397,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: packedSpriteSheet_wallsAndFloors_56
+      name: Wall_pink_mid
       rect:
         serializedVersion: 2
         x: 96
@@ -1419,7 +1419,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: packedSpriteSheet_wallsAndFloors_57
+      name: Wall_pink_btm
       rect:
         serializedVersion: 2
         x: 96
@@ -1440,6 +1440,72 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Wall_green_deco_top
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fae8bf3b1b8e714d8f216a49ee60136
+      internalID: -1400771015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_green_deco_mid
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b38230d9ec937498c345b3d42551f2
+      internalID: -534707587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_green_deco_btm
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15433f92daed42847b878aabd1b4f8e3
+      internalID: 679149190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1454,6 +1520,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Wall_green_deco_btm: 679149190
+      Wall_green_deco_mid: -534707587
+      Wall_green_deco_top: -1400771015
+      Wall_pink_btm: 561144391
+      Wall_pink_mid: -692645935
+      Wall_pink_top: 3867222612453446665
+      _: -692645935
       packedSpriteSheet_wallsAndFloors_0: 5769573246134657986
       packedSpriteSheet_wallsAndFloors_1: 8234651466500266932
       packedSpriteSheet_wallsAndFloors_10: -1074627089
@@ -1466,7 +1539,6 @@ TextureImporter:
       packedSpriteSheet_wallsAndFloors_17: 444662633
       packedSpriteSheet_wallsAndFloors_18: -2047646581
       packedSpriteSheet_wallsAndFloors_19: 959258965
-      packedSpriteSheet_wallsAndFloors_2: 3867222612453446665
       packedSpriteSheet_wallsAndFloors_20: -340247704
       packedSpriteSheet_wallsAndFloors_21: -961608425
       packedSpriteSheet_wallsAndFloors_22: 1874517174
@@ -1506,8 +1578,6 @@ TextureImporter:
       packedSpriteSheet_wallsAndFloors_53: -1155542959
       packedSpriteSheet_wallsAndFloors_54: -695334595
       packedSpriteSheet_wallsAndFloors_55: 1295127411
-      packedSpriteSheet_wallsAndFloors_56: -692645935
-      packedSpriteSheet_wallsAndFloors_57: 561144391
       packedSpriteSheet_wallsAndFloors_58: 365505510
       packedSpriteSheet_wallsAndFloors_6: 1196016226498304456
       packedSpriteSheet_wallsAndFloors_7: 6050956400796014030

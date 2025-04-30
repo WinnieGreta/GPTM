@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - SerializeLayout
   layers:
   - Default
   - TransparentFX
@@ -11,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Stations
   - 
   - 
   - 
@@ -43,9 +44,6 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 986472735
-    locked: 0
-  - name: Walls
-    uniqueID: 4172201933
     locked: 0
   - name: Player
     uniqueID: 2553440651
