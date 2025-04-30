@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1741526645
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8107172888652668758, guid: f6be186e213fc1f47ad1b97b3d860981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 4743742823313477576}
   - component: {fileID: 5525899175423918992}
   - component: {fileID: 999172009065219985}
+  - component: {fileID: 539407683515734788}
+  - component: {fileID: 8761994296888455630}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -239,6 +241,7 @@ MonoBehaviour:
   _playerRigidbody: {fileID: 1173238280343013827}
   _animator: {fileID: 6387086833905525498}
   _transform: {fileID: 5255453347511403087}
+  _navMeshAgent: {fileID: 539407683515734788}
 --- !u!70 &999172009065219985
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -276,3 +279,37 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.25}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!195 &539407683515734788
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926627621407361947}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0.25
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8761994296888455630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926627621407361947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

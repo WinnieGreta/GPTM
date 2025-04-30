@@ -150,28 +150,6 @@
                 },
                 {
                     "name": "",
-                    "id": "032cdd03-4511-4e2c-883a-3a4933865d31",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "800fab64-132e-4a91-93dd-9b7cd4bc4006",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "560b6e37-44d8-478e-b5f7-3620f947ebbd",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
