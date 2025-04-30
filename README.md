@@ -15,6 +15,8 @@ git clone https://github.com/WinnieGreta/GPTM.git
 
 - Unity 6 LTS
 - Zenject 9.2.0 [Link](https://github.com/modesttree/Zenject)
+- UniTask 2.5.10 [Link](https://github.com/Cysharp/UniTask)
+- NavMeshPlus [Link](https://github.com/h8man/NavMeshPlus)
 
 ## Features
 
