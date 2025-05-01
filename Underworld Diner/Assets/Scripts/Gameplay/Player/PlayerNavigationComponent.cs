@@ -16,8 +16,11 @@ namespace Gameplay.Player
         private InputAction _click;
         private Vector2 _position;
         private Vector2 _worldPosition;
-        private int _clickableLayoutLayerMask;
-        private int _notClickableLayerMask;
+        
+        private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
+        private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
+        private static readonly int WALL_LAYER = LayerMask.NameToLayer("Wall");
+        
 
         public void Initialize()
         {
@@ -25,8 +28,6 @@ namespace Gameplay.Player
             _playerIndirect.Enable();
             _pointAction = _playerIndirect.FindAction("Point");
             _click = _playerIndirect.FindAction("Click");
-            _clickableLayoutLayerMask = LayerMask.GetMask("Ground", "Stations");
-            _notClickableLayerMask = LayerMask.GetMask("Wall");
         }
 
         public void Tick()
@@ -36,15 +37,24 @@ namespace Gameplay.Player
                 _position = _pointAction.ReadValue<Vector2>();
                 _worldPosition = Camera.main.ScreenToWorldPoint(_position);
                 
-                //RaycastHit2D clickableHit = Physics2D.Raycast(_worldPosition, Vector2.zero, Mathf.Infinity, _clickableLayoutLayerMask);
-                var clickableHit = Physics2D.OverlapPoint(_worldPosition, _clickableLayoutLayerMask);
-                var nonClickableHit = Physics2D.OverlapPoint(_worldPosition, _notClickableLayerMask);
-                if (clickableHit != null && nonClickableHit == null)
+                // for our purposes does the same as raycast
+                var clickableHit = Physics2D.OverlapPoint(_worldPosition);
+                
+                // case guards to switch on non-constants
+                switch (true)
                 {
-                    Debug.Log(clickableHit.transform.name + " was hit");
-                    MoveToPosition(_worldPosition);
-                    
+                    case true when clickableHit.gameObject.layer == GROUND_LAYER:
+                        MoveToPosition(_worldPosition);
+                        break;
+                    case true when clickableHit.gameObject.layer == STATIONS_LAYER:
+                        Debug.Log("Hit the station from switch");
+                        break;
+                    case true when clickableHit.gameObject.layer == WALL_LAYER:
+                    default:
+                        Debug.Log("Hit the wall from switch");
+                        break;
                 }
+                
                 Debug.Log(_worldPosition);
             }
         }

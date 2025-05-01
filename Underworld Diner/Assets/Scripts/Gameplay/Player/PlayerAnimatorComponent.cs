@@ -13,7 +13,7 @@ namespace Gameplay.Player
         private Vector3 _moveOffset;
         private Vector3 _lastPosition;
         private bool _isMoving;
-        private const float ANIMATION_THRESHHOLD = 0.01f;
+        private const float ANIMATION_THRESHOLD = 0.01f;
 
         public void Initialize()
         {
@@ -26,7 +26,9 @@ namespace Gameplay.Player
         public void FixedTick()
         {
             _isMoving = false;
-            if (_lastPosition != _transform.position && (_lastPosition - _transform.position).magnitude > ANIMATION_THRESHHOLD)
+            // with indirect control stopping could produce miniscule chaotic movement (fluctuations around stopping point)
+            // to combat this problem we are setting a small movement threshold that would assure that we don't cycle through different animations when stopping
+            if (_lastPosition != _transform.position && (_lastPosition - _transform.position).magnitude > ANIMATION_THRESHOLD)
             {
                 _moveOffset = _transform.position - _lastPosition;
                 _isMoving = true;
