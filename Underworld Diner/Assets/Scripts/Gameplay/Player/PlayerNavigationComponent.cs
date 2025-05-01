@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -34,28 +35,36 @@ namespace Gameplay.Player
         {
             if(_click.WasReleasedThisFrame())
             {
-                _position = _pointAction.ReadValue<Vector2>();
-                _worldPosition = Camera.main.ScreenToWorldPoint(_position);
-                
-                // for our purposes does the same as raycast
-                var clickableHit = Physics2D.OverlapPoint(_worldPosition);
-                
-                // case guards to switch on non-constants
-                switch (true)
-                {
-                    case true when clickableHit.gameObject.layer == GROUND_LAYER:
-                        MoveToPosition(_worldPosition);
-                        break;
-                    case true when clickableHit.gameObject.layer == STATIONS_LAYER:
-                        Debug.Log("Hit the station from switch");
-                        break;
-                    case true when clickableHit.gameObject.layer == WALL_LAYER:
-                    default:
-                        Debug.Log("Hit the wall from switch");
-                        break;
-                }
-                
+                ProcessClick();
                 Debug.Log(_worldPosition);
+            }
+        }
+
+        private void ProcessClick()
+        {
+            _position = _pointAction.ReadValue<Vector2>();
+            _worldPosition = Camera.main.ScreenToWorldPoint(_position);
+                
+            // for our purposes does the same as raycast
+            var clickableHit = Physics2D.OverlapPoint(_worldPosition);
+            if (clickableHit == null)
+            {
+                return;
+            }
+            // case guards to switch on non-constants
+            switch (true)
+            {
+                case true when clickableHit.gameObject.layer == GROUND_LAYER:
+                    MoveToPosition(_worldPosition);
+                    break;
+                case true when clickableHit.gameObject.layer == STATIONS_LAYER:
+                    Debug.Log("Hit the station from switch");
+                    ProcessStationClick(clickableHit.GetComponent<IStation>(), _navMeshAgent.transform.position);
+                    break;
+                case true when clickableHit.gameObject.layer == WALL_LAYER:
+                default:
+                    Debug.Log("Hit the wall from switch");
+                    break;
             }
         }
 
@@ -65,6 +74,12 @@ namespace Gameplay.Player
             _navMeshAgent.SetDestination(hit.position);
             Debug.Log("Position " + position);
             Debug.Log("Hit position " + hit.position);
+        }
+
+        private void ProcessStationClick(IStation station, Vector2 playerPosition)
+        {
+            //station.Ping();
+            station.ProcessClick(playerPosition);
         }
     }
 }
