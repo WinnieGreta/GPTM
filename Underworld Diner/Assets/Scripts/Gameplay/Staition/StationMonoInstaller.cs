@@ -12,7 +12,9 @@ namespace Gameplay.Staition
         {
             Container.BindInstance(_stationTransform).WithId("station").AsCached();
             Container.BindInstance(_playerTransform).WithId("player").AsCached();
-            Container.BindInterfacesAndSelfTo<StationDetectionComponent>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<StationFacade>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<StationDetectionComponent>().AsSingle();
         }
     }
 }
