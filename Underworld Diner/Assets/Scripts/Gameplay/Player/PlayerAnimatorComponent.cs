@@ -7,7 +7,6 @@ namespace Gameplay.Player
     public class PlayerAnimatorComponent : IInitializable, ILateTickable, IFixedTickable
     {
         [Inject] private Animator _animator;
-        //[Inject] private PlayerInput _playerInput;
         [Inject] private Transform _transform;
         
         private Vector3 _moveOffset;

@@ -4,7 +4,6 @@ namespace Interfaces
 {
     public interface IStation
     {
-        public void Ping();
-        public void ProcessClick(Vector2 playerPosition);
+        public Vector2 GetClosestAnchorPosition(Vector2 playerPosition);
     }
 }

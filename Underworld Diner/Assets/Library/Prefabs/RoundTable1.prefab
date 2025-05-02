@@ -251,9 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139457fa497b421a9c88ecd96d9288dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stationTransform: {fileID: 4413655428933774212}
   _anchorParameters:
-    _anchors:
+    Anchors:
     - {fileID: 1646090624335658320}
     - {fileID: 6992465929464629180}
 --- !u!208 &7200212329927861250

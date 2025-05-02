@@ -58,12 +58,12 @@ namespace Gameplay.Player
                     MoveToPosition(_worldPosition);
                     break;
                 case true when clickableHit.gameObject.layer == STATIONS_LAYER:
-                    Debug.Log("Hit the station from switch");
+                    //Debug.Log("Hit the station from switch");
                     ProcessStationClick(clickableHit.GetComponent<IStation>(), _navMeshAgent.transform.position);
                     break;
                 case true when clickableHit.gameObject.layer == WALL_LAYER:
                 default:
-                    Debug.Log("Hit the wall from switch");
+                    //Debug.Log("Hit the wall from switch");
                     break;
             }
         }
@@ -72,14 +72,14 @@ namespace Gameplay.Player
         {
             NavMesh.SamplePosition(position, out var hit, 100, _navMeshAgent.areaMask);
             _navMeshAgent.SetDestination(hit.position);
-            Debug.Log("Position " + position);
-            Debug.Log("Hit position " + hit.position);
+            //Debug.Log("Position " + position);
+            //Debug.Log("Hit position " + hit.position);
         }
 
         private void ProcessStationClick(IStation station, Vector2 playerPosition)
         {
-            //station.Ping();
-            station.ProcessClick(playerPosition);
+            var target = station.GetClosestAnchorPosition(playerPosition);
+            MoveToPosition(target);
         }
     }
 }
