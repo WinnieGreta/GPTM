@@ -90,3 +90,8 @@ crashlytics-build.properties
 
 # Other JetBrains-related
 .idea/httpRequests
+
+# Unity version control
+.plastic/
+plastic.changes
+plastic.wktree
