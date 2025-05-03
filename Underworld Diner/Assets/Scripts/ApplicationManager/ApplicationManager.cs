@@ -2,7 +2,7 @@
 using Interfaces;
 using Zenject;
 
-namespace GameManager
+namespace ApplicationManager
 {
     internal enum GameState
     {
@@ -11,7 +11,7 @@ namespace GameManager
         GamePlay
     }
     
-    public class GameManager: IGameManager, IAppInitializedCallback
+    public class ApplicationManager: IApplicationManager, IAppInitializedCallback
     {
         [Inject] private SceneLoadingManager _sceneLoadingManager;
 
