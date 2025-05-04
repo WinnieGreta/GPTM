@@ -8,6 +8,8 @@ namespace Gameplay.GameManager
     public class GameManager : IGameManager, IFixedTickable, IInitializable
     {
         [Inject] private MonsterSpawnSettings _monsterSpawnSettings;
+        [Inject] private IMonster.Factory _monsterFactory;
+        [Inject] private Transform _monsterSpawnAnchor;
         private float _spawnPeriod;
         private float _spawnTimerTime;
         public void Initialize()
@@ -29,6 +31,7 @@ namespace Gameplay.GameManager
         private void SpawnMonster()
         {
             Debug.Log("Spawn MONSTER!!!!");
+            _monsterFactory.Create(MonsterType.Skeleton, _monsterSpawnAnchor);
         }
     }
 }

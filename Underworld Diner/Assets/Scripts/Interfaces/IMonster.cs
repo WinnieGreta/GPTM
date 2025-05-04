@@ -5,7 +5,8 @@ namespace Interfaces
 {
     public enum MonsterType
     {
-        Skeleton
+        Skeleton,
+        Ork
     }
     public interface IMonster
     {
