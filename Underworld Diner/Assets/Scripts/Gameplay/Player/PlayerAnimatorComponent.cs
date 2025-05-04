@@ -8,11 +8,15 @@ namespace Gameplay.Player
     {
         [Inject] private Animator _animator;
         [Inject] private Transform _transform;
+        [Inject] private SpriteRenderer _spriteRenderer;
         
         private Vector3 _moveOffset;
         private Vector3 _lastPosition;
+        private Vector2 _moveInput;
         private bool _isMoving;
+        private bool _facingRight;
         private const float ANIMATION_THRESHOLD = 0.01f;
+        private const float FLIP_ANIMATION_THRESHOLD = 0.015f;
 
         public void Initialize()
         {
@@ -31,6 +35,15 @@ namespace Gameplay.Player
             {
                 _moveOffset = _transform.position - _lastPosition;
                 _isMoving = true;
+                
+                if ((_moveOffset.x > FLIP_ANIMATION_THRESHOLD) || !(_moveOffset.x < -FLIP_ANIMATION_THRESHOLD))
+                {
+                    _facingRight = true;
+                }
+                else if (!(_moveOffset.x > FLIP_ANIMATION_THRESHOLD) || (_moveOffset.x < -FLIP_ANIMATION_THRESHOLD))
+                {
+                    _facingRight = false;
+                }
             }
             _lastPosition = _transform.position;
         }
@@ -39,6 +52,7 @@ namespace Gameplay.Player
         public void LateTick()
         {
             Vector2 moveInput = _moveOffset.normalized;
+            _spriteRenderer.flipX = !_facingRight;
             _animator.SetFloat("InputX", moveInput.x);
             _animator.SetFloat("InputY", moveInput.y);
             _animator.SetBool("isMoving", _isMoving);

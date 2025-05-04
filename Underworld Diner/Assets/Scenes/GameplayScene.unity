@@ -540,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &723860325
 Transform:
   m_ObjectHideFlags: 0
@@ -5721,7 +5721,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &938097195
 Animator:
   serializedVersion: 7
@@ -10841,6 +10841,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 539407683515734788, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 539407683515734788, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2926627621407361947, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
       propertyPath: m_Name
       value: Character
