@@ -18,7 +18,7 @@ namespace Gameplay.Monster
 
         public void ProcessMovement(Vector2 targetPosition)
         {
-            TargetPosition.Set(targetPosition.x, targetPosition.y);
+            TargetPosition = targetPosition;
             MoveToPosition(TargetPosition);
         }
 
@@ -26,6 +26,21 @@ namespace Gameplay.Monster
         {
             var target = station.GetClosestAnchorPosition(_navMeshAgent.transform.position, _navMeshAgent.tag);
             MoveToPosition(target);
+        }
+
+        public bool HasReachedDestination()
+        {
+            if (!_navMeshAgent.pathPending)
+            {
+                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                {
+                    if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

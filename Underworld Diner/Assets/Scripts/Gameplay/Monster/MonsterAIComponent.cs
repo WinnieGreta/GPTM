@@ -1,13 +1,23 @@
-﻿using Signals;
+﻿using Gameplay.Monster.States;
+using Signals;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterAIComponent : IInitializable
+    public class MonsterAIComponent : IInitializable, ITickable
     {
-        [Inject] private MonsterNavigationComponent _navigator;
         [Inject] private SignalBus _signalBus;
+
+        private MonsterStateEntity.Factory _monsterStateFactory;
+        private MonsterStateEntity _currentStateEntity = null;
+        private MonsterState _currentState;
+
+        [Inject]
+        public void Construct(MonsterStateEntity.Factory monsterStateFactory)
+        {
+            _monsterStateFactory = monsterStateFactory;
+        }
         
         public void Initialize()
         {
@@ -17,12 +27,31 @@ namespace Gameplay.Monster
         [Inject]
         private void OnInject()
         {
-            _signalBus.Subscribe<OnSpawnedSignal>(TestMove);
+            _signalBus.Subscribe<OnSpawnedSignal>(StartMonster);
+        }
+        
+        private void StartMonster()
+        {
+            ChangeState(MonsterState.Enter);
         }
 
-        public void TestMove()
+        internal void ChangeState(MonsterState monsterState)
         {
-            _navigator.ProcessMovement(Vector2.zero);
+            if (_currentStateEntity != null)
+            {
+                _currentStateEntity.Dispose();
+                _currentStateEntity = null;
+            }
+
+            _currentState = monsterState;
+            _currentStateEntity = _monsterStateFactory.Create(monsterState);
+            _currentStateEntity.Start();
+        }
+
+        public void Tick()
+        {
+            _currentStateEntity?.OnTick();
         }
     }
+    
 }

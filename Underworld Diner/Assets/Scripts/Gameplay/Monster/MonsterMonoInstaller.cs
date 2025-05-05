@@ -1,4 +1,6 @@
-﻿using Signals;
+﻿using System;
+using Gameplay.Monster.States;
+using Signals;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -22,6 +24,22 @@ namespace Gameplay.Monster
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();
+            Container.BindFactory<MonsterState, MonsterStateEntity, MonsterStateEntity.Factory>()
+                .FromMethod(CreateMonsterState);
+        }
+
+        private MonsterStateEntity CreateMonsterState(DiContainer container, MonsterState monsterState)
+        {
+            switch (monsterState)
+            {
+                case MonsterState.Enter:
+                    return container.Instantiate<EnterState>();
+                case MonsterState.Sit:
+                    return container.Instantiate<SitState>();
+                case MonsterState.Leave:
+                    return container.Instantiate<LeaveState>();
+            }
+            throw new Exception("No monster state!");
         }
     }
 }
