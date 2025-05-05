@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -26,7 +27,11 @@ namespace Gameplay.Monster
                     .WithInitialSize(pair.InitialSize)
                     .WithFactoryArguments(pair.Type)
                     .FromComponentInNewPrefab(pair.Prefab)
-                    .UnderTransformGroup("MonsterPools");
+                    .UnderTransformGroup("MonsterPools")
+                    .OnInstantiated<MonsterFacade>(((context, o) =>
+                    {
+                        o.InjectPool(Container.ResolveAll<MonsterPool>().FirstOrDefault(x => x.Type == pair.Type));
+                    }));
             }
             
             Container.BindFactory<MonsterType, Transform, IMonster, IMonster.Factory>()

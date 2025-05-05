@@ -39,13 +39,13 @@ namespace Gameplay.Monster
         {
             if (_currentStateEntity != null)
             {
-                _currentStateEntity.Dispose();
+                _currentStateEntity.Exit();
                 _currentStateEntity = null;
             }
 
             _currentState = monsterState;
             _currentStateEntity = _monsterStateFactory.Create(monsterState);
-            _currentStateEntity.Start();
+            _currentStateEntity.Enter();
         }
 
         public void Tick()

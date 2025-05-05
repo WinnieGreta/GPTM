@@ -8,25 +8,32 @@ namespace Gameplay.Monster.States
     {
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
+        private bool _isDestinationSet;
         
         public override void Initialize()
         {
             
         }
 
-        public override void Start()
+        public override void Enter()
         {
-            _navigation.ProcessMovement(Vector2.zero);
+            
         }
 
-        public override void Dispose()
+        public override void Exit()
         {
-            Debug.Log("EnterState disposed");
+            Debug.Log("EnterState exited");
         }
         
 
         public override void OnTick()
         {
+            if (!_isDestinationSet)
+            {
+                _isDestinationSet = true;
+                _navigation.ProcessMovement(Vector2.zero);
+            }
+            
             if (_navigation.HasReachedDestination())
             {
                 _aiComponent.ChangeState(MonsterState.Leave);

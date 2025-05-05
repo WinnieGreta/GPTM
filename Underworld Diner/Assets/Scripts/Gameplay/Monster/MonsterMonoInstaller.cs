@@ -22,6 +22,7 @@ namespace Gameplay.Monster
             Container.BindInterfacesAndSelfTo<MonsterAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterNavigationComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MonsterFacade>().FromComponentOnRoot().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();
             Container.BindFactory<MonsterState, MonsterStateEntity, MonsterStateEntity.Factory>()
@@ -38,6 +39,8 @@ namespace Gameplay.Monster
                     return container.Instantiate<SitState>();
                 case MonsterState.Leave:
                     return container.Instantiate<LeaveState>();
+                case MonsterState.Null:
+                    return container.Instantiate<NullState>();
             }
             throw new Exception("No monster state!");
         }

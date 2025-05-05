@@ -6,10 +6,11 @@ using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>
+    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>, IDespawnable
     {
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private SignalBus _signalBus;
+        private MonsterPool _pool;
 
         private bool _hasStarted;
         public void OnDespawned()
@@ -41,6 +42,16 @@ namespace Gameplay.Monster
                 _hasStarted = true;
             }
             
+        }
+
+        public void Despawn()
+        {
+            _pool.Despawn(this);
+        }
+
+        public void InjectPool(MonsterPool pool)
+        {
+            _pool = pool;
         }
     }
 }

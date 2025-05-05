@@ -6,7 +6,8 @@ namespace Gameplay.Monster.States
     {
         Enter,
         Sit,
-        Leave
+        Leave,
+        Null
     }
     
     public abstract class MonsterStateEntity : IInitializable
@@ -16,12 +17,12 @@ namespace Gameplay.Monster.States
             
         }
 
-        public virtual void Start()
+        public virtual void Enter()
         {
             
         }
 
-        public virtual void Dispose()
+        public virtual void Exit()
         {
             
         }
