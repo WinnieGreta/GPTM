@@ -24,6 +24,7 @@ namespace Gameplay.Staition
     [Serializable]
     public class StationAnchorParameters
     { 
-        public List<Transform> Anchors;
+        public List<Transform> PlayerAnchors;
+        public List<Transform> MonsterAnchors;
     }
 }

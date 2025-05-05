@@ -59,7 +59,7 @@ namespace Gameplay.Player
                     break;
                 case true when clickableHit.gameObject.layer == STATIONS_LAYER:
                     //Debug.Log("Hit the station from switch");
-                    ProcessStationClick(clickableHit.GetComponent<IStation>(), _navMeshAgent.transform.position);
+                    ProcessStationClick(clickableHit.GetComponent<IStation>());
                     break;
                 case true when clickableHit.gameObject.layer == WALL_LAYER:
                 default:
@@ -76,9 +76,9 @@ namespace Gameplay.Player
             //Debug.Log("Hit position " + hit.position);
         }
 
-        private void ProcessStationClick(IStation station, Vector2 playerPosition)
+        private void ProcessStationClick(IStation station)
         {
-            var target = station.GetClosestAnchorPosition(playerPosition);
+            var target = station.GetClosestAnchorPosition( _navMeshAgent.transform.position, _navMeshAgent.tag);
             MoveToPosition(target);
         }
     }
