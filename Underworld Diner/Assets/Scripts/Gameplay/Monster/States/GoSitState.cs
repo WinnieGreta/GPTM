@@ -7,15 +7,17 @@ namespace Gameplay.Monster.States
 {
     public class GoSitState : MonsterStateEntity
     {
+        [Inject] private IMonster _monster;
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private IChairManager _chairManager;
 
-        private ChairFacade[] _chairs;
+        //private ChairFacade[] _chairs;
         private bool _isDestinationSet;
         
         public override void Enter()
         {
-            _chairs = GameObject.FindObjectsByType<ChairFacade>(FindObjectsSortMode.None);
+            //_chairs = GameObject.FindObjectsByType<ChairFacade>(FindObjectsSortMode.None);
         }
 
         public override void OnTick()
@@ -37,13 +39,13 @@ namespace Gameplay.Monster.States
 
         private bool FindFreeChair()
         {
-            foreach (var chair in _chairs)
+            foreach (var chair in _chairManager.Chairs)
             {
                 if (!chair.IsTaken)
                 {
+                    chair.TakeChair(_monster);
                     _navigation.ProcessStationMovement(chair);
                     Debug.Log("Found free chair");
-                    chair.IsTaken = true;
                     return true;
                 }
             }
