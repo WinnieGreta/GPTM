@@ -6,7 +6,7 @@ using Zenject;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 
-namespace Gameplay.Staition
+namespace Gameplay.Station
 {
     public class StationMonoInstaller : MonoInstaller
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace Gameplay.Staition
+namespace Gameplay.Station
 {
     public class StationFacade : MonoBehaviour, IStation
     {

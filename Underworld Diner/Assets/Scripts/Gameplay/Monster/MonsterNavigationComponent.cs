@@ -22,7 +22,7 @@ namespace Gameplay.Monster
             MoveToPosition(TargetPosition);
         }
 
-        private void ProcessStationMovement(IStation station)
+        public void ProcessStationMovement(IStation station)
         {
             var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);

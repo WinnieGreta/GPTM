@@ -5,6 +5,7 @@ namespace Gameplay.Monster.States
     public enum MonsterState
     {
         Enter,
+        GoSit,
         Sit,
         Leave,
         Null

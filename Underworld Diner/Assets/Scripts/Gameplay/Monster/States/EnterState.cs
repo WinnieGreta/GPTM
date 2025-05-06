@@ -36,7 +36,7 @@ namespace Gameplay.Monster.States
             
             if (_navigation.HasReachedDestination())
             {
-                _aiComponent.ChangeState(MonsterState.Leave);
+                _aiComponent.ChangeState(MonsterState.GoSit);
             }
         }
     }

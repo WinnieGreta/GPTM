@@ -35,6 +35,8 @@ namespace Gameplay.Monster
             {
                 case MonsterState.Enter:
                     return container.Instantiate<EnterState>();
+                case MonsterState.GoSit:
+                    return container.Instantiate<GoSitState>();
                 case MonsterState.Sit:
                     return container.Instantiate<SitState>();
                 case MonsterState.Leave:

@@ -12,6 +12,7 @@ namespace Gameplay.GameManager
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameSpawnManager>().AsSingle();
             Container.BindInstance(_monsterSpawnAnchor).AsSingle();
         }
     }

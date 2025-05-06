@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Staition
+namespace Gameplay.Station
 {
     public class StationAnchorsDetectionComponent
     {

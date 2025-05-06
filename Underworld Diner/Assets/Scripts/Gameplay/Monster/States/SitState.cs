@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Monster.States
 {
@@ -8,6 +9,10 @@ namespace Gameplay.Monster.States
         {
             
         }
-        
+
+        public override void Enter()
+        {
+            Debug.Log("I'm sitting");
+        }
     }
 }
