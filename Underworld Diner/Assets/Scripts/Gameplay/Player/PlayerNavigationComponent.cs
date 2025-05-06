@@ -78,7 +78,7 @@ namespace Gameplay.Player
 
         private void ProcessStationClick(IStation station)
         {
-            var target = station.GetClosestAnchorPosition( _navMeshAgent.transform.position, _navMeshAgent.tag);
+            var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);
         }
     }

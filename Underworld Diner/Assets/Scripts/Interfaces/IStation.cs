@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Interfaces
 {
     public interface IStation
     {
-        public Vector2 GetClosestAnchorPosition(Vector2 agentPosition, string tag);
+        public Vector2 GetClosestAnchorPosition(NavMeshAgent agent);
     }
 }

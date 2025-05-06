@@ -12,13 +12,13 @@ namespace Gameplay.Staition
 
         private List<Transform> _anchors;
             
-        public Vector2 GetClosestAnchorPosition(Vector2 agentPosition, string tag)
+        public Vector2 GetClosestAnchorPosition(NavMeshAgent agent)
         {
             //Debug.Log("Distance to player " + ((Vector2)_stationTransform.position - playerPosition).magnitude);
             //Debug.Log("Navmesh Distance to player " + CalculateNavMeshPathLength(playerPosition, _stationTransform));
             //Debug.Log("Closest anchor position " + GetClosestAnchorInternal(playerPosition).position);
             //Debug.Log(tag);
-            return GetClosestAnchorInternal(agentPosition, tag).position;
+            return GetClosestAnchorInternal(agent).position;
         }
 
         // general use function to get the length of a navmesh path
@@ -41,9 +41,9 @@ namespace Gameplay.Staition
         
         // find the anchor that would require player to travel the shortest length on navmesh from their current position
         // we opted to use for loop (not LINQ) because the number of player movement anchors for any given station would be small (up to ~5)
-        private Transform GetClosestAnchorInternal(Vector2 agentPosition, string tag)
+        private Transform GetClosestAnchorInternal(NavMeshAgent agent)
         {
-            if (tag == "Player")
+            if (agent.CompareTag("Player"))
             {
                 _anchors = _anchorParameters.PlayerAnchors;
             }
@@ -53,12 +53,12 @@ namespace Gameplay.Staition
             }
             
             Transform result = _anchors[0];
-            float previousMinLength = CalculateNavMeshPathLength(agentPosition, result);
+            float previousMinLength = CalculateNavMeshPathLength(agent.transform.position, result);
             float newMinLength;
             
             for (int i = 1; i < _anchors.Count; i++)
             {
-                newMinLength = CalculateNavMeshPathLength(agentPosition, _anchors[i]);
+                newMinLength = CalculateNavMeshPathLength(agent.transform.position, _anchors[i]);
                 if (newMinLength < previousMinLength)
                 {
                     result = _anchors[i];
