@@ -17,12 +17,18 @@ namespace Gameplay.Station.Table
             Debug.Log("CHAIRS " + _myChairs.Count);
         }
 
-        private void FreeTable()
+        private void FreeTableChairs()
         {
             foreach (var chair in _myChairs)
             {
                 chair.FreeChair();
             }
+        }
+
+        public void FreeTable()
+        {
+            FreeTableChairs();
+            IsTaken = false;
         }
     }
 }

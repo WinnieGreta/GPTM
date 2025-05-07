@@ -26,7 +26,7 @@ namespace Gameplay.GameManager
         
         public void Register(IChair chair)
         {
-            Debug.Log("Registering tables");
+            Debug.Log("Registering chairs");
             if (_chairs.Contains(chair))
             {
                 Debug.LogError("The chair has already been added");

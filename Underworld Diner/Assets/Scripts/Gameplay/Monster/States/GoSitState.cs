@@ -11,13 +11,12 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private IChairManager _chairManager;
-
-        //private ChairFacade[] _chairs;
+        
         private bool _isDestinationSet;
         
         public override void Enter()
         {
-            //_chairs = GameObject.FindObjectsByType<ChairFacade>(FindObjectsSortMode.None);
+            
         }
 
         public override void OnTick()
@@ -43,7 +42,7 @@ namespace Gameplay.Monster.States
             {
                 if (!chair.IsTaken)
                 {
-                    chair.TakeChair(_monster);
+                    _aiComponent.TakeChairByMonster(chair, _monster);
                     _navigation.ProcessStationMovement(chair);
                     Debug.Log("Found free chair");
                     return true;

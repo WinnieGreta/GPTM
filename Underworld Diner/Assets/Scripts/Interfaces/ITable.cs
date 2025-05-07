@@ -3,5 +3,6 @@
     public interface ITable
     {
         bool IsTaken { get; }
+        void FreeTable();
     }
 }

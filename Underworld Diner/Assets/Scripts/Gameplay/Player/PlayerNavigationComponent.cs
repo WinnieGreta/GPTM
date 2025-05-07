@@ -17,6 +17,7 @@ namespace Gameplay.Player
         private InputAction _click;
         private Vector2 _position;
         private Vector2 _worldPosition;
+        private IStation _stationImMovingTo;
         
         private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
         private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
@@ -37,6 +38,12 @@ namespace Gameplay.Player
             {
                 ProcessClick();
                 Debug.Log(_worldPosition);
+            }
+
+            if ((_stationImMovingTo is ITable) && HasReachedDestination())
+            {
+                FreeTable((ITable)_stationImMovingTo);
+                _stationImMovingTo = null;
             }
         }
 
@@ -80,6 +87,27 @@ namespace Gameplay.Player
         {
             var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);
+            _stationImMovingTo = station;
+        }
+
+        private void FreeTable(ITable table)
+        {
+            table.FreeTable();
+        }
+        
+        public bool HasReachedDestination()
+        {
+            if (!_navMeshAgent.pathPending)
+            {
+                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                {
+                    if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Monster.States;
+using Interfaces;
 using Signals;
 using UnityEngine;
 using UnityEngine.AI;

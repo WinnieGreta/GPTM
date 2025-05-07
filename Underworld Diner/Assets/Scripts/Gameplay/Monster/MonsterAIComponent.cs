@@ -1,4 +1,5 @@
 ﻿using Gameplay.Monster.States;
+using Interfaces;
 using Signals;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace Gameplay.Monster
         private MonsterStateEntity.Factory _monsterStateFactory;
         private MonsterStateEntity _currentStateEntity = null;
         private MonsterState _currentState;
+        public IChair MyChair { get; private set; }
 
         [Inject]
         public void Construct(MonsterStateEntity.Factory monsterStateFactory)
@@ -51,6 +53,18 @@ namespace Gameplay.Monster
         public void Tick()
         {
             _currentStateEntity?.OnTick();
+        }
+
+        public void TakeChairByMonster(IChair chair, IMonster monster)
+        {
+            chair.TakeChair(monster);
+            MyChair = chair;
+        }
+
+        public void FreeChairByMonster(IChair chair)
+        {
+            chair.FreeChair();
+            MyChair = null;
         }
     }
     
