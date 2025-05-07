@@ -26,11 +26,11 @@ namespace Gameplay.Monster
             Container.BindInterfacesAndSelfTo<MonsterFacade>().FromComponentOnRoot().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();
-            Container.BindFactory<MonsterState, MonsterStateEntity, MonsterStateEntity.Factory>()
+            Container.BindFactory<MonsterState, BaseMonsterState, BaseMonsterState.Factory>()
                 .FromMethod(CreateMonsterState);
         }
 
-        private MonsterStateEntity CreateMonsterState(DiContainer container, MonsterState monsterState)
+        private BaseMonsterState CreateMonsterState(DiContainer container, MonsterState monsterState)
         {
             switch (monsterState)
             {
@@ -40,6 +40,8 @@ namespace Gameplay.Monster
                     return container.Instantiate<GoSitState>();
                 case MonsterState.Sit:
                     return container.Instantiate<SitState>();
+                case MonsterState.Order:
+                    return container.Instantiate<OrderState>();
                 case MonsterState.Leave:
                     return container.Instantiate<LeaveState>();
                 case MonsterState.Null:

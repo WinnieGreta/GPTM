@@ -7,11 +7,12 @@ namespace Gameplay.Monster.States
         Enter,
         GoSit,
         Sit,
+        Order,
         Leave,
         Null
     }
     
-    public abstract class MonsterStateEntity : IInitializable
+    public abstract class BaseMonsterState : IInitializable
     {
         public virtual void Initialize()
         {
@@ -33,7 +34,7 @@ namespace Gameplay.Monster.States
             
         }
         
-        public class Factory : PlaceholderFactory<MonsterState, MonsterStateEntity>
+        public class Factory : PlaceholderFactory<MonsterState, BaseMonsterState>
         {
             
         }

@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Gameplay.Monster.States
 {
-    public class GoSitState : MonsterStateEntity
+    public class GoSitState : BaseMonsterState
     {
         [Inject] private IMonster _monster;
         [Inject] private MonsterNavigationComponent _navigation;

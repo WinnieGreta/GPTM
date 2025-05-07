@@ -10,13 +10,13 @@ namespace Gameplay.Monster
     {
         [Inject] private SignalBus _signalBus;
 
-        private MonsterStateEntity.Factory _monsterStateFactory;
-        private MonsterStateEntity _currentStateEntity = null;
+        private BaseMonsterState.Factory _monsterStateFactory;
+        private BaseMonsterState _currentStateEntity = null;
         private MonsterState _currentState;
         public IChair MyChair { get; private set; }
 
         [Inject]
-        public void Construct(MonsterStateEntity.Factory monsterStateFactory)
+        public void Construct(BaseMonsterState.Factory monsterStateFactory)
         {
             _monsterStateFactory = monsterStateFactory;
         }

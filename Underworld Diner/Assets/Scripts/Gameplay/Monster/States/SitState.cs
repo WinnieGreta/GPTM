@@ -4,18 +4,22 @@ using Zenject;
 
 namespace Gameplay.Monster.States
 {
-    public class SitState : MonsterStateEntity
+    public class SitState : BaseMonsterState
     {
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private MonsterDowntimeSettings _monsterDowntimeSettings;
+
+        private float _orderDowntime;
+        private float _timerTime;
         public override void Initialize()
         {
-            
+            _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
+            _timerTime = 0;
         }
 
         public override void Enter()
         {
-            Debug.Log("I'm sitting");
             if (_aiComponent.MyChair != null)
             {
                 Debug.Log("I'm sitting on a chair");
@@ -33,6 +37,12 @@ namespace Gameplay.Monster.States
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
+            }
+            
+            _timerTime += Time.deltaTime;
+            if (_timerTime > _orderDowntime)
+            {
+                _aiComponent.ChangeState(MonsterState.Order);
             }
         }
     }

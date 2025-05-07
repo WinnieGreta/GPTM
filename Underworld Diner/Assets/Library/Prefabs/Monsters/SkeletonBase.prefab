@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5996462103259561571}
   - component: {fileID: 320074804797969179}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: SkeletonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 86712b890a89b594887e8f327374758a, type: 2}
   _monoInstallers:
   - {fileID: 6481119462186401502}
   _installerPrefabs: []
