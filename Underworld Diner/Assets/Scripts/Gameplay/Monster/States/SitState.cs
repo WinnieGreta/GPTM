@@ -7,6 +7,7 @@ namespace Gameplay.Monster.States
     public class SitState : MonsterStateEntity
     {
         [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private MonsterAnimatorComponent _animatorComponent;
         public override void Initialize()
         {
             
@@ -18,6 +19,7 @@ namespace Gameplay.Monster.States
             if (_aiComponent.MyChair != null)
             {
                 Debug.Log("I'm sitting on a chair");
+                _animatorComponent.StartSit();
             }
             else
             {
@@ -29,6 +31,7 @@ namespace Gameplay.Monster.States
         {
             if (!_aiComponent.MyChair.IsTaken)
             {
+                _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
         }

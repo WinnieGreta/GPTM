@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Gameplay.Monster
@@ -7,11 +8,13 @@ namespace Gameplay.Monster
     {
         [Inject] private Animator _animator;
         [Inject] private SpriteRenderer _spriteRenderer;
+        [Inject] private NavMeshAgent _navMeshAgent;
         
         private Transform _transform;
         private Vector3 _moveOffset;
         private Vector3 _lastPosition;
         private bool _isMoving;
+        private bool _isSitting;
         private bool _isFacingRight;
         private bool _wasFacingRight;
         private const float ANIMATION_THRESHOLD = 0.03f;
@@ -24,6 +27,21 @@ namespace Gameplay.Monster
         }
 
         public void FixedTick()
+        {
+            MovementCheck();
+        }
+        
+        public void LateTick()
+        {
+            if (_isFacingRight != _wasFacingRight)
+            {
+                _spriteRenderer.flipX = !_isFacingRight;
+            }
+            _animator.SetBool("isMoving", _isMoving);
+            _animator.SetBool("isSitting", _isSitting);
+        }
+
+        private void MovementCheck()
         {
             _wasFacingRight = _isFacingRight;
             _isMoving = false;
@@ -43,14 +61,19 @@ namespace Gameplay.Monster
             }
             _lastPosition = _transform.position;
         }
-        
-        public void LateTick()
+
+        public void StartSit()
         {
-            if (_isFacingRight != _wasFacingRight)
-            {
-                _spriteRenderer.flipX = !_isFacingRight;
-            }
-            _animator.SetBool("isMoving", _isMoving);
+            _isSitting = true;
+            _spriteRenderer.sortingOrder = 1;
+            _navMeshAgent.enabled = false;
+        }
+
+        public void StopSit()
+        {
+            _isSitting = false;
+            _spriteRenderer.sortingOrder = 0;
+            _navMeshAgent.enabled = true;
         }
 
     }
