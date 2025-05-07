@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Station.Chair;
 using Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Station.Chair
+namespace Gameplay.Station.Table
 {
-    public class ChairMonoInstaller : MonoInstaller
+    public class TableMonoInstaller : MonoInstaller
     {
         [SerializeField] private Station.StationAnchorParameters _anchorParameters;
-        [Inject] private IChairManager _chairManager;
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<Transform>().FromInstance(transform).AsSingle();
             Container.BindInstance(_anchorParameters).AsSingle();
-            Container.BindInterfacesAndSelfTo<ChairFacade>()
+            Container.BindInterfacesAndSelfTo<TableFacade>()
                 .FromComponentOnRoot()
                 .AsSingle()
-                .OnInstantiated<ChairFacade>((_, x) => _chairManager.Register(x))
                 .NonLazy();
+            Container.BindInterfacesAndSelfTo<ChairFacade>().FromComponentsInChildren().AsTransient();
             Container.BindInterfacesAndSelfTo<StationAnchorsDetectionComponent>().AsSingle();
         }
     }

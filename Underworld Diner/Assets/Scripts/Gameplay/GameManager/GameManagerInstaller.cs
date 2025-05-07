@@ -1,4 +1,5 @@
-﻿using Unity.AI.Navigation;
+﻿using Interfaces;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;

@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4260141024697150169}
   - component: {fileID: 8307376182344027990}
   - component: {fileID: 8515722739370234527}
+  - component: {fileID: 6049347574090373187}
   m_Layer: 6
   m_Name: Chair
   m_TagString: Untagged
@@ -220,6 +221,18 @@ MonoBehaviour:
     PlayerAnchors: []
     MonsterAnchors:
     - {fileID: 2148279808541703366}
+--- !u!114 &6049347574090373187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127353485153069823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6deb6c37ba0546c1a479ce16c4086931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7896501346599456849
 GameObject:
   m_ObjectHideFlags: 0

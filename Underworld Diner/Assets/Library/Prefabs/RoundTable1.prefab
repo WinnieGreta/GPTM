@@ -225,11 +225,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4413655428933774212}
   - component: {fileID: 4991681168443562619}
-  - component: {fileID: 7154693991004704225}
   - component: {fileID: 7200212329927861250}
   - component: {fileID: 2035622132631578161}
   - component: {fileID: 2986563253720958545}
   - component: {fileID: 7665590849261111849}
+  - component: {fileID: 4798759079857834991}
+  - component: {fileID: 1869367595216743120}
   m_Layer: 6
   m_Name: RoundTable1
   m_TagString: SerializeLayout
@@ -269,29 +270,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 7154693991004704225}
+  - {fileID: 4798759079857834991}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &7154693991004704225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7730859022992628298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 139457fa497b421a9c88ecd96d9288dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anchorParameters:
-    PlayerAnchors:
-    - {fileID: 1646090624335658320}
-    - {fileID: 6992465929464629180}
-    MonsterAnchors:
-    - {fileID: 973605793627294489}
-    - {fileID: 8022373162876082325}
 --- !u!208 &7200212329927861250
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -418,6 +400,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4798759079857834991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730859022992628298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad271fa74154dc182ee20d3ce388a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anchorParameters:
+    PlayerAnchors:
+    - {fileID: 1646090624335658320}
+    - {fileID: 6992465929464629180}
+    MonsterAnchors: []
+--- !u!114 &1869367595216743120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730859022992628298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b12a5b00164f22b696db8aa29d76ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1176222720265779167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -483,11 +494,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
---- !u!4 &973605793627294489 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2148279808541703366, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
-  m_PrefabInstance: {fileID: 1176222720265779167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8240693126649310773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7065614457157720554, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
@@ -569,10 +575,5 @@ PrefabInstance:
 --- !u!4 &1192066388049444281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7065614457157720554, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
-  m_PrefabInstance: {fileID: 8252011760830030931}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8022373162876082325 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2148279808541703366, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
   m_PrefabInstance: {fileID: 8252011760830030931}
   m_PrefabAsset: {fileID: 0}
