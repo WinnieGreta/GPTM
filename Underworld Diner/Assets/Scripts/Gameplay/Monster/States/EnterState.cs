@@ -31,7 +31,7 @@ namespace Gameplay.Monster.States
             if (!_isDestinationSet)
             {
                 _isDestinationSet = true;
-                _navigation.ProcessMovement(Vector2.zero);
+                _navigation.ProcessMovement(new (-14, -3));
             }
             
             if (_navigation.HasReachedDestination())
