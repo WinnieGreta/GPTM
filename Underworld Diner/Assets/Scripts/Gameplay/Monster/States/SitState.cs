@@ -24,7 +24,7 @@ namespace Gameplay.Monster.States
                 _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
                 _timerTime = 0;
                 Debug.Log("I'm sitting on a chair");
-                _animatorComponent.StartSit();
+                _animatorComponent.StartSit(_aiComponent.MyChair.IsFacingRight);
             }
             else
             {
@@ -38,6 +38,7 @@ namespace Gameplay.Monster.States
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
+                return;
             }
             
             _timerTime += Time.deltaTime;

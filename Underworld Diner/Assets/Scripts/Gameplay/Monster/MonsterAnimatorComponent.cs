@@ -62,11 +62,12 @@ namespace Gameplay.Monster
             _lastPosition = _transform.position;
         }
 
-        public void StartSit()
+        public void StartSit(bool isFacingRight)
         {
             _isSitting = true;
             _spriteRenderer.sortingOrder = 1;
             _navMeshAgent.enabled = false;
+            _isFacingRight = isFacingRight;
         }
 
         public void StopSit()

@@ -6,6 +6,7 @@ namespace Gameplay.Station.Chair
     public class ChairFacade : StationFacade, IChair
     {
         public bool IsTaken => _occupant != null;
+        public bool IsFacingRight => (transform.parent.position - transform.position).x > 0;
 
         private IMonster _occupant;
 
