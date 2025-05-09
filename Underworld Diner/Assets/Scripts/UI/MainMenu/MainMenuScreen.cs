@@ -7,7 +7,7 @@ namespace UI.MainMenu
 {
     public class MainMenuScreen : MonoBehaviour
     {
-        [Inject] private IGameManager _gameManager;
+        [Inject] private IApplicationManager _gameManager;
         [SerializeField] private Button _startButton;
         void Start()
         {

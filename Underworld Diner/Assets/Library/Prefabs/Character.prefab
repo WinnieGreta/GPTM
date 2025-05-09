@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8761994296888455630}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   _animator: {fileID: 6387086833905525498}
   _transform: {fileID: 5255453347511403087}
   _navMeshAgent: {fileID: 539407683515734788}
+  _spriteRenderer: {fileID: 420644730463893283}
 --- !u!70 &999172009065219985
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
