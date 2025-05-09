@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SkeletonBaseSettings
   m_EditorClassIdentifier: 
   _monsterDowntimeSettings:
-    <OrderDowntime>k__BackingField: 0
+    <OrderDowntime>k__BackingField: 5
     <EatingDowntime>k__BackingField: 0

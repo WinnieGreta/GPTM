@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Dish;
 using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
@@ -14,6 +15,7 @@ namespace Gameplay.Monster
         [SerializeField] private Transform _transform;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private DishRecipe _favoriteDish;
 
         public override void InstallBindings()
         {
@@ -28,6 +30,9 @@ namespace Gameplay.Monster
             Container.DeclareSignal<OnDespawnedSignal>();
             Container.BindFactory<MonsterState, BaseMonsterState, BaseMonsterState.Factory>()
                 .FromMethod(CreateMonsterState);
+            
+            // Test order UI spawn
+            Container.BindInstance(_favoriteDish).AsSingle();
         }
 
         private BaseMonsterState CreateMonsterState(DiContainer container, MonsterState monsterState)

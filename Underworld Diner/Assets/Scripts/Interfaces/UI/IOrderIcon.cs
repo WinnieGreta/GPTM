@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Interfaces.UI
 {
-    public interface IOrderIcon
+    public interface IOrderIcon : IDespawnable
     {
         public class Factory : PlaceholderFactory<IDish, Transform, IOrderIcon>
         {

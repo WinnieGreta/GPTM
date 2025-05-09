@@ -14,14 +14,15 @@ namespace Gameplay.Monster.States
         private float _timerTime;
         public override void Initialize()
         {
-            _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
-            _timerTime = 0;
+            
         }
 
         public override void Enter()
         {
             if (_aiComponent.MyChair != null)
             {
+                _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
+                _timerTime = 0;
                 Debug.Log("I'm sitting on a chair");
                 _animatorComponent.StartSit();
             }
@@ -42,6 +43,8 @@ namespace Gameplay.Monster.States
             _timerTime += Time.deltaTime;
             if (_timerTime > _orderDowntime)
             {
+                Debug.Log("Order downtime: " + _orderDowntime + ", was waiting for " + _timerTime);
+                _timerTime -= _orderDowntime;
                 _aiComponent.ChangeState(MonsterState.Order);
             }
         }

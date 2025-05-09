@@ -194,6 +194,7 @@ MonoBehaviour:
   _transform: {fileID: 570152165550608713}
   _navMeshAgent: {fileID: 5996462103259561571}
   _spriteRenderer: {fileID: 6533138095986988839}
+  _favoriteDish: {fileID: 11400000, guid: e2bd9db17e92e194d85a5bdd4f2364bc, type: 2}
 --- !u!195 &5996462103259561571
 NavMeshAgent:
   m_ObjectHideFlags: 0
