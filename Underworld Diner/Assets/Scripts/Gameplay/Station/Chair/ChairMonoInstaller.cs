@@ -8,7 +8,7 @@ namespace Gameplay.Station.Chair
 {
     public class ChairMonoInstaller : MonoInstaller
     {
-        [SerializeField] private Station.StationAnchorParameters _anchorParameters;
+        [SerializeField] private StationAnchorParameters _anchorParameters;
         [Inject] private IChairManager _chairManager;
 
         public override void InstallBindings()
@@ -22,12 +22,5 @@ namespace Gameplay.Station.Chair
                 .NonLazy();
             Container.BindInterfacesAndSelfTo<StationAnchorsDetectionComponent>().AsSingle();
         }
-    }
-    
-    [Serializable]
-    public class StationAnchorParameters
-    { 
-        public List<Transform> PlayerAnchors;
-        public List<Transform> MonsterAnchors;
     }
 }
