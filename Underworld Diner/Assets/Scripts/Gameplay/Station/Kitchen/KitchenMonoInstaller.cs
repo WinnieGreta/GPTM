@@ -16,7 +16,7 @@ namespace Gameplay.Station.Kitchen
     public class KitchenMonoInstaller : MonoInstaller
     {
         [SerializeField] private StationAnchorParameters _stationAnchorParameters;
-        [FormerlySerializedAs("kitchenParameters")] [SerializeField] private KitchenParameters _kitchenParameters;
+        [SerializeField] private KitchenParameters _kitchenParameters;
         [SerializeField] private DishRecipe _dishRecipe;
 
         public override void InstallBindings()
@@ -29,6 +29,7 @@ namespace Gameplay.Station.Kitchen
                 .AsSingle()
                 .NonLazy();
             Container.BindInterfacesAndSelfTo<KitchenAnimatorComponent>().AsSingle();
+            
             // Test dish
             Container.BindInstance(_dishRecipe).AsSingle();
         }

@@ -262,7 +262,7 @@ MonoBehaviour:
     PlayerAnchors:
     - {fileID: 8661923419653960784}
     MonsterAnchors: []
-  kitchenParameters:
+  _kitchenParameters:
     DishPosterSprite: {fileID: 2041141378790635475}
     CookingAnimator: {fileID: 1476761467842541007}
     ReadyDishSprite: {fileID: 7898829703932168333}

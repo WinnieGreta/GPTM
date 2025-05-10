@@ -1,4 +1,5 @@
 using Gameplay.Player;
+using Gameplay.Player.Signals;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -23,6 +24,8 @@ public class PlayerMonoInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerMovementComponent>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerAnimatorComponent>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerNavigationComponent>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerStationInteractionComponent>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerStatusComponent>().AsSingle();
+        Container.DeclareSignal<DestinationReachedSignal>();
     }
 }

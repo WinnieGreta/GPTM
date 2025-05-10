@@ -7,6 +7,7 @@ namespace Gameplay.Player
     public class PlayerStatusComponent
     {
         public List<IDish> Hands { get; private set; } = new ();
+        public IStation StationImMovingTo { get; set; }
 
         public override string ToString()
         {

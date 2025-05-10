@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Player.Signals;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,7 @@ namespace Gameplay.Player
 {
     public class PlayerNavigationComponent : IInitializable, ITickable
     {
+        [Inject] private SignalBus _signalBus;
         [Inject] private PlayerInput _playerInput;
         [Inject] private NavMeshAgent _navMeshAgent;
         [Inject] private PlayerStatusComponent _status;
@@ -19,13 +21,10 @@ namespace Gameplay.Player
         private InputAction _click;
         private Vector2 _position;
         private Vector2 _worldPosition;
-        private IStation _stationImMovingTo;
         
         private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
         private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
         private static readonly int WALL_LAYER = LayerMask.NameToLayer("Wall");
-
-        private int PLAYER_HANDS = 2;
 
         public void Initialize()
         {
@@ -48,38 +47,12 @@ namespace Gameplay.Player
 
         private void ProcessDestination()
         {
-            // TODO return if not
-            if (HasReachedDestination() && _stationImMovingTo != null)
+            if (HasReachedDestination())
             {
-                switch (_stationImMovingTo)
-                {
-                    case ITable table:
-                        table.FreeTable();
-                        // !!!!!!! Test !!!!!!!
-                        _status.Hands.Clear();
-                        break;
-                    case IKitchen kitchen:
-                        ProcessKitchen(kitchen);
-                        break;
-                    default:
-                        Debug.Log("No station");
-                        break;
-                }
-                _stationImMovingTo = null;
-                Debug.Log(_status.ToString());
+                _signalBus.Fire(new DestinationReachedSignal());
             }
         }
-
-        private void ProcessKitchen(IKitchen kitchen)
-        {
-            var dish = kitchen.PlayerInteraction(_status.Hands.Count < PLAYER_HANDS);
-            if (dish != null)
-            {
-                Debug.Log($"Player got {dish.DishName} from kitchen");
-                _status.Hands.Add(dish);
-            }
-        }
-
+        
         private void ProcessClick()
         {
             _position = _pointAction.ReadValue<Vector2>();
@@ -120,12 +93,7 @@ namespace Gameplay.Player
         {
             var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);
-            _stationImMovingTo = station;
-        }
-
-        private void FreeTable(ITable table)
-        {
-            table.FreeTable();
+            _status.StationImMovingTo = station;
         }
 
         private bool HasReachedDestination()
