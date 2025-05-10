@@ -23,5 +23,6 @@ public class PlayerMonoInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerMovementComponent>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerAnimatorComponent>().AsSingle();
         Container.BindInterfacesAndSelfTo<PlayerNavigationComponent>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerStatusComponent>().AsSingle();
     }
 }

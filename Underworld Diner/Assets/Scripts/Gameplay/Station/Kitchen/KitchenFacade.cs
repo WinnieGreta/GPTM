@@ -10,7 +10,7 @@ namespace Gameplay.Station.Kitchen
     {
         [Inject] private KitchenParameters _kitchenParameters;
         [Inject] private DishRecipe _dishRecipe;
-        [Inject] private KitchenState _currentState;
+        [Inject] private KitchenStatusComponent _statusComponent;
         
         private float _cookingTimer;
 
@@ -19,32 +19,38 @@ namespace Gameplay.Station.Kitchen
         {
             _kitchenParameters.DishPosterSprite.sprite = _dishRecipe.MenuImage;
             _kitchenParameters.ReadyDishSprite.sprite = _dishRecipe.DishImage;
-            _currentState.State = CookingState.Idle;
+            _statusComponent.State = CookingState.Idle;
             _cookingTimer = 0;
 
         }
 
-        public IDish PlayerInteraction()
+        public IDish PlayerInteraction(bool playerHasFreeHand)
         {
             StartCooking();
-            return GetDish();
+            if (playerHasFreeHand)
+            {
+                Debug.Log("Player has free hand");
+                return GetDish();
+            }
+
+            return null;
         }
 
         private void StartCooking()
         {
-            if (_currentState.State == CookingState.Idle)
+            if (_statusComponent.State == CookingState.Idle)
             {
-                Debug.Log("Started cooking!");
-                _currentState.State = CookingState.Cooking;
+                //Debug.Log("Started cooking!");
+                _statusComponent.State = CookingState.Cooking;
             }
         }
 
         private IDish GetDish()
         {
-            if (_currentState.State == CookingState.Ready)
+            if (_statusComponent.State == CookingState.Ready)
             {
-                Debug.Log("Dish is picked up!");
-                _currentState.State = CookingState.Idle;
+                //Debug.Log("Dish is picked up!");
+                _statusComponent.State = CookingState.Idle;
                 return _dishRecipe;
             }
             return null;
@@ -52,18 +58,17 @@ namespace Gameplay.Station.Kitchen
 
         public void Tick()
         {
-            if (_currentState.State == CookingState.Cooking)
+            if (_statusComponent.State == CookingState.Cooking)
             {
                 _cookingTimer += Time.deltaTime;
                 if (_cookingTimer > _dishRecipe.CookingTime)
                 {
-                    Debug.Log("Dish is cooked! Time: " + _cookingTimer);
-                    _currentState.State = CookingState.Ready;
+                    Debug.Log($"{_dishRecipe.DishName} is cooked! Time: {_cookingTimer}");
+                    _statusComponent.State = CookingState.Ready;
                     _cookingTimer = 0;
                 }
             }
         }
-        
         
     }
 }

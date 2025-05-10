@@ -6,7 +6,7 @@ namespace Gameplay.Station.Kitchen
     public class KitchenAnimatorComponent : IInitializable, ITickable, ILateTickable
     {
         [Inject] private KitchenParameters _kitchenParameters;
-        [Inject] private KitchenState _currentKitchen;
+        [Inject] private KitchenStatusComponent _statusComponent;
 
         private CookingState _previousState;
         private Animator _cookingAnimator;
@@ -17,15 +17,15 @@ namespace Gameplay.Station.Kitchen
         {
             _cookingAnimator = _kitchenParameters.CookingAnimator;
             _readyDishRenderer = _kitchenParameters.ReadyDishSprite;
-            _previousState = _currentKitchen.State;
+            _previousState = _statusComponent.State;
             _readyDishRenderer.enabled = false;
         }
 
         public void Tick()
         {
-            if (_previousState != _currentKitchen.State)
+            if (_previousState != _statusComponent.State)
             {
-                switch (_currentKitchen.State)
+                switch (_statusComponent.State)
                 {
                     case CookingState.Cooking:
                         _isCooking = true;
@@ -38,14 +38,12 @@ namespace Gameplay.Station.Kitchen
                         _readyDishRenderer.enabled = false;
                         break;
                 }
-                _previousState = _currentKitchen.State;
+                _previousState = _statusComponent.State;
             }
         }
 
         public void LateTick()
         {
-            //_currentState = KitchenState.Cooking;
-            //Debug.Log(_currentState.ToString());
             _cookingAnimator.SetBool("isCooking", _isCooking);
         }
     }

@@ -2,6 +2,6 @@
 {
     public interface IKitchen
     {
-        public IDish PlayerInteraction();
+        public IDish PlayerInteraction(bool playerHasFreeHand);
     }
 }

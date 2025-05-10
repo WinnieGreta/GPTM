@@ -30,7 +30,7 @@ namespace Gameplay.GameManager
 
         private void SpawnMonster()
         {
-            Debug.Log("Spawn MONSTER!!!!");
+            //Debug.Log("Spawn MONSTER!!!!");
             _monsterFactory.Create(MonsterType.Skeleton, _monsterSpawnAnchor);
         }
         

@@ -12,6 +12,7 @@ namespace Gameplay.Player
     {
         [Inject] private PlayerInput _playerInput;
         [Inject] private NavMeshAgent _navMeshAgent;
+        [Inject] private PlayerStatusComponent _status;
 
         private InputActionMap _playerIndirect;
         private InputAction _pointAction;
@@ -23,7 +24,8 @@ namespace Gameplay.Player
         private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
         private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
         private static readonly int WALL_LAYER = LayerMask.NameToLayer("Wall");
-        
+
+        private int PLAYER_HANDS = 2;
 
         public void Initialize()
         {
@@ -41,21 +43,40 @@ namespace Gameplay.Player
                 //Debug.Log(_worldPosition);
             }
 
+            ProcessDestination();
+        }
+
+        private void ProcessDestination()
+        {
+            // TODO return if not
             if (HasReachedDestination() && _stationImMovingTo != null)
             {
                 switch (_stationImMovingTo)
                 {
                     case ITable table:
                         table.FreeTable();
+                        // !!!!!!! Test !!!!!!!
+                        _status.Hands.Clear();
                         break;
                     case IKitchen kitchen:
-                        kitchen.PlayerInteraction();
+                        ProcessKitchen(kitchen);
                         break;
                     default:
                         Debug.Log("No station");
                         break;
                 }
                 _stationImMovingTo = null;
+                Debug.Log(_status.ToString());
+            }
+        }
+
+        private void ProcessKitchen(IKitchen kitchen)
+        {
+            var dish = kitchen.PlayerInteraction(_status.Hands.Count < PLAYER_HANDS);
+            if (dish != null)
+            {
+                Debug.Log($"Player got {dish.DishName} from kitchen");
+                _status.Hands.Add(dish);
             }
         }
 

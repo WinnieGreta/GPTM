@@ -16,14 +16,14 @@ namespace Gameplay.Station.Kitchen
     public class KitchenMonoInstaller : MonoInstaller
     {
         [SerializeField] private StationAnchorParameters _stationAnchorParameters;
-        [SerializeField] private KitchenParameters kitchenParameters;
+        [FormerlySerializedAs("kitchenParameters")] [SerializeField] private KitchenParameters _kitchenParameters;
         [SerializeField] private DishRecipe _dishRecipe;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_stationAnchorParameters).AsSingle();
-            Container.BindInstance(kitchenParameters).AsSingle();
-            Container.Bind<KitchenState>().AsSingle();
+            Container.BindInstance(_kitchenParameters).AsSingle();
+            Container.Bind<KitchenStatusComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<KitchenFacade>()
                 .FromComponentOnRoot()
                 .AsSingle()
@@ -40,10 +40,5 @@ namespace Gameplay.Station.Kitchen
         public SpriteRenderer DishPosterSprite;
         public Animator CookingAnimator;
         public SpriteRenderer ReadyDishSprite;
-    }
-
-    public class KitchenState
-    {
-        public CookingState State { get; set; }
     }
 }
