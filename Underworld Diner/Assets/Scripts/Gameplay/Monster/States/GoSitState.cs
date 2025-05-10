@@ -44,11 +44,11 @@ namespace Gameplay.Monster.States
                 {
                     _aiComponent.TakeChairByMonster(chair, _monster);
                     _navigation.ProcessStationMovement(chair);
-                    Debug.Log("Found free chair");
+                    //Debug.Log("Found free chair");
                     return true;
                 }
             }
-            Debug.Log("Couldn't find free chair");
+            //Debug.Log("Couldn't find free chair");
             return false;
         }
     }

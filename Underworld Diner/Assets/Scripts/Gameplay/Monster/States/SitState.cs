@@ -23,12 +23,12 @@ namespace Gameplay.Monster.States
             {
                 _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
                 _timerTime = 0;
-                Debug.Log("I'm sitting on a chair");
+                //Debug.Log("I'm sitting on a chair");
                 _animatorComponent.StartSit(_aiComponent.MyChair.IsFacingRight);
             }
             else
             {
-                Debug.Log("I don't have a chair");
+                //Debug.Log("I don't have a chair");
             }
         }
 

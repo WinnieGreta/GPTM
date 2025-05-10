@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,12 +38,23 @@ namespace Gameplay.Player
             if(_click.WasReleasedThisFrame())
             {
                 ProcessClick();
-                Debug.Log(_worldPosition);
+                //Debug.Log(_worldPosition);
             }
 
-            if ((_stationImMovingTo is ITable) && HasReachedDestination())
+            if (HasReachedDestination() && _stationImMovingTo != null)
             {
-                FreeTable((ITable)_stationImMovingTo);
+                switch (_stationImMovingTo)
+                {
+                    case ITable table:
+                        table.FreeTable();
+                        break;
+                    case IKitchen kitchen:
+                        kitchen.PlayerInteraction();
+                        break;
+                    default:
+                        Debug.Log("No station");
+                        break;
+                }
                 _stationImMovingTo = null;
             }
         }
@@ -94,8 +106,8 @@ namespace Gameplay.Player
         {
             table.FreeTable();
         }
-        
-        public bool HasReachedDestination()
+
+        private bool HasReachedDestination()
         {
             if (!_navMeshAgent.pathPending)
             {

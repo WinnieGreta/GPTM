@@ -22,7 +22,7 @@ namespace Gameplay.Monster.States
 
         public override void Exit()
         {
-            Debug.Log("EnterState exited");
+            //Debug.Log("EnterState exited");
         }
         
 

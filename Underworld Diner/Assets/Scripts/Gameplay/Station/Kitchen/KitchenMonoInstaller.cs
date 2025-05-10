@@ -16,12 +16,13 @@ namespace Gameplay.Station.Kitchen
         {
             Container.BindInstance(_stationAnchorParameters).AsSingle();
             Container.BindInstance(kitchenParameters).AsSingle();
-            Container.BindInstance(_dishRecipe).AsSingle();
-            Container.BindInterfacesAndSelfTo<StationFacade>()
+            Container.BindInterfacesAndSelfTo<KitchenFacade>()
                 .FromComponentOnRoot()
                 .AsSingle()
                 .NonLazy();
             
+            // Test dish
+            Container.BindInstance(_dishRecipe).AsSingle();
         }
     }
 
