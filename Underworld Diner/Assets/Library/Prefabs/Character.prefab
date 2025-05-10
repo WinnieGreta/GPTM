@@ -420,6 +420,20 @@ MonoBehaviour:
   _transform: {fileID: 5255453347511403087}
   _navMeshAgent: {fileID: 539407683515734788}
   _spriteRenderer: {fileID: 420644730463893283}
+  _playerHandlingParameters:
+    _anchorGroups:
+    - <GroupParent>k__BackingField: {fileID: 3207110764303789230}
+      <Sprites>k__BackingField:
+      - {fileID: 4325372575924003523}
+    - <GroupParent>k__BackingField: {fileID: 6437128596729629165}
+      <Sprites>k__BackingField:
+      - {fileID: 2105760090865761039}
+      - {fileID: 4172717069414749649}
+    - <GroupParent>k__BackingField: {fileID: 5097529377302584074}
+      <Sprites>k__BackingField:
+      - {fileID: 6231700378152264218}
+      - {fileID: 4194133118160517757}
+      - {fileID: 120105883851136799}
 --- !u!70 &999172009065219985
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
