@@ -5,18 +5,13 @@ using Zenject;
 
 namespace Gameplay.Station.Kitchen
 {
-    public enum KitchenState
-    {
-        Idle,
-        Cooking,
-        Ready
-    }
     
     public class KitchenFacade : StationFacade, IKitchen, ITickable
     {
         [Inject] private KitchenParameters _kitchenParameters;
         [Inject] private DishRecipe _dishRecipe;
-        private KitchenState _currentState;
+        [Inject] private KitchenState _currentState;
+        
         private float _cookingTimer;
 
         [Inject]
@@ -24,7 +19,7 @@ namespace Gameplay.Station.Kitchen
         {
             _kitchenParameters.DishPosterSprite.sprite = _dishRecipe.MenuImage;
             _kitchenParameters.ReadyDishSprite.sprite = _dishRecipe.DishImage;
-            _currentState = KitchenState.Idle;
+            _currentState.State = CookingState.Idle;
             _cookingTimer = 0;
 
         }
@@ -37,19 +32,19 @@ namespace Gameplay.Station.Kitchen
 
         private void StartCooking()
         {
-            if (_currentState == KitchenState.Idle)
+            if (_currentState.State == CookingState.Idle)
             {
                 Debug.Log("Started cooking!");
-                _currentState = KitchenState.Cooking;
+                _currentState.State = CookingState.Cooking;
             }
         }
 
         private IDish GetDish()
         {
-            if (_currentState == KitchenState.Ready)
+            if (_currentState.State == CookingState.Ready)
             {
                 Debug.Log("Dish is picked up!");
-                _currentState = KitchenState.Idle;
+                _currentState.State = CookingState.Idle;
                 return _dishRecipe;
             }
             return null;
@@ -57,13 +52,13 @@ namespace Gameplay.Station.Kitchen
 
         public void Tick()
         {
-            if (_currentState == KitchenState.Cooking)
+            if (_currentState.State == CookingState.Cooking)
             {
                 _cookingTimer += Time.deltaTime;
                 if (_cookingTimer > _dishRecipe.CookingTime)
                 {
                     Debug.Log("Dish is cooked! Time: " + _cookingTimer);
-                    _currentState = KitchenState.Ready;
+                    _currentState.State = CookingState.Ready;
                     _cookingTimer = 0;
                 }
             }

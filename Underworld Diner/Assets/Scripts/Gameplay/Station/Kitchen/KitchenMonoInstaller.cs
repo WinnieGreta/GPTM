@@ -6,6 +6,13 @@ using Zenject;
 
 namespace Gameplay.Station.Kitchen
 {
+    public enum CookingState
+    {
+        Idle,
+        Cooking,
+        Ready
+    }
+    
     public class KitchenMonoInstaller : MonoInstaller
     {
         [SerializeField] private StationAnchorParameters _stationAnchorParameters;
@@ -16,11 +23,12 @@ namespace Gameplay.Station.Kitchen
         {
             Container.BindInstance(_stationAnchorParameters).AsSingle();
             Container.BindInstance(kitchenParameters).AsSingle();
+            Container.Bind<KitchenState>().AsSingle();
             Container.BindInterfacesAndSelfTo<KitchenFacade>()
                 .FromComponentOnRoot()
                 .AsSingle()
                 .NonLazy();
-            
+            Container.BindInterfacesAndSelfTo<KitchenAnimatorComponent>().AsSingle();
             // Test dish
             Container.BindInstance(_dishRecipe).AsSingle();
         }
@@ -30,7 +38,12 @@ namespace Gameplay.Station.Kitchen
     public class KitchenParameters
     {
         public SpriteRenderer DishPosterSprite;
-        public Transform CookingAnimationAnchor;
+        public Animator CookingAnimator;
         public SpriteRenderer ReadyDishSprite;
+    }
+
+    public class KitchenState
+    {
+        public CookingState State { get; set; }
     }
 }
