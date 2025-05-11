@@ -19,7 +19,7 @@ namespace Gameplay.Station.Chair
             Container.BindInterfacesAndSelfTo<Transform>().FromInstance(transform).AsSingle();
             Container.BindInstance(_anchorParameters).AsSingle();
             Container.BindInstance(_chairParameters).AsSingle();
-            Container.BindInstance(_dirtyDish).AsSingle();
+            Container.BindInterfacesAndSelfTo<DishRecipe>().FromInstance(_dirtyDish).AsSingle();
             Container.BindInterfacesAndSelfTo<ChairFacade>()
                 .FromComponentOnRoot()
                 .AsSingle()

@@ -12,8 +12,6 @@
 
         void FreeChair();
 
-        void OrderDish(IDish dish);
-
         void PutDish(IDish dish);
         
         // !!!!!! TESTING REMOVE AFTER !!!!!!??

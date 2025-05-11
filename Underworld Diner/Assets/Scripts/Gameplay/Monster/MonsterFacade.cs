@@ -10,9 +10,13 @@ namespace Gameplay.Monster
     {
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private SignalBus _signalBus;
-        private MonsterPool _pool;
+        [Inject] private MonsterStatusComponent _status;
 
+        public IDish ExpectedDish => _status.ExpectedDish;
+
+        private MonsterPool _pool;
         private bool _hasStarted;
+        
         public void OnDespawned()
         {
             _signalBus.Fire<OnDespawnedSignal>();
@@ -42,6 +46,11 @@ namespace Gameplay.Monster
                 _hasStarted = true;
             }
             
+        }
+        
+        public void Serve(IDish dish)
+        {
+            _status.ExpectedDish = null;
         }
 
         public void Despawn()

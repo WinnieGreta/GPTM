@@ -7,14 +7,14 @@ namespace Gameplay.Station.Chair
     public class ChairFacade : StationFacade, IChair
     {
         [Inject] private ChairParameters _chairParameters;
-        [Inject] private DishRecipe _dirtyDish;
+        [Inject] private IDish _dirtyDish;
         public bool IsTaken => _occupant != null;
-        public bool IsClean => (DishRecipe)_chairParameters.OccupantDish != _dirtyDish;
+        public bool IsClean => _chairParameters.OccupantDish != _dirtyDish;
         public bool IsFacingRight => (transform.parent.position - transform.position).x > 0;
 
-        public IDish ExpectedDish { get; private set; }
-
         private IMonster _occupant;
+        public IDish ExpectedDish => _occupant?.ExpectedDish;
+
 
         [Inject]
         private void OnInject(IChairManager chairManager)
@@ -30,7 +30,6 @@ namespace Gameplay.Station.Chair
         public void FreeChair()
         {
             LeaveChairDirty();
-            OrderDish(null);
             _occupant = null;
         }
         
@@ -52,24 +51,20 @@ namespace Gameplay.Station.Chair
             }
             _chairParameters.DishSprite.sprite = dish.DishImage;
             _chairParameters.OccupantDish = dish;
-            ExpectedDish = null;
+            _occupant.Serve(dish);
 
         }
 
         public void CleanChair()
         {
-            if ((DishRecipe)_chairParameters.OccupantDish == _dirtyDish)
+            if (_chairParameters.OccupantDish == _dirtyDish)
             {
                 //_chairParameters.OccupantDish = null;
                 //_chairParameters.DishSprite.enabled = false;
                 PutDish(null);
             }
         }
-
-        public void OrderDish(IDish dish)
-        {
-            ExpectedDish = dish;
-        }
+        
 
         public IDish GetDishImEating()
         {
