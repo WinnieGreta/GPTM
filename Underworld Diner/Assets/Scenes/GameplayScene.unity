@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 178200699}
   - component: {fileID: 178200700}
   - component: {fileID: 178200701}
+  - component: {fileID: 178200702}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -219,6 +220,7 @@ MonoBehaviour:
   - {fileID: 178200700}
   - {fileID: 178200699}
   - {fileID: 178200701}
+  - {fileID: 178200702}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -297,6 +299,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orderIconFacade: {fileID: -3443241341519002890, guid: 7127e9a266860ff4b9701a310349085a, type: 3}
   _iconRoot: {fileID: 293399043}
+--- !u!114 &178200702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178200695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c65f486d5c7e46a58bc086a72e45c8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recipes:
+  - {fileID: 11400000, guid: 7133137deb5bb5144a96401951daa8d8, type: 2}
+  - {fileID: 11400000, guid: fd11c8d25d26dcd46b9b720f9712e6cf, type: 2}
+  - {fileID: 11400000, guid: a89ee52b15eca2d4ca5702c7083732bb, type: 2}
+  - {fileID: 11400000, guid: e2bd9db17e92e194d85a5bdd4f2364bc, type: 2}
 --- !u!1001 &196519036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 2290116141933517168, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: m_Name
       value: Kitchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: _dishType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -697,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 2290116141933517168, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: m_Name
       value: Kitchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: _dishType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: _dishRecipe
@@ -16143,6 +16170,10 @@ PrefabInstance:
       value: Kitchen
       objectReference: {fileID: 0}
     - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: _dishType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: _dishRecipe
       value: 
       objectReference: {fileID: 11400000, guid: e2bd9db17e92e194d85a5bdd4f2364bc, type: 2}
@@ -16269,6 +16300,10 @@ PrefabInstance:
     - target: {fileID: 2290116141933517168, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: m_Name
       value: Kitchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: _dishType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
       propertyPath: _dishRecipe
@@ -16511,29 +16546,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 420644730463893283, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105760090865761039, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105760090865761039, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2926627621407361947, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325372575924003523, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325372575924003523, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5255453347511403087, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16575,10 +16590,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5525899175423918992, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
-      propertyPath: _dirtyDish
-      value: 
-      objectReference: {fileID: 11400000, guid: a89ee52b15eca2d4ca5702c7083732bb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16635,14 +16646,6 @@ PrefabInstance:
     - target: {fileID: 1007993013573059486, guid: c562ed25614e15e448e96fa9858b090a, type: 3}
       propertyPath: m_Name
       value: Sink
-      objectReference: {fileID: 0}
-    - target: {fileID: 3359145087806431118, guid: c562ed25614e15e448e96fa9858b090a, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3359145087806431118, guid: c562ed25614e15e448e96fa9858b090a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

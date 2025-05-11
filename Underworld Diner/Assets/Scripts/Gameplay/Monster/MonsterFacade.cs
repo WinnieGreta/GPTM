@@ -12,7 +12,7 @@ namespace Gameplay.Monster
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
 
-        public IDish ExpectedDish => _status.ExpectedDish;
+        public DishType ExpectedDish => _status.ExpectedDish;
 
         private MonsterPool _pool;
         private bool _hasStarted;
@@ -48,9 +48,9 @@ namespace Gameplay.Monster
             
         }
         
-        public void Serve(IDish dish)
+        public void Serve(DishType dish)
         {
-            _status.ExpectedDish = null;
+            _status.ExpectedDish = DishType.None;
         }
 
         public void Despawn()

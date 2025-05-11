@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce17d5c9e4a4844b00b6a6818348355, type: 3}
   m_Name: Burger
   m_EditorClassIdentifier: 
+  <Type>k__BackingField: 3
   <DishName>k__BackingField: Burger
   <MenuImage>k__BackingField: {fileID: 21300000, guid: 59691208d5ac01f4aa76895562c763fc, type: 3}
   <DishImage>k__BackingField: {fileID: 21300000, guid: c5df9ea90e95350449c759eb78cc8f5e, type: 3}

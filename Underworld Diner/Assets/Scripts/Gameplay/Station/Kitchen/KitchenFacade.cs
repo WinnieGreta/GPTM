@@ -9,22 +9,24 @@ namespace Gameplay.Station.Kitchen
     public class KitchenFacade : StationFacade, IKitchen, ITickable
     {
         [Inject] private KitchenParameters _kitchenParameters;
-        [Inject] private DishRecipe _dishRecipe;
+        [Inject] private DishType _dishType;
         [Inject] private KitchenStatusComponent _statusComponent;
+        [Inject] private IRecipeBook _recipeBook;
+
         
         private float _cookingTimer;
 
         [Inject]
         private void OnInject()
         {
-            _kitchenParameters.DishPosterSprite.sprite = _dishRecipe.MenuImage;
-            _kitchenParameters.ReadyDishSprite.sprite = _dishRecipe.DishImage;
+            _kitchenParameters.DishPosterSprite.sprite = _recipeBook[_dishType].MenuImage;
+            _kitchenParameters.ReadyDishSprite.sprite = _recipeBook[_dishType].DishImage;
             _statusComponent.State = CookingState.Idle;
             _cookingTimer = 0;
 
         }
 
-        public IDish PlayerInteraction(bool playerHasFreeHand)
+        public DishType PlayerInteraction(bool playerHasFreeHand)
         {
             StartCooking();
             if (playerHasFreeHand)
@@ -33,7 +35,7 @@ namespace Gameplay.Station.Kitchen
                 return GetDish();
             }
 
-            return null;
+            return DishType.None;
         }
 
         private void StartCooking()
@@ -45,15 +47,15 @@ namespace Gameplay.Station.Kitchen
             }
         }
 
-        private IDish GetDish()
+        private DishType GetDish()
         {
             if (_statusComponent.State == CookingState.Ready)
             {
                 //Debug.Log("Dish is picked up!");
                 _statusComponent.State = CookingState.Idle;
-                return _dishRecipe;
+                return _dishType;
             }
-            return null;
+            return DishType.None;
         }
 
         public void Tick()
@@ -61,9 +63,9 @@ namespace Gameplay.Station.Kitchen
             if (_statusComponent.State == CookingState.Cooking)
             {
                 _cookingTimer += Time.deltaTime;
-                if (_cookingTimer > _dishRecipe.CookingTime)
+                if (_cookingTimer > _recipeBook[_dishType].CookingTime)
                 {
-                    Debug.Log($"{_dishRecipe.DishName} is cooked! Time: {_cookingTimer}");
+                    Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
                     _statusComponent.State = CookingState.Ready;
                     _cookingTimer = 0;
                 }

@@ -10,8 +10,8 @@ namespace Interfaces
     }
     public interface IMonster
     {
-        IDish ExpectedDish { get; }
-        void Serve(IDish dish);
+        DishType ExpectedDish { get; }
+        void Serve(DishType dish);
         
         public class Factory : PlaceholderFactory<MonsterType, Transform, IMonster>
         {

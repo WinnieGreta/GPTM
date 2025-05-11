@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Dish;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -17,7 +18,7 @@ namespace Gameplay.Station.Kitchen
     {
         [SerializeField] private StationAnchorParameters _stationAnchorParameters;
         [SerializeField] private KitchenParameters _kitchenParameters;
-        [SerializeField] private DishRecipe _dishRecipe;
+        [SerializeField] private DishType _dishType;
 
         public override void InstallBindings()
         {
@@ -31,7 +32,7 @@ namespace Gameplay.Station.Kitchen
             Container.BindInterfacesAndSelfTo<KitchenAnimatorComponent>().AsSingle();
             
             // Test dish
-            Container.BindInstance(_dishRecipe).AsSingle();
+            Container.BindInstance(_dishType).AsSingle();
         }
     }
 

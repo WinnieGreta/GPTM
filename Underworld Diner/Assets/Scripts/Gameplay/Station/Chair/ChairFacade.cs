@@ -7,14 +7,17 @@ namespace Gameplay.Station.Chair
     public class ChairFacade : StationFacade, IChair
     {
         [Inject] private ChairParameters _chairParameters;
-        [Inject] private IDish _dirtyDish;
+        [Inject] private IRecipeBook _recipeBook;
+
+        
         public bool IsTaken => _occupant != null;
-        public bool IsClean => _chairParameters.OccupantDish != _dirtyDish;
+        public bool IsClean => _occupantDish != DishType.DirtyPlate;
         public bool IsFacingRight => (transform.parent.position - transform.position).x > 0;
 
         private IMonster _occupant;
-        public IDish ExpectedDish => _occupant?.ExpectedDish;
+        public DishType ExpectedDish => _occupant?.ExpectedDish ?? DishType.None;
 
+        private DishType _occupantDish;
 
         [Inject]
         private void OnInject(IChairManager chairManager)
@@ -35,32 +38,27 @@ namespace Gameplay.Station.Chair
         
         private void LeaveChairDirty()
         {
-            if (_chairParameters.OccupantDish != null)
+            if (_occupantDish != DishType.None)
             {
-                PutDish(_dirtyDish);
+                PutDish(DishType.DirtyPlate);
             }
         }
 
-        public void PutDish(IDish dish)
+        public void PutDish(DishType dish)
         {
-            if (dish == null)
+            if (dish == DishType.None)
             {
                 _chairParameters.DishSprite.enabled = false;
-                _chairParameters.OccupantDish = null;
+                // TODO move to monster
+                _occupantDish = DishType.None;
                 return;
                 
             }
-            _chairParameters.DishSprite.sprite = dish.DishImage;
-            _chairParameters.OccupantDish = dish;
+            _chairParameters.DishSprite.sprite = _recipeBook[dish].DishImage;
+            _occupantDish = dish;
             _chairParameters.DishSprite.enabled = true;
             _occupant.Serve(dish);
 
         }
-        
-        public IDish GetDishImEating()
-        {
-            return _chairParameters.OccupantDish;
-        }
-        
     }
 }

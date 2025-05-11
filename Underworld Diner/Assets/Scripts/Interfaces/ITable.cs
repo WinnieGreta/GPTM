@@ -5,7 +5,7 @@
         bool IsTaken { get; }
         void FreeTable();
 
-        bool TryGivingDish(IDish dish);
+        bool TryGivingDish(DishType dish);
         int TryCleaningTable(int freeHands);
     }
 }

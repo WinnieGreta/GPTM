@@ -12,7 +12,7 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         [Inject] private NavMeshAgent _navMeshAgent;
-        [Inject] private DishRecipe _favoriteDish;
+        [Inject] private DishType _favoriteDish;
         [Inject] private IOrderIcon.Factory _orderIconFactory;
         [Inject] private MonsterStatusComponent _status;
 
@@ -20,7 +20,7 @@ namespace Gameplay.Monster.States
         
         public override void Enter()
         {
-            Debug.Log("I'm ordering " + _favoriteDish.DishName);
+            Debug.Log("I'm ordering " + _favoriteDish);
             
             _currentOrderIcon = _orderIconFactory.Create(_favoriteDish, _navMeshAgent.transform);
             _status.ExpectedDish = _favoriteDish;
@@ -35,7 +35,7 @@ namespace Gameplay.Monster.States
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
 
-            if (_aiComponent.MyChair.ExpectedDish == null)
+            if (_aiComponent.MyChair.ExpectedDish == DishType.None)
             {
                 _aiComponent.ChangeState(MonsterState.Eat);
             }
@@ -43,7 +43,7 @@ namespace Gameplay.Monster.States
 
         public override void Exit()
         {
-            _status.ExpectedDish = null;
+            _status.ExpectedDish = DishType.None;
             _currentOrderIcon.Despawn();
         }
     }

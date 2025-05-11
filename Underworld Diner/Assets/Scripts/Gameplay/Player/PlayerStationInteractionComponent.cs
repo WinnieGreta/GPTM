@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Gameplay.Dish;
 using Gameplay.Player.Signals;
 using Interfaces;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Gameplay.Player
         [Inject] private PlayerStatusComponent _status;
         [Inject] private PlayerHandlingParameters _playerHandlingParameters;
         [Inject] private PlayerAnimatorComponent _animatorComponent;
-        [Inject] private IDish _dirtyDish;
+        [Inject] private IRecipeBook _recipeBook;
         
         private PlayerHandlingParameters.AnchorGroup _anchorGroup;
         private int PLAYER_HANDS = 3;
@@ -52,9 +53,9 @@ namespace Gameplay.Player
         private void ProcessKitchen(IKitchen kitchen)
         {
             var dish = kitchen.PlayerInteraction(_status.Hands.Count < PLAYER_HANDS);
-            if (dish != null)
+            if (dish != DishType.None)
             {
-                Debug.Log($"Player got {dish.DishName} from kitchen");
+                Debug.Log($"Player got {dish} from kitchen");
                 _animatorComponent.PickUp();
                 _status.Hands.AddLast(dish);
                 RenderDishes();
@@ -76,7 +77,7 @@ namespace Gameplay.Player
             while (dishInHand != null)
             { 
                 var nextDishInHand = dishInHand.Next;
-                if (dishInHand.Value == _dirtyDish)
+                if (dishInHand.Value == DishType.DirtyPlate)
                 {
                     _status.Hands.Remove(dishInHand.Value);
                 }
@@ -112,7 +113,7 @@ namespace Gameplay.Player
 
             for (int i = 0; i < anchorGroup.Sprites.Count && i < statusHands.Count; i++)
             {
-                anchorGroup.Sprites[i].sprite = statusHands[i].DishImage;
+                anchorGroup.Sprites[i].sprite = _recipeBook[statusHands[i]].DishImage;
             }
         }
 
@@ -142,7 +143,7 @@ namespace Gameplay.Player
                 int dirtyDishesTaken = freeHands - table.TryCleaningTable(freeHands);
                 for (int i = 0; i < dirtyDishesTaken; i++)
                 {
-                    _status.Hands.AddLast(_dirtyDish);
+                    _status.Hands.AddLast(DishType.DirtyPlate);
                 }
                 return true;
             }

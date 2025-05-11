@@ -15,7 +15,7 @@ namespace Gameplay.Station.Table
         private void OnInject(List<IChair> chairs)
         {
             _myChairs = chairs;
-            Debug.Log("CHAIRS " + _myChairs.Count);
+            //Debug.Log("CHAIRS " + _myChairs.Count);
         }
 
         private void FreeTableChairs()
@@ -32,7 +32,7 @@ namespace Gameplay.Station.Table
             IsTaken = false;
         }
 
-        public bool TryGivingDish(IDish order)
+        public bool TryGivingDish(DishType order)
         {
             for (int i = 0; i < _myChairs.Count; i++)
             {
@@ -53,7 +53,7 @@ namespace Gameplay.Station.Table
                 if (!_myChairs[i].IsClean)
                 {
                     freeHandsLeft--;
-                    _myChairs[i].PutDish(null);
+                    _myChairs[i].PutDish(DishType.None);
                 }
             }
             return freeHandsLeft;

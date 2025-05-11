@@ -15,22 +15,22 @@ namespace UI.Order
                 .WithInitialSize(5)
                 .FromComponentInNewPrefab(_orderIconFacade)
                 .UnderTransform(_ => _iconRoot);
-            Container.BindFactory<IDish, Transform, IOrderIcon, IOrderIcon.Factory>()
+            Container.BindFactory<DishType, Transform, IOrderIcon, IOrderIcon.Factory>()
                 .FromFactory<OrderIconFactory>();
         }
     }
 
-    internal class OrderIconFactory : IFactory<IDish, Transform, IOrderIcon>
+    internal class OrderIconFactory : IFactory<DishType, Transform, IOrderIcon>
     {
         [Inject] private OrderIconPool _pool;
-        public IOrderIcon Create(IDish dish, Transform anchor)
+        public IOrderIcon Create(DishType dish, Transform anchor)
         {
             return _pool.Spawn(dish, anchor);
         }
     }
     
     // alias for readability
-    internal class OrderIconPool : MonoPoolableMemoryPool<IDish, Transform, OrderIconFacade>
+    internal class OrderIconPool : MonoPoolableMemoryPool<DishType, Transform, OrderIconFacade>
     {
     }
 }

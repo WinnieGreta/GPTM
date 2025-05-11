@@ -6,15 +6,12 @@
         bool IsClean { get; }
         bool IsFacingRight { get; }
 
-        IDish ExpectedDish { get; }
+        DishType ExpectedDish { get; }
 
         void TakeChair(IMonster occupant);
 
         void FreeChair();
 
-        void PutDish(IDish dish);
-        
-        // TODO can we do without?
-        IDish GetDishImEating();
+        void PutDish(DishType dish);
     }
 }

@@ -5,7 +5,7 @@ namespace Interfaces.UI
 {
     public interface IOrderIcon : IDespawnable
     {
-        public class Factory : PlaceholderFactory<IDish, Transform, IOrderIcon>
+        public class Factory : PlaceholderFactory<DishType, Transform, IOrderIcon>
         {
             
         }

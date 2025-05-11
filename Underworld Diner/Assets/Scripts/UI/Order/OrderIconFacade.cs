@@ -6,11 +6,13 @@ using Zenject;
 
 namespace UI.Order
 {
-    public class OrderIconFacade : MonoBehaviour, IOrderIcon, IPoolable<IDish, Transform>, IDespawnable
+    public class OrderIconFacade : MonoBehaviour, IOrderIcon, IPoolable<DishType, Transform>, IDespawnable
     {
         [Inject] private OrderIconPool _orderIconPool;
         [Inject] private Transform _containerImageTransform;
         [Inject] private Image _dishImage;
+        [Inject] private IRecipeBook _recipeBook;
+
 
         [SerializeField] private Vector3 _orderIconOffset;
         
@@ -19,10 +21,10 @@ namespace UI.Order
             
         }
 
-        public void OnSpawned(IDish dish, Transform anchor)
+        public void OnSpawned(DishType dish, Transform anchor)
         {
             _containerImageTransform.position = anchor.position + _orderIconOffset;
-            _dishImage.sprite = dish.MenuImage;
+            _dishImage.sprite = _recipeBook[dish].MenuImage;
         }
 
         public void Despawn()

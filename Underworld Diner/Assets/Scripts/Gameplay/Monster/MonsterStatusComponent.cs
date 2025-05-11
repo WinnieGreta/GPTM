@@ -4,6 +4,6 @@ namespace Gameplay.Monster
 {
     internal class MonsterStatusComponent
     {
-        public IDish ExpectedDish { get; set; }
+        public DishType ExpectedDish { get; set; }
     }
 }
