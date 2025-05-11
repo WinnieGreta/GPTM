@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce17d5c9e4a4844b00b6a6818348355, type: 3}
   m_Name: Pudding
   m_EditorClassIdentifier: 
+  <Type>k__BackingField: 4
   <DishName>k__BackingField: Pudding
   <MenuImage>k__BackingField: {fileID: 21300000, guid: cf72d24a844aab844a0ee42e1c80e84b, type: 3}
   <DishImage>k__BackingField: {fileID: 21300000, guid: efb137b127b5f98479d0885903898666, type: 3}
+  <CookingTime>k__BackingField: 3

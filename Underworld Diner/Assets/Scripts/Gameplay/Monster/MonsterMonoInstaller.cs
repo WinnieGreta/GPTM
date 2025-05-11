@@ -15,7 +15,7 @@ namespace Gameplay.Monster
         [SerializeField] private Transform _transform;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private DishRecipe _favoriteDish;
+        [SerializeField] private DishType _favoriteDish;
 
         public override void InstallBindings()
         {
@@ -25,6 +25,7 @@ namespace Gameplay.Monster
             Container.BindInterfacesAndSelfTo<MonsterAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterNavigationComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MonsterStatusComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterFacade>().FromComponentOnRoot().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();
@@ -47,6 +48,8 @@ namespace Gameplay.Monster
                     return container.Instantiate<SitState>();
                 case MonsterState.Order:
                     return container.Instantiate<OrderState>();
+                case MonsterState.Eat:
+                    return container.Instantiate<EatState>();
                 case MonsterState.Leave:
                     return container.Instantiate<LeaveState>();
                 case MonsterState.Null:

@@ -40,15 +40,15 @@ namespace Gameplay.Monster.States
         {
             foreach (var chair in _chairManager.Chairs)
             {
-                if (!chair.IsTaken)
+                if (!chair.IsTaken && chair.IsClean)
                 {
                     _aiComponent.TakeChairByMonster(chair, _monster);
                     _navigation.ProcessStationMovement(chair);
-                    Debug.Log("Found free chair");
+                    //Debug.Log("Found free chair");
                     return true;
                 }
             }
-            Debug.Log("Couldn't find free chair");
+            //Debug.Log("Couldn't find free chair");
             return false;
         }
     }

@@ -8,6 +8,7 @@ namespace Gameplay.Player
     {
         [Inject] private Animator _animator;
         [Inject] private SpriteRenderer _spriteRenderer;
+        [Inject] private PlayerStatusComponent _status;
         
         private Transform _transform;
         private Vector3 _moveOffset;
@@ -62,6 +63,17 @@ namespace Gameplay.Player
             _animator.SetFloat("InputX", moveInput.x);
             _animator.SetFloat("InputY", moveInput.y);
             _animator.SetBool("isMoving", _isMoving);
+            _animator.SetBool("isCarrying", _status.Hands.Count > 0);
+        }
+
+        public void PickUp()
+        {
+            _animator.SetTrigger("PickUp");
+        }
+
+        public void PutDown()
+        {
+            _animator.SetTrigger("PutDown");
         }
         
     }

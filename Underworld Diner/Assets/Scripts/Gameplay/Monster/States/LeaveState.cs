@@ -17,8 +17,8 @@ namespace Gameplay.Monster.States
 
         public override void Enter()
         {
-            Debug.Log("Leaving");
-            _navigation.ProcessMovement(new Vector2(2, 2));
+            //Debug.Log("Leaving");
+            _navigation.ProcessMovement(new Vector2(-13, -7));
         }
 
         public override void OnTick()
@@ -33,7 +33,7 @@ namespace Gameplay.Monster.States
         {
             _aiComponent.ChangeState(MonsterState.Null);
             _despawnable.Despawn();
-            Debug.Log("LeaveState disposed");
+            //Debug.Log("LeaveState disposed");
         }
         
     }

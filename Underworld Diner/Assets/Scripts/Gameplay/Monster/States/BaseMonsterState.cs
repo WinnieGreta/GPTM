@@ -8,6 +8,7 @@ namespace Gameplay.Monster.States
         GoSit,
         Sit,
         Order,
+        Eat,
         Leave,
         Null
     }

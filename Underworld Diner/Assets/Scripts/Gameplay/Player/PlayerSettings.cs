@@ -19,4 +19,5 @@ namespace Gameplay.Player
     {
         [field:SerializeField] public float MaxSpeed { get; private set; }
     }
+    
 }

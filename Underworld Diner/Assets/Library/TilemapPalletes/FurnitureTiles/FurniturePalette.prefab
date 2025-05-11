@@ -78,6 +78,7 @@ Transform:
   m_Children:
   - {fileID: 2670206295328733001}
   - {fileID: 870335288329646329}
+  - {fileID: 6899933757716816680}
   m_Father: {fileID: 7862990321291452444}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &188892996989966802
@@ -170,6 +171,68 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &746360941022678218
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4088389546629260004}
+    m_Modifications:
+    - target: {fileID: 2290116141933517168, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_Name
+      value: Kitchen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+--- !u!4 &6899933757716816680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+  m_PrefabInstance: {fileID: 746360941022678218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1751352973344562381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -280,6 +343,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 1173073827484408974, guid: cafb33572d65b374ba5e9e31e73af853, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173073827484408974, guid: cafb33572d65b374ba5e9e31e73af853, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3028621093191256560, guid: cafb33572d65b374ba5e9e31e73af853, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5
@@ -330,7 +401,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3028621093191256560, guid: cafb33572d65b374ba5e9e31e73af853, type: 3}
   m_PrefabInstance: {fileID: 2743782355533281545}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5954536684331391920
+--- !u!114 &8450574420576751024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Gameplay.Player.Signals;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,20 +11,20 @@ namespace Gameplay.Player
 {
     public class PlayerNavigationComponent : IInitializable, ITickable
     {
+        [Inject] private SignalBus _signalBus;
         [Inject] private PlayerInput _playerInput;
         [Inject] private NavMeshAgent _navMeshAgent;
+        [Inject] private PlayerStatusComponent _status;
 
         private InputActionMap _playerIndirect;
         private InputAction _pointAction;
         private InputAction _click;
         private Vector2 _position;
         private Vector2 _worldPosition;
-        private IStation _stationImMovingTo;
         
         private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
         private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
         private static readonly int WALL_LAYER = LayerMask.NameToLayer("Wall");
-        
 
         public void Initialize()
         {
@@ -37,16 +39,20 @@ namespace Gameplay.Player
             if(_click.WasReleasedThisFrame())
             {
                 ProcessClick();
-                Debug.Log(_worldPosition);
+                //Debug.Log(_worldPosition);
             }
 
-            if ((_stationImMovingTo is ITable) && HasReachedDestination())
-            {
-                FreeTable((ITable)_stationImMovingTo);
-                _stationImMovingTo = null;
-            }
+            ProcessDestination();
         }
 
+        private void ProcessDestination()
+        {
+            if (HasReachedDestination())
+            {
+                _signalBus.Fire(new DestinationReachedSignal());
+            }
+        }
+        
         private void ProcessClick()
         {
             _position = _pointAction.ReadValue<Vector2>();
@@ -87,15 +93,10 @@ namespace Gameplay.Player
         {
             var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);
-            _stationImMovingTo = station;
+            _status.StationImMovingTo = station;
         }
 
-        private void FreeTable(ITable table)
-        {
-            table.FreeTable();
-        }
-        
-        public bool HasReachedDestination()
+        private bool HasReachedDestination()
         {
             if (!_navMeshAgent.pathPending)
             {

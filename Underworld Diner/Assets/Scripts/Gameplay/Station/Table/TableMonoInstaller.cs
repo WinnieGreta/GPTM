@@ -9,7 +9,7 @@ namespace Gameplay.Station.Table
 {
     public class TableMonoInstaller : MonoInstaller
     {
-        [SerializeField] private Station.StationAnchorParameters _anchorParameters;
+        [SerializeField] private StationAnchorParameters _anchorParameters;
 
         public override void InstallBindings()
         {
@@ -24,10 +24,4 @@ namespace Gameplay.Station.Table
         }
     }
     
-    [Serializable]
-    public class StationAnchorParameters
-    { 
-        public List<Transform> PlayerAnchors;
-        public List<Transform> MonsterAnchors;
-    }
 }
