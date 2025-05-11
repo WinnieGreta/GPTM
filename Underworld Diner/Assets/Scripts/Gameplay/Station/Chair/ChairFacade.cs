@@ -46,26 +46,17 @@ namespace Gameplay.Station.Chair
             if (dish == null)
             {
                 _chairParameters.DishSprite.enabled = false;
+                _chairParameters.OccupantDish = null;
                 return;
                 
             }
             _chairParameters.DishSprite.sprite = dish.DishImage;
             _chairParameters.OccupantDish = dish;
+            _chairParameters.DishSprite.enabled = true;
             _occupant.Serve(dish);
 
         }
-
-        public void CleanChair()
-        {
-            if (_chairParameters.OccupantDish == _dirtyDish)
-            {
-                //_chairParameters.OccupantDish = null;
-                //_chairParameters.DishSprite.enabled = false;
-                PutDish(null);
-            }
-        }
         
-
         public IDish GetDishImEating()
         {
             return _chairParameters.OccupantDish;

@@ -13,6 +13,7 @@ namespace Gameplay.Player
         [Inject] private PlayerStatusComponent _status;
         [Inject] private PlayerHandlingParameters _playerHandlingParameters;
         [Inject] private PlayerAnimatorComponent _animatorComponent;
+        [Inject] private IDish _dirtyDish;
         
         private PlayerHandlingParameters.AnchorGroup _anchorGroup;
         private int PLAYER_HANDS = 3;
@@ -61,8 +62,10 @@ namespace Gameplay.Player
         {
             // !!!!!!! Test !!!!!!!
             //table.FreeTable();
-            TryGiveOrder(table);
-            _animatorComponent.PutDown();
+            if (TryGiveOrder(table) || TryCleanTable(table))
+            {
+                _animatorComponent.PutDown();
+            }
             //_status.Hands.Clear();
             RenderDishes();
         }
@@ -97,7 +100,7 @@ namespace Gameplay.Player
             }
         }
 
-        private void TryGiveOrder(ITable table)
+        private bool TryGiveOrder(ITable table)
         {
             List<IDish> removeFromHands = new ();
             foreach (var dish in _status.Hands)
@@ -108,10 +111,30 @@ namespace Gameplay.Player
                 }
             }
 
-            foreach (var dish in removeFromHands)
+            if (removeFromHands.Count > 0)
             {
-                _status.Hands.Remove(dish);
+                foreach (var dish in removeFromHands)
+                {
+                    _status.Hands.Remove(dish);
+                }
+                return true;
             }
+            return false;
+        }
+
+        private bool TryCleanTable(ITable table)
+        {
+            int freeHands = PLAYER_HANDS - _status.Hands.Count;
+            if (freeHands > 0)
+            {
+                int dirtyDishesTaken = freeHands - table.TryCleaningTable(freeHands);
+                for (int i = 0; i < dirtyDishesTaken; i++)
+                {
+                    _status.Hands.AddLast(_dirtyDish);
+                }
+                return true;
+            }
+            return false;
         }
         
     }

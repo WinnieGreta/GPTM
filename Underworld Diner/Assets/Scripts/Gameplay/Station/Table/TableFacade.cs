@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -42,6 +43,20 @@ namespace Gameplay.Station.Table
                 }
             }
             return false;
+        }
+
+        public int TryCleaningTable(int freeHands)
+        {
+            int freeHandsLeft = freeHands;
+            for (int i = 0; i < _myChairs.Count && freeHandsLeft > 0; i++)
+            {
+                if (!_myChairs[i].IsClean)
+                {
+                    freeHandsLeft--;
+                    _myChairs[i].PutDish(null);
+                }
+            }
+            return freeHandsLeft;
         }
     }
 }

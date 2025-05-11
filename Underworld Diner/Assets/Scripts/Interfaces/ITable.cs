@@ -6,5 +6,6 @@
         void FreeTable();
 
         bool TryGivingDish(IDish dish);
+        int TryCleaningTable(int freeHands);
     }
 }

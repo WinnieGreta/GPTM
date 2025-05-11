@@ -1,3 +1,4 @@
+using Gameplay.Dish;
 using Gameplay.Player;
 using Gameplay.Player.Signals;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Gameplay.Player
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private PlayerHandlingParameters _playerHandlingParameters;
+        [SerializeField] private DishRecipe _dirtyDish;
 
         public override void InstallBindings()
         {
@@ -26,6 +28,7 @@ namespace Gameplay.Player
             Container.BindInstance(_navMeshAgent).AsSingle();
             Container.BindInstance(_spriteRenderer).AsSingle();
             Container.BindInstance(_playerHandlingParameters).AsSingle();
+            Container.BindInterfacesAndSelfTo<DishRecipe>().FromInstance(_dirtyDish).AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerMovementComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerNavigationComponent>().AsSingle();
