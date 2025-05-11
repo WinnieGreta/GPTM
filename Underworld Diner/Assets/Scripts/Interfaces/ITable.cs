@@ -4,5 +4,7 @@
     {
         bool IsTaken { get; }
         void FreeTable();
+
+        bool TryGivingDish(IDish dish);
     }
 }

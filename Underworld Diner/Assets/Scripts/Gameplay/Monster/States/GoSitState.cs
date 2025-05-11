@@ -40,7 +40,7 @@ namespace Gameplay.Monster.States
         {
             foreach (var chair in _chairManager.Chairs)
             {
-                if (!chair.IsTaken)
+                if (!chair.IsTaken && chair.IsClean)
                 {
                     _aiComponent.TakeChairByMonster(chair, _monster);
                     _navigation.ProcessStationMovement(chair);

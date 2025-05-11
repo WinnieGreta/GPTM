@@ -47,6 +47,8 @@ namespace Gameplay.Monster
                     return container.Instantiate<SitState>();
                 case MonsterState.Order:
                     return container.Instantiate<OrderState>();
+                case MonsterState.Eat:
+                    return container.Instantiate<EatState>();
                 case MonsterState.Leave:
                     return container.Instantiate<LeaveState>();
                 case MonsterState.Null:

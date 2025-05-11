@@ -10524,6 +10524,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9c770f5d0a80f4a91ea52933834091, type: 3}
+--- !u!4 &1185073875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+  m_PrefabInstance: {fileID: 1997063997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1218636878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413655428933774212, guid: 9e9c770f5d0a80f4a91ea52933834091, type: 3}
@@ -16020,6 +16025,7 @@ Transform:
   m_Children:
   - {fileID: 1765662476}
   - {fileID: 587611032}
+  - {fileID: 1185073875}
   - {fileID: 1895714979}
   - {fileID: 1309096429}
   - {fileID: 1218636878}
@@ -16246,6 +16252,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9c770f5d0a80f4a91ea52933834091, type: 3}
+--- !u!1001 &1997063997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1705455851}
+    m_Modifications:
+    - target: {fileID: 2290116141933517168, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_Name
+      value: Kitchen (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881518603982596024, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: _dishRecipe
+      value: 
+      objectReference: {fileID: 11400000, guid: fd11c8d25d26dcd46b9b720f9712e6cf, type: 2}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}
 --- !u!1 &2026948050
 GameObject:
   m_ObjectHideFlags: 0
@@ -16438,6 +16505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 420644730463893283, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2105760090865761039, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
       propertyPath: m_Sprite
       value: 

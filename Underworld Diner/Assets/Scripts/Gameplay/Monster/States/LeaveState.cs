@@ -18,7 +18,7 @@ namespace Gameplay.Monster.States
         public override void Enter()
         {
             //Debug.Log("Leaving");
-            _navigation.ProcessMovement(new Vector2(2, 2));
+            _navigation.ProcessMovement(new Vector2(-13, -7));
         }
 
         public override void OnTick()

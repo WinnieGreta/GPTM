@@ -30,5 +30,18 @@ namespace Gameplay.Station.Table
             FreeTableChairs();
             IsTaken = false;
         }
+
+        public bool TryGivingDish(IDish order)
+        {
+            for (int i = 0; i < _myChairs.Count; i++)
+            {
+                if (_myChairs[i].ExpectedDish == order)
+                {
+                    _myChairs[i].PutDish(order);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

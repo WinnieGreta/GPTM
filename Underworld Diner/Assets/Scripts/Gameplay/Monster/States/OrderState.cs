@@ -22,6 +22,7 @@ namespace Gameplay.Monster.States
             Debug.Log("I'm ordering " + _favoriteDish.DishName);
             
             _currentOrderIcon = _orderIconFactory.Create(_favoriteDish, _navMeshAgent.transform);
+            _aiComponent.MyChair.OrderDish(_favoriteDish);
 
         }
 
@@ -31,6 +32,11 @@ namespace Gameplay.Monster.States
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
+            }
+
+            if (_aiComponent.MyChair.ExpectedDish == null)
+            {
+                _aiComponent.ChangeState(MonsterState.Eat);
             }
         }
 

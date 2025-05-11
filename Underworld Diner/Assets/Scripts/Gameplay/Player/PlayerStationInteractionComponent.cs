@@ -52,7 +52,7 @@ namespace Gameplay.Player
             {
                 Debug.Log($"Player got {dish.DishName} from kitchen");
                 _animatorComponent.PickUp();
-                _status.Hands.Add(dish);
+                _status.Hands.AddLast(dish);
                 RenderDishes();
             }
         }
@@ -60,9 +60,10 @@ namespace Gameplay.Player
         private void ProcessTable(ITable table)
         {
             // !!!!!!! Test !!!!!!!
-            table.FreeTable();
+            //table.FreeTable();
+            TryGiveOrder(table);
             _animatorComponent.PutDown();
-            _status.Hands.Clear();
+            //_status.Hands.Clear();
             RenderDishes();
         }
 
@@ -88,9 +89,28 @@ namespace Gameplay.Player
                 pair.Renderer.sprite = pair.Dish.DishImage;
             } */
 
-            for (int i = 0; i < anchorGroup.Sprites.Count && i < _status.Hands.Count; i++)
+            var statusHands = _status.Hands.ToList();
+
+            for (int i = 0; i < anchorGroup.Sprites.Count && i < statusHands.Count; i++)
             {
-                anchorGroup.Sprites[i].sprite = _status.Hands[i].DishImage;
+                anchorGroup.Sprites[i].sprite = statusHands[i].DishImage;
+            }
+        }
+
+        private void TryGiveOrder(ITable table)
+        {
+            List<IDish> removeFromHands = new ();
+            foreach (var dish in _status.Hands)
+            {
+                if (table.TryGivingDish(dish))
+                {
+                    removeFromHands.Add(dish);
+                }
+            }
+
+            foreach (var dish in removeFromHands)
+            {
+                _status.Hands.Remove(dish);
             }
         }
         
