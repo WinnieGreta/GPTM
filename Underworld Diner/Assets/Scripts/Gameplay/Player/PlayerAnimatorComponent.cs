@@ -65,6 +65,16 @@ namespace Gameplay.Player
             _animator.SetBool("isMoving", _isMoving);
             _animator.SetBool("isCarrying", _status.Hands.Count > 0);
         }
+
+        public void PickUp()
+        {
+            _animator.SetTrigger("PickUp");
+        }
+
+        public void PutDown()
+        {
+            _animator.SetTrigger("PutDown");
+        }
         
     }
 }

@@ -12,6 +12,7 @@ namespace Gameplay.Player
         [Inject] private SignalBus _signalBus;
         [Inject] private PlayerStatusComponent _status;
         [Inject] private PlayerHandlingParameters _playerHandlingParameters;
+        [Inject] private PlayerAnimatorComponent _animatorComponent;
         
         private PlayerHandlingParameters.AnchorGroup _anchorGroup;
         private int PLAYER_HANDS = 3;
@@ -50,6 +51,7 @@ namespace Gameplay.Player
             if (dish != null)
             {
                 Debug.Log($"Player got {dish.DishName} from kitchen");
+                _animatorComponent.PickUp();
                 _status.Hands.Add(dish);
                 RenderDishes();
             }
@@ -59,6 +61,7 @@ namespace Gameplay.Player
         {
             // !!!!!!! Test !!!!!!!
             table.FreeTable();
+            _animatorComponent.PutDown();
             _status.Hands.Clear();
             RenderDishes();
         }
