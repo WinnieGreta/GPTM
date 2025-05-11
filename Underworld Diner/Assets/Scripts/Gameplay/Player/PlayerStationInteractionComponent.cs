@@ -38,6 +38,9 @@ namespace Gameplay.Player
                 case IKitchen kitchen:
                     ProcessKitchen(kitchen);
                     break;
+                case ISink sink:
+                    ProcessSink(sink);
+                    break;
                 default:
                     Debug.Log("No station");
                     break;
@@ -60,13 +63,26 @@ namespace Gameplay.Player
 
         private void ProcessTable(ITable table)
         {
-            // !!!!!!! Test !!!!!!!
-            //table.FreeTable();
             if (TryGiveOrder(table) || TryCleanTable(table))
             {
                 _animatorComponent.PutDown();
             }
-            //_status.Hands.Clear();
+            RenderDishes();
+        }
+
+        private void ProcessSink(ISink sink)
+        {
+            var dishInHand = _status.Hands.First;
+            while (dishInHand != null)
+            { 
+                var nextDishInHand = dishInHand.Next;
+                if (dishInHand.Value == _dirtyDish)
+                {
+                    _status.Hands.Remove(dishInHand.Value);
+                }
+                dishInHand = nextDishInHand;
+            }
+            sink.WashDirtyPlates();
             RenderDishes();
         }
 
@@ -102,24 +118,20 @@ namespace Gameplay.Player
 
         private bool TryGiveOrder(ITable table)
         {
-            List<IDish> removeFromHands = new ();
-            foreach (var dish in _status.Hands)
-            {
-                if (table.TryGivingDish(dish))
+            bool success = false;
+            var dishInHand = _status.Hands.First;
+            while (dishInHand != null)
+            { 
+                var nextDishInHand = dishInHand.Next;
+                if (table.TryGivingDish(dishInHand.Value))
                 {
-                    removeFromHands.Add(dish);
+                    _status.Hands.Remove(dishInHand.Value);
+                    success = true;
                 }
+                dishInHand = nextDishInHand;
             }
 
-            if (removeFromHands.Count > 0)
-            {
-                foreach (var dish in removeFromHands)
-                {
-                    _status.Hands.Remove(dish);
-                }
-                return true;
-            }
-            return false;
+            return success;
         }
 
         private bool TryCleanTable(ITable table)

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterDowntimeSettings:
     <OrderDowntime>k__BackingField: 5
-    <EatingDowntime>k__BackingField: 0
+    <EatingDowntime>k__BackingField: 2
