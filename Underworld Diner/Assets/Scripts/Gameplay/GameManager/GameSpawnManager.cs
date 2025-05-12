@@ -24,6 +24,7 @@ namespace Gameplay.GameManager
             if (_spawnTimerTime > _spawnPeriod)
             {
                 SpawnMonster();
+                //DeductResourcesTest();
                 _spawnTimerTime -= _spawnPeriod;
             }
         }
@@ -33,6 +34,17 @@ namespace Gameplay.GameManager
             //Debug.Log("Spawn MONSTER!!!!");
             _monsterFactory.Create(MonsterType.Skeleton, _monsterSpawnAnchor);
         }
-        
+
+        #region TestResourceDisplay
+
+        [Inject] private IResourceManager _resourceManager;
+
+        private void DeductResourcesTest()
+        {
+            _resourceManager.TrySpendResources(10, 20, 30);
+        }
+
+        #endregion
+
     }
 }

@@ -19,6 +19,10 @@ namespace Interfaces
         Sprite MenuImage { get; }
         Sprite DishImage { get; }
         float CookingTime { get; }
+        
+        int RedCost { get; }
+        int GreenCost { get; }
+        int BlueCost { get; }
     }
 
     public interface IRecipeBook : IDictionary<DishType, IDish>

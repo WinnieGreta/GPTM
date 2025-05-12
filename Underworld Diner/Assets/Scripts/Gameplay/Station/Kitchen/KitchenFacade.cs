@@ -8,6 +8,7 @@ namespace Gameplay.Station.Kitchen
     
     public class KitchenFacade : StationFacade, IKitchen, ITickable
     {
+        [Inject] private IResourceManager _resourceManager;
         [Inject] private KitchenParameters _kitchenParameters;
         [Inject] private DishType _dishType;
         [Inject] private KitchenStatusComponent _statusComponent;
@@ -15,12 +16,14 @@ namespace Gameplay.Station.Kitchen
 
         
         private float _cookingTimer;
+        private IDish _dish;
 
         [Inject]
         private void OnInject()
         {
-            _kitchenParameters.DishPosterSprite.sprite = _recipeBook[_dishType].MenuImage;
-            _kitchenParameters.ReadyDishSprite.sprite = _recipeBook[_dishType].DishImage;
+            _dish = _recipeBook[_dishType];
+            _kitchenParameters.DishPosterSprite.sprite = _dish.MenuImage;
+            _kitchenParameters.ReadyDishSprite.sprite = _dish.DishImage;
             _statusComponent.State = CookingState.Idle;
             _cookingTimer = 0;
 
@@ -43,7 +46,15 @@ namespace Gameplay.Station.Kitchen
             if (_statusComponent.State == CookingState.Idle)
             {
                 //Debug.Log("Started cooking!");
-                _statusComponent.State = CookingState.Cooking;
+                if (_resourceManager.TrySpendResources(_dish.RedCost, _dish.GreenCost,
+                        _dish.BlueCost))
+                {
+                    _statusComponent.State = CookingState.Cooking;
+                }
+                else
+                {
+                    Debug.Log($"Not enough resources for {_dishType}");
+                }
             }
         }
 
@@ -63,7 +74,7 @@ namespace Gameplay.Station.Kitchen
             if (_statusComponent.State == CookingState.Cooking)
             {
                 _cookingTimer += Time.deltaTime;
-                if (_cookingTimer > _recipeBook[_dishType].CookingTime)
+                if (_cookingTimer > _dish.CookingTime)
                 {
                     Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
                     _statusComponent.State = CookingState.Ready;

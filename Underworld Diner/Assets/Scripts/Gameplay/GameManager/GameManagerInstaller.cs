@@ -14,6 +14,7 @@ namespace Gameplay.GameManager
         {
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSpawnManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ResourceManager.ResourceManager>().AsSingle();
             Container.BindInstance(_monsterSpawnAnchor).AsSingle();
         }
     }
