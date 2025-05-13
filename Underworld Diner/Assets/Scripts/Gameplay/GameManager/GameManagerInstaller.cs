@@ -22,6 +22,8 @@ namespace Gameplay.GameManager
             Container.BindSignal<OnMonsterScoredSignal>()
                 .ToMethod<ScoringManager>(x => x.UpdateScore)
                 .FromResolve();
+            Container.DeclareSignal<OnGamePauseSignal>();
+            Container.DeclareSignal<OnGameUnpauseSignal>();
         }
     }
 }
