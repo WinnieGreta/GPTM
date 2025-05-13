@@ -7,7 +7,7 @@ namespace Gameplay.Monster
 {
     public class MonsterScoringComponent
     {
-        [Inject] private MonsterDowntimeSettings _downtimeSettings;
+        [Inject] private MonsterServiceSettings _serviceSettings;
         [Inject] private IRecipeBook _recipeBook;
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _statusComponent;
@@ -20,9 +20,13 @@ namespace Gameplay.Monster
             float score = 0;
             foreach (var dish in _statusComponent.FullOrder)
             {
+                if (dish == DishType.None)
+                {
+                    continue;
+                }
                 score += _recipeBook[dish].CookingTime;
             }
-            _signalBus.Fire(new OnMonsterScoredSignal() { Score = score * _downtimeSettings.EatingDowntime * _patienceMultiplier});
+            _signalBus.Fire(new OnMonsterScoredSignal() { Score = score * _serviceSettings.EatingDowntime * _patienceMultiplier});
         }
     }
 }

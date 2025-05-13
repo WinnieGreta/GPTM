@@ -16,6 +16,7 @@ namespace Gameplay.GameManager
         {
             _spawnTimerTime = 0;
             _spawnPeriod = _monsterSpawnSettings.SpawnPeriod;
+            _spawnTimerTime = _spawnPeriod;
         }
         
         public void OnFixedTick()

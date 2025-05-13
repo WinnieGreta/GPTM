@@ -15,13 +15,13 @@ namespace Gameplay.Monster.States
         [Inject] private DishType _favoriteDish;
         [Inject] private IOrderIcon.Factory _orderIconFactory;
         [Inject] private MonsterStatusComponent _status;
+        [Inject] private MonsterServiceSettings _settings;
 
         private IOrderIcon _currentOrderIcon;
         
         public override void Enter()
         {
             Debug.Log("I'm ordering " + _favoriteDish);
-            
             _currentOrderIcon = _orderIconFactory.Create(_favoriteDish, _navMeshAgent.transform);
             _status.ExpectedDish = _favoriteDish;
             _status.FullOrder.Add(_status.ExpectedDish);
@@ -39,6 +39,17 @@ namespace Gameplay.Monster.States
             if (_aiComponent.MyChair.ExpectedDish == DishType.None)
             {
                 _aiComponent.ChangeState(MonsterState.Eat);
+            }
+            
+            if (_status.Patience > 0)
+            {
+                _status.Patience -= _settings.PatienceDropSpeed * Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("I'm out of patience!");
+                _animatorComponent.StopSit();
+                _aiComponent.ChangeState(MonsterState.Leave);
             }
         }
 

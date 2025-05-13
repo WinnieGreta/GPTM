@@ -8,7 +8,7 @@ namespace Gameplay.Monster.States
     {
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
-        [Inject] private MonsterDowntimeSettings _monsterDowntimeSettings;
+        [Inject] private MonsterServiceSettings _monsterServiceSettings;
 
         private float _orderDowntime;
         private float _timerTime;
@@ -21,7 +21,7 @@ namespace Gameplay.Monster.States
         {
             if (_aiComponent.MyChair != null)
             {
-                _orderDowntime = _monsterDowntimeSettings.OrderDowntime;
+                _orderDowntime = _monsterServiceSettings.OrderDowntime;
                 _timerTime = 0;
                 //Debug.Log("I'm sitting on a chair");
                 _animatorComponent.StartSit(_aiComponent.MyChair.IsFacingRight);

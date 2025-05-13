@@ -6,7 +6,7 @@ namespace Gameplay.Monster.States
     public class EatState : BaseMonsterState
     {
         [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterDowntimeSettings _monsterDowntimeSettings;
+        [Inject] private MonsterServiceSettings _monsterServiceSettings;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         [Inject] private MonsterScoringComponent _scoringComponent;
         [Inject] private MonsterStatusComponent _statusComponent;
@@ -17,7 +17,7 @@ namespace Gameplay.Monster.States
         public override void Enter()
         {
             //Debug.Log("I'm EATING " + _aiComponent.MyChair.GetDishImEating().DishName);
-            _eatingDowntime = _monsterDowntimeSettings.EatingDowntime;
+            _eatingDowntime = _monsterServiceSettings.EatingDowntime;
             _timerTime = 0;
         }
 
@@ -43,6 +43,7 @@ namespace Gameplay.Monster.States
         
         public override void Exit()
         {
+            Debug.Log("Exiting eat state");
             _scoringComponent.ScoreFood();
         }
 

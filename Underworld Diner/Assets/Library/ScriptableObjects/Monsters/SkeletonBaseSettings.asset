@@ -15,3 +15,6 @@ MonoBehaviour:
   _monsterDowntimeSettings:
     <OrderDowntime>k__BackingField: 5
     <EatingDowntime>k__BackingField: 2
+    <EatingDowntime>k__BackingField: 5
+    <StartingPatience>k__BackingField: 1
+    <PatienceDropSpeed>k__BackingField: 0.1
