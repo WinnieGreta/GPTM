@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Gameplay.Player.Signals;
 using Interfaces;
+using Signals;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -32,6 +33,9 @@ namespace Gameplay.Player
             _playerIndirect.Enable();
             _pointAction = _playerIndirect.FindAction("Point");
             _click = _playerIndirect.FindAction("Click");
+            _signalBus.Subscribe<OnGamePauseSignal>(OnGamePaused);
+            _signalBus.Subscribe<OnGameUnpauseSignal>(OnGameUnpaused);
+            
         }
 
         public void Tick()
@@ -64,6 +68,7 @@ namespace Gameplay.Player
             {
                 return;
             }
+            
             // case guards to switch on non-constants
             switch (true)
             {
@@ -110,5 +115,18 @@ namespace Gameplay.Player
             }
             return false;
         }
+
+        // we need this to not have any player actions registered while game in a pause mode
+        // using signals instead of events to not depend on an object that invoked this event
+        private void OnGamePaused()
+        {
+            _playerIndirect.Disable();
+        }
+
+        private void OnGameUnpaused()
+        {
+            _playerIndirect.Enable();
+        }
+        
     }
 }

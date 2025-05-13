@@ -47,7 +47,7 @@ namespace Gameplay.Player
                     break;
             }
             _status.StationImMovingTo = null;
-            Debug.Log(_status.ToString());
+            //Debug.Log(_status.ToString());
         }
         
         private void ProcessKitchen(IKitchen kitchen)
@@ -55,7 +55,7 @@ namespace Gameplay.Player
             var dish = kitchen.PlayerInteraction(_status.Hands.Count < PLAYER_HANDS);
             if (dish != DishType.None)
             {
-                Debug.Log($"Player got {dish} from kitchen");
+                //Debug.Log($"Player got {dish} from kitchen");
                 _animatorComponent.PickUp();
                 _status.Hands.AddLast(dish);
                 RenderDishes();
@@ -64,9 +64,13 @@ namespace Gameplay.Player
 
         private void ProcessTable(ITable table)
         {
-            if (TryGiveOrder(table) || TryCleanTable(table))
+            if (TryGiveOrder(table))
             {
                 _animatorComponent.PutDown();
+            }
+            else if (TryCleanTable(table))
+            {
+                _animatorComponent.PickUp();
             }
             RenderDishes();
         }
@@ -141,6 +145,10 @@ namespace Gameplay.Player
             if (freeHands > 0)
             {
                 int dirtyDishesTaken = freeHands - table.TryCleaningTable(freeHands);
+                if (dirtyDishesTaken == 0)
+                {
+                    return false;
+                }
                 for (int i = 0; i < dirtyDishesTaken; i++)
                 {
                     _status.Hands.AddLast(DishType.DirtyPlate);
