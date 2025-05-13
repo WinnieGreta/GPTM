@@ -8,8 +8,8 @@ namespace UI.HUD.Buttons
 {
     public class PauseButton : MonoBehaviour
     {
-        [SerializeField] private Button _pauseButton;
         [Inject] private SignalBus _signalBus;
+        [SerializeField] private Button _pauseButton;
 
         private bool _gamePaused;
         

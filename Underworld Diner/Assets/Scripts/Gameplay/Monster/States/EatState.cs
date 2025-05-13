@@ -8,6 +8,8 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterDowntimeSettings _monsterDowntimeSettings;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private MonsterScoringComponent _scoringComponent;
+        [Inject] private MonsterStatusComponent _statusComponent;
 
         private float _eatingDowntime;
         private float _timerTime;
@@ -39,5 +41,10 @@ namespace Gameplay.Monster.States
             }
         }
         
+        public override void Exit()
+        {
+            _scoringComponent.ScoreFood();
+        }
+
     }
 }

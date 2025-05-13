@@ -1069,6 +1069,7 @@ GameObject:
   - component: {fileID: 637281816}
   - component: {fileID: 637281815}
   - component: {fileID: 637281814}
+  - component: {fileID: 637281817}
   m_Layer: 5
   m_Name: TimerContainer
   m_TagString: Untagged
@@ -1162,6 +1163,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637281812}
   m_CullTransparentMesh: 1
+--- !u!114 &637281817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637281812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707baf1efab848019ba5c226f2813c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minutesText: {fileID: 1094122340}
+  _secondsText: {fileID: 148313563}
 --- !u!1 &644588366
 GameObject:
   m_ObjectHideFlags: 0
@@ -11439,8 +11454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseButton: {fileID: 1000124570}
-  _bookButton: {fileID: 1630583672}
-  _tutorialButton: {fileID: 1214472825}
 --- !u!4 &867351285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413655428933774212, guid: 9e9c770f5d0a80f4a91ea52933834091, type: 3}
@@ -19356,6 +19369,7 @@ GameObject:
   - component: {fileID: 1885692531}
   - component: {fileID: 1885692530}
   - component: {fileID: 1885692533}
+  - component: {fileID: 1885692534}
   m_Layer: 5
   m_Name: PanelBackground
   m_TagString: Untagged
@@ -19465,6 +19479,19 @@ MonoBehaviour:
   _redText: {fileID: 1460381536}
   _greenText: {fileID: 1765277184}
   _blueText: {fileID: 1486019091}
+--- !u!114 &1885692534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885692528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6582b0d23675449fa196d329595b545e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreText: {fileID: 1240521819}
 --- !u!4 &1895714979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6168495955492335586, guid: 721ced73d9422314299c1c41de27ac4f, type: 3}

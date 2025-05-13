@@ -24,6 +24,7 @@ namespace Gameplay.Monster.States
             
             _currentOrderIcon = _orderIconFactory.Create(_favoriteDish, _navMeshAgent.transform);
             _status.ExpectedDish = _favoriteDish;
+            _status.FullOrder.Add(_status.ExpectedDish);
 
         }
 

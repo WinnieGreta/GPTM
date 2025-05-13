@@ -1,7 +1,7 @@
 ﻿using System;
 using Interfaces;
 
-namespace Gameplay.GameManager.ResourceManager
+namespace Gameplay.GameManager
 {
     public class ResourceManager : IResourceManager
     {
