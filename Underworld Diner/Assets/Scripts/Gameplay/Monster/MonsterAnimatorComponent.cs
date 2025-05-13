@@ -73,7 +73,7 @@ namespace Gameplay.Monster
         public void StopSit()
         {
             _isSitting = false;
-            _spriteRenderer.sortingOrder = 0;
+            //_spriteRenderer.sortingOrder = 0;
             _navMeshAgent.enabled = true;
         }
 

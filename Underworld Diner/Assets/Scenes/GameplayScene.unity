@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monsterSpawnAnchor: {fileID: 564888782}
+  _player: {fileID: 895542920}
 --- !u!114 &178200700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11856,6 +11857,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4413655428933774212, guid: 9e9c770f5d0a80f4a91ea52933834091, type: 3}
   m_PrefabInstance: {fileID: 2032850324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &895542920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4743742823313477576, guid: afced009ff9328d4db9c15433c568f0e, type: 3}
+  m_PrefabInstance: {fileID: 4275075715375127695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &958299193
 PrefabInstance:
   m_ObjectHideFlags: 0

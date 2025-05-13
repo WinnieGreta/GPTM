@@ -27,6 +27,7 @@ namespace Gameplay.Player
             Container.BindInstance(_navMeshAgent).AsSingle();
             Container.BindInstance(_spriteRenderer).AsSingle();
             Container.BindInstance(_playerHandlingParameters).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerMonoFacade>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerMovementComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerNavigationComponent>().AsSingle();
