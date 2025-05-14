@@ -12,7 +12,7 @@ namespace Gameplay.GameManager.LevelTimerManager
 
         private bool _gamePaused;
 
-        public float timerTime = 70;
+        public float timerTime = 3;
         
         public void Tick()
         {

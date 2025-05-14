@@ -1,6 +1,6 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using Cysharp.Threading.Tasks;
 using Interfaces;
+using Unity.Services.Core;
 using UnityEngine;
 using Zenject;
 
@@ -8,11 +8,20 @@ namespace Bootstrap
 {
     public class Bootstrap : MonoBehaviour
     {
-        [Inject] private IAppInitializedCallback _appInitializedCallback;
+        [Inject] private IAppInitializedCallback[] _appInitializedCallback;
 
         private void Start()
         {
-            _appInitializedCallback.OnAppInitialized();
+            InitializeApplication().Forget();
+        }
+
+        private async UniTaskVoid InitializeApplication()
+        {
+            await  UnityServices.InitializeAsync();
+            foreach (var callback in _appInitializedCallback)
+            {
+                callback.OnAppInitialized();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Analytics.Signals;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -9,9 +10,11 @@ namespace Gameplay.GameManager
     public class GameManager : IGameManager, IFixedTickable, IInitializable, IChairManager
     {
         [Inject] private GameSpawnManager _spawnManager;
+        [Inject] private SignalBus _signalBus;
         public void Initialize()
         {
            _spawnManager.OnInitialize();
+           _signalBus.TryFire<AnalyticsLevelStartEvent>();
         }
         
         public void FixedTick()
