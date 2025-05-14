@@ -6,11 +6,12 @@ using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>, IDespawnable
+    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>, ITickable, IDespawnable
     {
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
+        [Inject] private MonsterPatienceComponent _patienceComponent;
 
         public DishType ExpectedDish => _status.ExpectedDish;
 
@@ -46,6 +47,11 @@ namespace Gameplay.Monster
                 _hasStarted = true;
             }
             
+        }
+
+        public void Tick()
+        {
+            _patienceComponent.UpdatePatience();
         }
         
         public void Serve(DishType dish)

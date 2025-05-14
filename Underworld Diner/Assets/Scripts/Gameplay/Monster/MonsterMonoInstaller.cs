@@ -27,6 +27,7 @@ namespace Gameplay.Monster
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterStatusComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterScoringComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MonsterPatienceComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterFacade>().FromComponentOnRoot().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();

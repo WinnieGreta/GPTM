@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonBaseSettings
   m_EditorClassIdentifier: 
   monsterServiceSettings:
-    <OrderDowntime>k__BackingField: 5
+    <OrderDowntime>k__BackingField: 2
     <EatingDowntime>k__BackingField: 5
-    <StartingPatience>k__BackingField: 1
-    <PatienceDropSpeed>k__BackingField: 0.1
+    <StartingPatience>k__BackingField: 4
+    <PatienceDropSpeed>k__BackingField: 0.4
