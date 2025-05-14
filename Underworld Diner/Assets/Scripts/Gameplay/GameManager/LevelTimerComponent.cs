@@ -5,20 +5,26 @@ using Zenject;
 
 namespace Gameplay.GameManager.LevelTimerManager
 {
-    public class LevelTimerComponent : ITickable, ITimeManager
+    public class LevelTimerComponent : ITickable, ITimeManager, IInitializable
     {
         [Inject] private IApplicationManager _applicationManager;
         [Inject] private SignalBus _signalBus;
+        [Inject] private LevelBasicSettings _levelSettings;
 
         private bool _gamePaused;
 
-        public float timerTime = 3;
-        
+        public float TimerTime { get; private set; }
+
+        public void Initialize()
+        {
+            TimerTime = _levelSettings.LevelDuration;
+        }
+
         public void Tick()
         {
-            if (timerTime > 0)
+            if (TimerTime > 0)
             {
-                timerTime -= Time.deltaTime;
+                TimerTime -= Time.deltaTime;
             }
             else
             {

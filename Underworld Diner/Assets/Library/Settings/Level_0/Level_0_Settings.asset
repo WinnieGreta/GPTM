@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a73a6085444a61810e1c3dab839c57, type: 3}
-  m_Name: SpawnSettings
+  m_Script: {fileID: 11500000, guid: a5cf708d3e70483d93b258205a5928de, type: 3}
+  m_Name: Level_0_Settings
   m_EditorClassIdentifier: 
-  _monsterSpawnSettings:
-    <SpawnPeriod>k__BackingField: 5
+  _levelSettings:
+    <LevelDuration>k__BackingField: 15

@@ -15,8 +15,8 @@ namespace UI.HUD
 
         public void Update()
         {
-            _minutesText.text = string.Format("{0:0}", (int)_timerComponent.timerTime / 60);
-            _secondsText.text = string.Format("{0:00}", (int)_timerComponent.timerTime % 60);
+            _minutesText.text = string.Format("{0:0}", (int)_timerComponent.TimerTime / 60);
+            _secondsText.text = string.Format("{0:00}", (int)_timerComponent.TimerTime % 60);
         }
     }
 }
