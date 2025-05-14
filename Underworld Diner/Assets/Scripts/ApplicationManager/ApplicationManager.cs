@@ -22,7 +22,7 @@ namespace ApplicationManager
 
         public void LoadGameScene()
         {
-            _sceneLoadingManager.LoadScene("GameplayScene").Forget();
+            _sceneLoadingManager.LoadScene("Level_0").Forget();
         }
 
         public void LoadMainMenu()
