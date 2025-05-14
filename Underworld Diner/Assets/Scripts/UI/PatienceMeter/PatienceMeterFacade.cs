@@ -16,7 +16,6 @@ namespace UI.PatienceMeter
 
         private float _patienceMax;
         private float _patience;
-        private float _fillValue;
 
         private const int UNITS_PER_HEART = 24;
 
@@ -25,7 +24,7 @@ namespace UI.PatienceMeter
             _containerTransform.position = anchor.position + _patienceMeterOffset;
             _patienceMax = hearts;
             _patience = _patienceMax;
-            _fillValue = 1;
+            _mask.fillAmount = 1;
             _containerTransform.sizeDelta = new Vector2(UNITS_PER_HEART * hearts, _containerTransform.sizeDelta.y);
         }
         public void Despawn()
@@ -43,8 +42,7 @@ namespace UI.PatienceMeter
             _containerTransform.position = anchor.position + _patienceMeterOffset;
             if (_patience != patience)
             {
-                _fillValue = patience / _patienceMax;
-                _mask.fillAmount = _fillValue;
+                _mask.fillAmount = patience / _patienceMax;
                 _patience = patience;
             }
         }

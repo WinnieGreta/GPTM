@@ -19,11 +19,11 @@ namespace Gameplay.Monster
 
         public void Initialize()
         {
-            _signalBus.Subscribe<OnSpawnedSignal>(SpawnPatienceMeter);
+            _signalBus.Subscribe<OnSpawnedSignal>(OnSpawn);
             _signalBus.Subscribe<OnDespawnedSignal>(OnDespawn);
         }
 
-        private void SpawnPatienceMeter()
+        private void OnSpawn()
         {
             _patienceMeter = _patienceMeterFactory.Create(_navMeshAgent.transform, (int)_serviceSettings.StartingPatience);
         }
