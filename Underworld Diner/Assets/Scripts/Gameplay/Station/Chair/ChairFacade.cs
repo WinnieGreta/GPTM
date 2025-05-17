@@ -1,5 +1,4 @@
-﻿using Gameplay.Dish;
-using Interfaces;
+﻿using Interfaces;
 using Zenject;
 
 namespace Gameplay.Station.Chair

@@ -1,6 +1,4 @@
-﻿using Gameplay.Station.Chair;
-using Interfaces;
-using UnityEngine;
+﻿using Interfaces;
 using Zenject;
 
 namespace Gameplay.Monster.States
