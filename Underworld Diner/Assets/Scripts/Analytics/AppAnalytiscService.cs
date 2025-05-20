@@ -21,7 +21,7 @@ namespace Analytics
         internal void OnLevelStart(AnalyticsLevelStartEvent analyticsLevelStartInfo)
         {
             Debug.Log("Analytics levelStarted event sent");
-            _serviceInstance.RecordEvent("levelStarted");
+            _serviceInstance?.RecordEvent("levelStarted");
         }
     }
 }
