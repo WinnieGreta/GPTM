@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using System.Collections.Generic;
+using Interfaces;
 using Interfaces.UI;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,7 +12,7 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         [Inject] private NavMeshAgent _navMeshAgent;
-        [Inject] private DishType _favoriteDish;
+        [Inject] private List<DishType> _favoriteDishes;
         [Inject] private IOrderIcon.Factory _orderIconFactory;
         [Inject] private MonsterStatusComponent _status;
         [Inject] private MonsterServiceSettings _settings;
@@ -20,9 +21,10 @@ namespace Gameplay.Monster.States
         
         public override void Enter()
         {
-            Debug.Log("I'm ordering " + _favoriteDish);
-            _currentOrderIcon = _orderIconFactory.Create(_favoriteDish, _navMeshAgent.transform);
-            _status.ExpectedDish = _favoriteDish;
+            DishType orderedDish = SelectDish();
+            Debug.Log("I'm ordering " + orderedDish);
+            _currentOrderIcon = _orderIconFactory.Create(orderedDish, _navMeshAgent.transform);
+            _status.ExpectedDish = orderedDish;
             _status.FullOrder.Add(_status.ExpectedDish);
 
         }
@@ -56,6 +58,12 @@ namespace Gameplay.Monster.States
         {
             _status.ExpectedDish = DishType.None;
             _currentOrderIcon.Despawn();
+        }
+
+        private DishType SelectDish()
+        {
+            int i = Random.Range(0, _favoriteDishes.Count);
+            return _favoriteDishes[i];
         }
     }
 }
