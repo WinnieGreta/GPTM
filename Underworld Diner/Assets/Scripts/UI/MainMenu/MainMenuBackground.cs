@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 
 namespace UI.MainMenu
 {
@@ -19,8 +18,8 @@ namespace UI.MainMenu
         [SerializeField] private Layer[] _layers;
 
         [Header("Motion settings")] 
-        [SerializeField] private float _maxOffset = 0.5f;
-        [SerializeField] private float _smoothSpeed = 10f;
+        [SerializeField] private float _maxOffset;
+        [SerializeField] private float _smoothSpeed;
         [SerializeField] private Vector2 _deadZone;
 
         [Header("UI Input Action Map")]
@@ -49,17 +48,37 @@ namespace UI.MainMenu
         private void MoveBackgroundLayers()
         {
             Vector2 position = _pointAction.action.ReadValue<Vector2>();
-            Vector2 normalized = new Vector2((position.x / Screen.width) * 2 - 1, (position.y / Screen.height) * 2 - 1);
+            
+            if (!Application.isFocused)
+            {
+                SnapToCenter();
+                return;
+            }
 
-            Vector2 target = new Vector2(DeadzoneAdjustments(normalized.x, _deadZone.x), 
-                DeadzoneAdjustments(normalized.y, _deadZone.y)) * _maxOffset;
+            Vector2 target = new();
+
+            if (!IsOnScreen(position))
+            {
+                target = Vector2.zero;
+            }
+            else
+            {
+                Vector2 normalized = new Vector2((position.x / Screen.width) * 2 - 1,
+                    (position.y / Screen.height) * 2 - 1);
+
+                target = new Vector2(DeadzoneAdjustments(normalized.x, _deadZone.x),
+                    DeadzoneAdjustments(normalized.y, _deadZone.y)) * _maxOffset;
+            }
 
             _current = Vector2.Lerp(_current, target, Time.deltaTime * _smoothSpeed);
+
+            ApplyOffset();
             
-            foreach (var l in _layers)
-            {
-                l.layer.localPosition = l.startLocalPos + (Vector3)_current * l.magnitude;
-            }
+        }
+
+        private bool IsOnScreen(Vector2 position)
+        {
+            return !(position.x < 0 || position.x > Screen.width || position.y < 0 || position.y > Screen.height);
         }
 
         private float DeadzoneAdjustments(float vectorComponent, float deadzoneComponent)
@@ -71,6 +90,20 @@ namespace UI.MainMenu
             }
 
             return 0;
+        }
+
+        private void ApplyOffset()
+        {
+            foreach (var l in _layers)
+            {
+                l.layer.localPosition = l.startLocalPos + (Vector3)_current * l.magnitude;
+            }
+        }
+
+        private void SnapToCenter()
+        {
+            _current = Vector2.zero;
+            ApplyOffset();
         }
     }
 }
