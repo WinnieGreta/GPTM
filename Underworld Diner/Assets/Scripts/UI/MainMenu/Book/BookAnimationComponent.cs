@@ -56,15 +56,15 @@ namespace UI.MainMenu.Book
         private void MoveToPosition()
         {
             LeanTween.move(_rectTransform, _endAnchor, 0.8f)
-                .setDelay(0.2f)
+                .setDelay(0.3f)
                 .setEase(LeanTweenType.easeOutBack)
                 .setOnComplete(OnArrival);
         }
 
         private void OnArrival()
         {
-            _animator.SetTrigger("openBook");
             _image.raycastTarget = false;
+            _animator.SetTrigger("openBook");
             _signalBus.TryFire<BookOnPositionSignal>();
         }
 
