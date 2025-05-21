@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Bootsrap.unity
     guid: b259ba313318764409180e32ec9d569d
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 11c3878d977d4454eaa6e025a2e7b9b7
   - enabled: 1
     path: Assets/Scenes/Level_0/Level_0.unity

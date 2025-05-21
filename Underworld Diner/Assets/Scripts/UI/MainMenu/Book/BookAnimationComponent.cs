@@ -1,48 +1,46 @@
-﻿using System.ComponentModel;
-using UI.MainMenu.Signals;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using Zenject;
 
 namespace UI.MainMenu.Book
 {
-    public class BookAnimationComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class BookAnimationComponent : IInitializable
     {
-        [Inject] private SignalBus _signalBus; 
-        [SerializeField] private Image _image;
-        [SerializeField] private Animator _animator;
-
-        private RectTransform _rectTransform;
+        [Inject] private RectTransform _rectTransform;
+        [Inject] private Animator _animator;
+        [Inject] private BookAnimationSettings _bookAnimationSettings;
+        
         private Vector2 _endAnchor;
         private int _tweenId = -1;
-        public void Awake()
+
+        public void Initialize()
         {
-            _rectTransform = _image.rectTransform;
             _endAnchor = _rectTransform.anchoredPosition;
-            _rectTransform.anchoredPosition = _endAnchor + new Vector2(0, -600);
+            _animator.SetFloat("blendOpenBook", _bookAnimationSettings.StartOpened ? 1f : 0f);
+        }
+        
+        public void SetToStartingPosition()
+        {
+            _rectTransform.anchoredPosition = _endAnchor + _bookAnimationSettings.StartAnchorOffset;
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public void MoveUpOnPointerEnter()
         {
             CancelTween();
-            _tweenId = LeanTween.move(_rectTransform, _rectTransform.anchoredPosition + new Vector2(0, 30), 0.5f)
+            _tweenId = LeanTween.move(_rectTransform,
+                    _rectTransform.anchoredPosition + _bookAnimationSettings.MouseHoverAnimationOffset, 
+                    _bookAnimationSettings.MouseHoverAnimationDuration)
                 .setEase(LeanTweenType.easeOutBack)
                 .id;
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void MoveDownOnPointerExit()
         {
             CancelTween();
-            _tweenId = LeanTween.move(_rectTransform, _rectTransform.anchoredPosition + new Vector2(0, -30), 0.5f)
+            _tweenId = LeanTween.move(_rectTransform, 
+                    _rectTransform.anchoredPosition - _bookAnimationSettings.MouseHoverAnimationOffset, 
+                    _bookAnimationSettings.MouseHoverAnimationDuration)
                 .setEase(LeanTweenType.easeOutBack)
                 .id;
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            CancelTween();
-            MoveToPosition();
         }
         
         private void CancelTween()
@@ -53,20 +51,29 @@ namespace UI.MainMenu.Book
             }
         }
 
-        private void MoveToPosition()
+        public void MoveToPositionThenOpen()
         {
-            LeanTween.move(_rectTransform, _endAnchor, 0.8f)
-                .setDelay(0.3f)
+            LeanTween.move(_rectTransform, _endAnchor, _bookAnimationSettings.MoveToPositionAnimationDuration)
                 .setEase(LeanTweenType.easeOutBack)
-                .setOnComplete(OnArrival);
+                .setOnComplete(OpenBook);
         }
 
-        private void OnArrival()
+        private void OpenBook()
         {
-            _image.raycastTarget = false;
             _animator.SetTrigger("openBook");
-            _signalBus.TryFire<BookOnPositionSignal>();
         }
 
+        // takes into account both animator animation and tween animation
+        public bool IsAnimationPlaying()
+        {
+            if (LeanTween.isTweening(_tweenId) ||
+                _animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
     }
 }
