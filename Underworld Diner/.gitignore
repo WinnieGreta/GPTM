@@ -95,3 +95,6 @@ crashlytics-build.properties
 .plastic/
 plastic.changes
 plastic.wktree
+
+# LeanTween package
+LeanTween/
