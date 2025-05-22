@@ -6,6 +6,12 @@ using Zenject;
 namespace UI.MainMenu.Book
 {
 
+    public enum BookType
+    {
+        MainMenu,
+        RecipeBook
+    }
+
     [CreateAssetMenu(fileName = "BookSettings", menuName = "Installers/BookSettings")]
     public class BookSettings : ScriptableObjectInstaller<BookSettings>
     {
@@ -35,6 +41,8 @@ namespace UI.MainMenu.Book
     [Serializable]
     internal class BookContentSettings
     {
-        [field:SerializeField] public List<Canvas> Pages { get; private set; }
+        [field:SerializeField] public BookType Type { get; private set; }
+        [field:SerializeField] public GameObject CorePage { get; private set; }
+        [field:SerializeField] public List<GameObject> Pages { get; private set; }
     }
 }

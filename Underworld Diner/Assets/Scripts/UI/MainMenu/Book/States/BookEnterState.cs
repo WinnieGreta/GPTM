@@ -6,6 +6,7 @@ namespace UI.MainMenu.Book.States
     {
         [Inject] private BookAnimationComponent _animationComponent;
         [Inject] private BookStateControllerComponent _controllerComponent;
+        [Inject] private BookContentSettings _bookSettings;
         
         public override void Enter()
         {
@@ -16,7 +17,10 @@ namespace UI.MainMenu.Book.States
         {
             if (!_animationComponent.IsAnimationPlaying())
             {
-                _controllerComponent.ChangeState(BookState.Open);
+                if (_bookSettings.Type == BookType.MainMenu)
+                {
+                    _controllerComponent.ChangeState(BookState.Open);
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UI.MainMenu.Book.States;
 using UI.MainMenu.Signals;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace UI.MainMenu.Book
         [SerializeField] private Animator _animator;
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Image _image;
+        [SerializeField] private List<RectTransform> _pagesAnchors;
 
         public override void InstallBindings()
         {

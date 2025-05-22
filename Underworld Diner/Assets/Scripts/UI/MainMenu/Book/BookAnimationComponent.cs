@@ -74,6 +74,17 @@ namespace UI.MainMenu.Book
 
             return false;
         }
+
+        public void PageEnter(CanvasGroup pageCanvasGroup)
+        {
+            LeanTween.alphaCanvas(pageCanvasGroup, 1f, 0.3f)
+                .setEase(LeanTweenType.easeInQuad);
+        }
+
+        public void PageExit(Canvas page)
+        {
+            
+        }
         
     }
 }
