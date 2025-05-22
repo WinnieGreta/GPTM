@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2626c5b42cb54339b151128627b1d7de, type: 3}
+  m_Name: BookSettings
+  m_EditorClassIdentifier: 
+  bookAnimationSettings:
+    <StartAnchorOffset>k__BackingField: {x: 0, y: -600}
+    <MouseHoverAnimationOffset>k__BackingField: {x: 0, y: 30}
+    <MouseHoverAnimationDuration>k__BackingField: 0.3
+    <MoveToPositionAnimationDuration>k__BackingField: 0.8
+    <SkipMovingToPosition>k__BackingField: 0
+    <StartOpened>k__BackingField: 0
+  bookContentSettings:
+    <Type>k__BackingField: 0
+    <Pages>k__BackingField:
+    - {fileID: 2619969619218601592, guid: c05c1238aec8bb44683df57b60d15040, type: 3}
