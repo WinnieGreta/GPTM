@@ -10887,12 +10887,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monsterPrefabs:
-  - Type: 0
-    Prefab: {fileID: 8433539388230518361, guid: 6e0511346c55ec04f94ba53efca93876, type: 3}
-    InitialSize: 5
-  - Type: 1
-    Prefab: {fileID: 8433539388230518361, guid: 6e0511346c55ec04f94ba53efca93876, type: 3}
-    InitialSize: 5
+  - Prefab: {fileID: 8433539388230518361, guid: 6e0511346c55ec04f94ba53efca93876, type: 3}
+    InitialSize: 10
 --- !u!114 &9218532308841039550
 MonoBehaviour:
   m_ObjectHideFlags: 0

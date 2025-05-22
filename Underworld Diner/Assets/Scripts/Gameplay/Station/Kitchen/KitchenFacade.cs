@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using System;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -7,15 +8,19 @@ namespace Gameplay.Station.Kitchen
     
     public class KitchenFacade : StationFacade, IKitchen, ITickable
     {
+        private const string DISH_STATISTICS_ID_TEMPLATE = "dish_prepared_{0}";
+        
         [Inject] private IResourceManager _resourceManager;
         [Inject] private KitchenParameters _kitchenParameters;
         [Inject] private DishType _dishType;
         [Inject] private KitchenStatusComponent _statusComponent;
         [Inject] private IRecipeBook _recipeBook;
+        [Inject] private IStatisticsManager _statisticsManager;
 
         
         private float _cookingTimer;
         private IDish _dish;
+        private string _dishStatisticsId;
 
         [Inject]
         private void OnInject()
@@ -26,6 +31,7 @@ namespace Gameplay.Station.Kitchen
             _statusComponent.State = CookingState.Idle;
             _cookingTimer = 0;
 
+            _dishStatisticsId = String.Format(DISH_STATISTICS_ID_TEMPLATE, _dishType.ToString());
         }
 
         public DishType PlayerInteraction(bool playerHasFreeHand)
@@ -70,15 +76,18 @@ namespace Gameplay.Station.Kitchen
 
         public void Tick()
         {
-            if (_statusComponent.State == CookingState.Cooking)
+            if (_statusComponent.State != CookingState.Cooking)
             {
-                _cookingTimer += Time.deltaTime;
-                if (_cookingTimer > _dish.CookingTime)
-                {
-                    Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
-                    _statusComponent.State = CookingState.Ready;
-                    _cookingTimer = 0;
-                }
+                return;
+            }
+            _cookingTimer += Time.deltaTime;
+            if (_cookingTimer > _dish.CookingTime)
+            {
+                Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
+                _statusComponent.State = CookingState.Ready;
+                _cookingTimer = 0;
+                
+                _statisticsManager.IncrementStatistics(_dishStatisticsId);
             }
         }
         

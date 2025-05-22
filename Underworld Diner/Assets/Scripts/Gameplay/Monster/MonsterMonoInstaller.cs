@@ -11,6 +11,7 @@ namespace Gameplay.Monster
 {
     public class MonsterMonoInstaller : MonoInstaller
     {
+        [field:SerializeField] public MonsterType MonsterType { get; private set; }
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _transform;
         [SerializeField] private NavMeshAgent _navMeshAgent;
@@ -22,6 +23,7 @@ namespace Gameplay.Monster
             Container.BindInstance(_animator).AsSingle();
             Container.BindInstance(_navMeshAgent).AsSingle();
             Container.BindInstance(_spriteRenderer).AsSingle();
+            Container.BindInstance(MonsterType).AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterNavigationComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();

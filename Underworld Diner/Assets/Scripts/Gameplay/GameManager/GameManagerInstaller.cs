@@ -19,6 +19,7 @@ namespace Gameplay.GameManager
             Container.BindInterfacesAndSelfTo<ResourceManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelTimerComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoringManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StatisticsManager>().AsSingle();
             Container.BindInstance(_monsterSpawnAnchor).AsSingle();
             Container.Bind<IPlayer>().FromSubContainerResolve().ByInstance(_player.Container).AsSingle();
             

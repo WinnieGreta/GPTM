@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level_0_Settings
   m_EditorClassIdentifier: 
   _levelSettings:
-    <LevelDuration>k__BackingField: 15
+    <LevelDuration>k__BackingField: 150

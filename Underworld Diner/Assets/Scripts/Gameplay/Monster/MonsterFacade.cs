@@ -12,6 +12,7 @@ namespace Gameplay.Monster
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
         [Inject] private MonsterPatienceComponent _patienceComponent;
+        [Inject] private MonsterType _monsterType;
 
         public DishType ExpectedDish => _status.ExpectedDish;
 
