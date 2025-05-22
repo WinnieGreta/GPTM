@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Interfaces.UI;
 using UnityEngine;
 using Zenject;
 
@@ -42,7 +43,6 @@ namespace UI.MainMenu.Book
     internal class BookContentSettings
     {
         [field:SerializeField] public BookType Type { get; private set; }
-        [field:SerializeField] public GameObject CorePage { get; private set; }
         [field:SerializeField] public List<GameObject> Pages { get; private set; }
     }
 }

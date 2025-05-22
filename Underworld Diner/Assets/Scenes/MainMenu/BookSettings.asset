@@ -20,4 +20,6 @@ MonoBehaviour:
     <SkipMovingToPosition>k__BackingField: 0
     <StartOpened>k__BackingField: 0
   bookContentSettings:
-    <Pages>k__BackingField: []
+    <Type>k__BackingField: 0
+    <Pages>k__BackingField:
+    - {fileID: 2619969619218601592, guid: c05c1238aec8bb44683df57b60d15040, type: 3}
