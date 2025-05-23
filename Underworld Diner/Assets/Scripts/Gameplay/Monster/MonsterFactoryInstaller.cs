@@ -10,7 +10,7 @@ namespace Gameplay.Monster
     [Serializable]
     public class MonsterPrefabPair
     {
-        public MonsterType Type;
+        //public MonsterType Type;
         public GameObject Prefab;
         public int InitialSize = 10;
     }
@@ -23,14 +23,15 @@ namespace Gameplay.Monster
         {
             foreach (var pair in _monsterPrefabs)
             {
+                var type = pair.Prefab.GetComponent<MonsterMonoInstaller>().MonsterType;
                 Container.BindMemoryPool<MonsterFacade, MonsterPool>()
                     .WithInitialSize(pair.InitialSize)
-                    .WithFactoryArguments(pair.Type)
+                    .WithFactoryArguments(type)
                     .FromComponentInNewPrefab(pair.Prefab)
                     .UnderTransformGroup("MonsterPools")
                     .OnInstantiated<MonsterFacade>(((context, o) =>
                     {
-                        o.InjectPool(Container.ResolveAll<MonsterPool>().FirstOrDefault(x => x.Type == pair.Type));
+                        o.InjectPool(Container.ResolveAll<MonsterPool>().FirstOrDefault(x => x.Type == type));
                     }));
             }
             

@@ -1,8 +1,6 @@
 ﻿using System;
-using Gameplay.Dish;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Gameplay.Station.Kitchen

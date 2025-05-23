@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gameplay.Player.Signals;
 using Interfaces;
+using Interfaces.Player;
+using Signals;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -16,11 +17,12 @@ namespace Gameplay.Player
         [Inject] private NavMeshAgent _navMeshAgent;
         [Inject] private PlayerStatusComponent _status;
 
+        public IReadOnlyCollection<ICommand> CommandQueue => _commandQueue;
+        
         private InputActionMap _playerIndirect;
         private InputAction _pointAction;
         private InputAction _click;
-        private Vector2 _position;
-        private Vector2 _worldPosition;
+        private Queue<QueueCommand> _commandQueue = new ();
         
         private static readonly int GROUND_LAYER = LayerMask.NameToLayer("Ground");
         private static readonly int STATIONS_LAYER = LayerMask.NameToLayer("Stations");
@@ -32,13 +34,18 @@ namespace Gameplay.Player
             _playerIndirect.Enable();
             _pointAction = _playerIndirect.FindAction("Point");
             _click = _playerIndirect.FindAction("Click");
+            _signalBus.Subscribe<OnGamePauseSignal>(OnGamePaused);
+            _signalBus.Subscribe<OnGameUnpauseSignal>(OnGameUnpaused);
+            
         }
 
         public void Tick()
         {
             if(_click.WasReleasedThisFrame())
             {
-                ProcessClick();
+                var position = _pointAction.ReadValue<Vector2>();
+                var worldPosition = Camera.main.ScreenToWorldPoint(position);
+                ProcessClick(worldPosition);
                 //Debug.Log(_worldPosition);
             }
 
@@ -47,32 +54,38 @@ namespace Gameplay.Player
 
         private void ProcessDestination()
         {
-            if (HasReachedDestination())
+            if (!HasReachedDestination())
             {
-                _signalBus.Fire(new DestinationReachedSignal());
+                return;
             }
+            _signalBus.Fire(new DestinationReachedSignal());
+            _status.StationImMovingTo = null;
+            if (_commandQueue.Count == 0)
+            {
+                return;
+            }
+            var element = _commandQueue.Dequeue();
+            ProcessStationClick(element.TargetStation);
         }
         
-        private void ProcessClick()
+        private void ProcessClick(Vector3 worldPosition)
         {
-            _position = _pointAction.ReadValue<Vector2>();
-            _worldPosition = Camera.main.ScreenToWorldPoint(_position);
-                
             // for our purposes does the same as raycast
-            var clickableHit = Physics2D.OverlapPoint(_worldPosition);
+            var clickableHit = Physics2D.OverlapPoint(worldPosition);
             if (clickableHit == null)
             {
                 return;
             }
+            
             // case guards to switch on non-constants
             switch (true)
             {
                 case true when clickableHit.gameObject.layer == GROUND_LAYER:
-                    MoveToPosition(_worldPosition);
+                    MoveToPosition(worldPosition);
                     break;
                 case true when clickableHit.gameObject.layer == STATIONS_LAYER:
                     //Debug.Log("Hit the station from switch");
-                    ProcessStationClick(clickableHit.GetComponent<IStation>());
+                    EnqueueStation(clickableHit.GetComponent<IStation>());
                     break;
                 case true when clickableHit.gameObject.layer == WALL_LAYER:
                 default:
@@ -83,10 +96,26 @@ namespace Gameplay.Player
 
         private void MoveToPosition(Vector2 position)
         {
+            if (_status.StationImMovingTo != null)
+            {
+                return;
+            }
             NavMesh.SamplePosition(position, out var hit, 100, _navMeshAgent.areaMask);
             _navMeshAgent.SetDestination(hit.position);
             //Debug.Log("Position " + position);
             //Debug.Log("Hit position " + hit.position);
+        }
+
+        private void EnqueueStation(IStation station)
+        {
+            if (_status.StationImMovingTo != null)
+            {
+                _commandQueue.Enqueue(new QueueCommand() { TargetStation = station});
+            }
+            else
+            {
+                ProcessStationClick(station);
+            }
         }
 
         private void ProcessStationClick(IStation station)
@@ -94,6 +123,7 @@ namespace Gameplay.Player
             var target = station.GetClosestAnchorPosition(_navMeshAgent);
             MoveToPosition(target);
             _status.StationImMovingTo = station;
+            //_currentTargetStation = station;
         }
 
         private bool HasReachedDestination()
@@ -110,5 +140,24 @@ namespace Gameplay.Player
             }
             return false;
         }
+
+        // we need this to not have any player actions registered while game in a pause mode
+        // using signals instead of events to not depend on an object that invoked this event
+        private void OnGamePaused()
+        {
+            _playerIndirect.Disable();
+        }
+
+        private void OnGameUnpaused()
+        {
+            _playerIndirect.Enable();
+        }
+
+        private class QueueCommand : ICommand
+        {
+            public IStation TargetStation { get; set; }
+        }
+        
     }
+    
 }

@@ -1,13 +1,19 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+﻿using System;
+using Interfaces;
 using Zenject;
 
 namespace Gameplay.Monster.States
 {
     public class EnterState : BaseMonsterState
     {
+        private const string MONSTER_ENTER_ID_TEMPLATE = "MonsterEnter{0}";
+        
+        [Inject] private IStatisticsManager _statisticsManager;
+        
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private MonsterType _monsterType;
+        
         private bool _isDestinationSet;
         
         public override void Initialize()
@@ -17,7 +23,8 @@ namespace Gameplay.Monster.States
 
         public override void Enter()
         {
-            
+            _statisticsManager.IncrementStatistics(String.Format(MONSTER_ENTER_ID_TEMPLATE, _monsterType.ToString()));
+
         }
 
         public override void Exit()

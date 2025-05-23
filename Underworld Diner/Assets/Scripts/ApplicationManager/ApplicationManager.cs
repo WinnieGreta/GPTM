@@ -20,9 +20,14 @@ namespace ApplicationManager
             _sceneLoadingManager.LoadScene("MainMenu").Forget();
         }
 
-        public void LoadGameScene()
+        public void LoadGameScene(string name)
         {
-            _sceneLoadingManager.LoadScene("GameplayScene").Forget();
+            _sceneLoadingManager.LoadScene(name).Forget();
+        }
+
+        public void LoadMainMenu()
+        {
+            _sceneLoadingManager.LoadScene("MainMenu").Forget();
         }
     }
 }

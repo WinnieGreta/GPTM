@@ -1,4 +1,5 @@
-﻿using Gameplay.Monster.States;
+﻿using System.Collections.Generic;
+using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Gameplay.Monster
     public class MonsterAIComponent : IInitializable, ITickable
     {
         [Inject] private SignalBus _signalBus;
+        [Inject] private MonsterStatusComponent _statusComponent;
+        [Inject] private MonsterServiceSettings _monsterSettings;
 
         private BaseMonsterState.Factory _monsterStateFactory;
         private BaseMonsterState _currentStateEntity = null;
@@ -34,6 +37,8 @@ namespace Gameplay.Monster
         
         private void StartMonster()
         {
+            _statusComponent.FullOrder.Clear();
+            _statusComponent.Patience = _monsterSettings.StartingPatience;
             ChangeState(MonsterState.Enter);
         }
 

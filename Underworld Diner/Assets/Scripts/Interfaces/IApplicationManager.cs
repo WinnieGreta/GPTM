@@ -2,6 +2,7 @@
 {
     public interface IApplicationManager
     {
-        void LoadGameScene();
+        void LoadGameScene(string name);
+        void LoadMainMenu();
     }
 }

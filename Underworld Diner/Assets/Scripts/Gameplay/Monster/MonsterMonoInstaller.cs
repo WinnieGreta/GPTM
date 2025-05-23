@@ -1,5 +1,5 @@
 ﻿using System;
-using Gameplay.Dish;
+using System.Collections.Generic;
 using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
@@ -11,29 +11,32 @@ namespace Gameplay.Monster
 {
     public class MonsterMonoInstaller : MonoInstaller
     {
+        [field:SerializeField] public MonsterType MonsterType { get; private set; }
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _transform;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private DishType _favoriteDish;
+        [SerializeField] private List<DishType> _favoriteDishes;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_animator).AsSingle();
             Container.BindInstance(_navMeshAgent).AsSingle();
             Container.BindInstance(_spriteRenderer).AsSingle();
+            Container.BindInstance(MonsterType).AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterNavigationComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterAIComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterStatusComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MonsterScoringComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MonsterPatienceComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<MonsterFacade>().FromComponentOnRoot().AsSingle();
             Container.DeclareSignal<OnSpawnedSignal>();
             Container.DeclareSignal<OnDespawnedSignal>();
             Container.BindFactory<MonsterState, BaseMonsterState, BaseMonsterState.Factory>()
                 .FromMethod(CreateMonsterState);
             
-            // Test order UI spawn
-            Container.BindInstance(_favoriteDish).AsSingle();
+            Container.BindInstance(_favoriteDishes).AsSingle();
         }
 
         private BaseMonsterState CreateMonsterState(DiContainer container, MonsterState monsterState)
