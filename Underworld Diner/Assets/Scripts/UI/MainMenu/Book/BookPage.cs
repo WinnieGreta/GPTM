@@ -1,5 +1,7 @@
 ﻿using Interfaces.UI;
+using UI.MainMenu.Signals;
 using UnityEngine;
+using Zenject;
 
 namespace UI.MainMenu.Book
 {
@@ -14,7 +16,7 @@ namespace UI.MainMenu.Book
             _pageCanvasGroup.alpha = 0;
             ShowPage(0.7f);
         }
-        
+
         public void ShowPage(float delay)
         {
             LeanTween.alphaCanvas(_pageCanvasGroup, 1f, 0.4f)

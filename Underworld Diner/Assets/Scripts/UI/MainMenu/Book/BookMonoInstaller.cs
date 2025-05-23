@@ -25,9 +25,10 @@ namespace UI.MainMenu.Book
 
             Container.BindInterfacesAndSelfTo<BookAnimationComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<BookStateControllerComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BookStatusComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<BookFacade>().FromComponentOnRoot().AsSingle();
 
-            Container.DeclareSignal<BookOpenedSignal>();
+            Container.DeclareSignal<PageFromButtonSignal>();
             
             Container.BindFactory<BookState, BaseBookState, BaseBookState.Factory>()
                 .FromMethod(CreateBookState);

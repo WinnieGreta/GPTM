@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1292559052320447545}
   - component: {fileID: 4804081863454484213}
   - component: {fileID: 9134514445618986184}
+  - component: {fileID: 9018127878023829907}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -181,6 +182,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9018127878023829907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718187499193039401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985adc8fd9494cdaa689c6bab8d8f2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bookButton: {fileID: 9134514445618986184}
+  _bookPage: {fileID: 8654309278134234937, guid: a13924713d4b86f42acbd9931664a748, type: 3}
 --- !u!1 &2619969619218601592
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pageCanvasGroup: {fileID: 8590755545039867239}
+  PageOrder: 0
 --- !u!1 &5207905640684997413
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +523,7 @@ GameObject:
   - component: {fileID: 2340602124537483859}
   - component: {fileID: 6160885757139729810}
   - component: {fileID: 3132957289429588344}
+  - component: {fileID: 5463656796349034341}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -676,6 +693,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5463656796349034341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693116335053587762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985adc8fd9494cdaa689c6bab8d8f2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bookButton: {fileID: 3132957289429588344}
+  _bookPage: {fileID: 8654309278134234937, guid: 81480de09bdbde04ca3b8b9e194c9c75, type: 3}
 --- !u!1 &6958637353448001733
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +719,7 @@ GameObject:
   - component: {fileID: 5993934713618126597}
   - component: {fileID: 6899686073167874716}
   - component: {fileID: 5383812072197254562}
+  - component: {fileID: 8008131082391474713}
   m_Layer: 5
   m_Name: LevelSelectButton
   m_TagString: Untagged
@@ -857,6 +889,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8008131082391474713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958637353448001733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985adc8fd9494cdaa689c6bab8d8f2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bookButton: {fileID: 5383812072197254562}
+  _bookPage: {fileID: 8654309278134234937, guid: eb6ec78efcb0812408dad7a460e88dff, type: 3}
 --- !u!1 &8007411698687102605
 GameObject:
   m_ObjectHideFlags: 0
