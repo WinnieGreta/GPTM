@@ -9,6 +9,7 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private IDespawnable _despawnable;
+        [Inject] private Transform _transform;
         
         public override void Initialize()
         {
@@ -18,7 +19,7 @@ namespace Gameplay.Monster.States
         public override void Enter()
         {
             //Debug.Log("Leaving");
-            _navigation.ProcessMovement(new Vector2(-13, -7));
+            _navigation.ProcessMovement((Vector2)_transform.position + new Vector2(0, -1));
         }
 
         public override void OnTick()

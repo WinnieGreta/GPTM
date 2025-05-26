@@ -1,4 +1,5 @@
-﻿using Gameplay.GameManager.LevelTimerManager;
+﻿using System.Collections.Generic;
+using Gameplay.GameManager.LevelTimerManager;
 using Interfaces;
 using Interfaces.Player;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Gameplay.GameManager
     {
         [SerializeField] private Transform _monsterSpawnAnchor;
         [SerializeField] private GameObjectContext _player;
+        [SerializeField] private List<Canvas> _uiCanvases;
 
         public override void InstallBindings()
         {
@@ -21,11 +23,13 @@ namespace Gameplay.GameManager
             Container.BindInterfacesAndSelfTo<ScoringManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<StatisticsManager>().AsSingle();
             Container.BindInstance(_monsterSpawnAnchor).AsSingle();
+            Container.BindInstance(_uiCanvases).AsSingle();
             Container.Bind<IPlayer>().FromSubContainerResolve().ByInstance(_player.Container).AsSingle();
             
             Container.DeclareSignal<OnMonsterScoredSignal>();
             Container.DeclareSignal<OnGameUnpauseSignal>();
             Container.DeclareSignal<OnGamePauseSignal>();
+            Container.DeclareSignal<OnLevelFinishedSignal>();
             
             Container.BindSignal<OnMonsterScoredSignal>()
                 .ToMethod<ScoringManager>(x => x.UpdateScore)

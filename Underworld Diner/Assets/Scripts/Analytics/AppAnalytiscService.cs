@@ -1,9 +1,7 @@
 ﻿using Analytics.Signals;
 using Interfaces;
 using Unity.Services.Analytics;
-using Unity.Services.Core;
 using UnityEngine;
-using Zenject;
 
 namespace Analytics
 {

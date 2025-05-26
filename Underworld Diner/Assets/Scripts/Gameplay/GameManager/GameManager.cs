@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Analytics.Signals;
 using Interfaces;
+using Signals;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,16 @@ namespace Gameplay.GameManager
     {
         [Inject] private GameSpawnManager _spawnManager;
         [Inject] private SignalBus _signalBus;
+        [Inject] private List<Canvas> _uiCanvases;
+
+        [Inject]
+        private void OnInject()
+        {
+            _signalBus.Subscribe<OnLevelFinishedSignal>(DisplayScore);
+            _signalBus.Subscribe<OnGamePauseSignal>(DisplayPause);
+            _signalBus.Subscribe<OnGameUnpauseSignal>(HidePause);
+        }
+
         public void Initialize()
         {
            _spawnManager.OnInitialize();
@@ -39,5 +50,20 @@ namespace Gameplay.GameManager
         }
 
         #endregion
+        
+        private void DisplayScore()
+        {
+            _uiCanvases[0].gameObject.SetActive(true);
+        }
+        
+        private void DisplayPause()
+        {
+            _uiCanvases[1].gameObject.SetActive(true);
+        }
+        
+        private void HidePause()
+        {
+            _uiCanvases[1].gameObject.SetActive(false);
+        }
     }
 }

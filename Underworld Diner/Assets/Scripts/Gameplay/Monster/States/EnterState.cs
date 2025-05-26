@@ -1,5 +1,6 @@
 ﻿using System;
 using Interfaces;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster.States
@@ -13,6 +14,7 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterType _monsterType;
+        [Inject] private Transform _transform;
         
         private bool _isDestinationSet;
         
@@ -38,7 +40,7 @@ namespace Gameplay.Monster.States
             if (!_isDestinationSet)
             {
                 _isDestinationSet = true;
-                _navigation.ProcessMovement(new (-14, -3));
+                _navigation.ProcessMovement((Vector2)_transform.position + new Vector2(0, -5));
             }
             
             if (_navigation.HasReachedDestination())

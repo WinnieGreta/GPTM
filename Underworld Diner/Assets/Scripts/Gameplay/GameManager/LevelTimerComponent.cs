@@ -12,12 +12,14 @@ namespace Gameplay.GameManager.LevelTimerManager
         [Inject] private LevelBasicSettings _levelSettings;
 
         private bool _gamePaused;
+        private bool _levelFinished;
 
         public float TimerTime { get; private set; }
 
         public void Initialize()
         {
             TimerTime = _levelSettings.LevelDuration;
+            _levelFinished = false;
         }
 
         public void Tick()
@@ -28,7 +30,13 @@ namespace Gameplay.GameManager.LevelTimerManager
             }
             else
             {
-                _applicationManager.LoadMainMenu();
+                if (!_levelFinished)
+                {
+                    _levelFinished = true;
+                    FinishLevelByTimer();
+                }
+                //Debug.Log("LevelFinished!");
+                //_applicationManager.LoadMainMenu();
             }
         }
 
@@ -56,6 +64,12 @@ namespace Gameplay.GameManager.LevelTimerManager
         {
             _signalBus.Fire<OnGameUnpauseSignal>();
             Time.timeScale = 1;
+        }
+
+        private void FinishLevelByTimer()
+        {
+            _signalBus.Fire<OnLevelFinishedSignal>();
+            Time.timeScale = 0;
         }
     }
 }

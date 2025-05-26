@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Interfaces;
+using UnityEngine;
 using Zenject;
 
 namespace ApplicationManager
@@ -22,6 +23,7 @@ namespace ApplicationManager
 
         public void LoadGameScene(string name)
         {
+            Time.timeScale = 1f;
             _sceneLoadingManager.LoadScene(name).Forget();
         }
 

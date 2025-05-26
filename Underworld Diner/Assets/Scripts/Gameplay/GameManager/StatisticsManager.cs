@@ -21,7 +21,9 @@ namespace Gameplay.GameManager
 
         public int GetStatistics(string id)
         {
-            return _statistics[id];
+            int stat = 0;
+            _statistics.TryGetValue(id, out stat);
+            return stat;
         }
     }
 }

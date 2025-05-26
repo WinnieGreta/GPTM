@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Interfaces;
 using Interfaces.UI;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Gameplay.Monster.States
 {
     public class OrderState : BaseMonsterState
     {
+        private const string MONSTER_QUIT_ID_TEMPLATE = "MonsterQuit{0}";
+
+        [Inject] private IStatisticsManager _statisticsManager;
+        
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         [Inject] private NavMeshAgent _navMeshAgent;
@@ -16,6 +22,7 @@ namespace Gameplay.Monster.States
         [Inject] private IOrderIcon.Factory _orderIconFactory;
         [Inject] private MonsterStatusComponent _status;
         [Inject] private MonsterServiceSettings _settings;
+        [Inject] private MonsterType _monsterType;
 
         private IOrderIcon _currentOrderIcon;
         
@@ -48,7 +55,9 @@ namespace Gameplay.Monster.States
             }
             else
             {
+                _statisticsManager.IncrementStatistics(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
                 Debug.Log("I'm out of patience!");
+                Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }

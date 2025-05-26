@@ -8,7 +8,7 @@ namespace Gameplay.Station.Kitchen
     
     public class KitchenFacade : StationFacade, IKitchen, ITickable
     {
-        private const string DISH_STATISTICS_ID_TEMPLATE = "dish_prepared_{0}";
+        private const string DISH_STATISTICS_ID_TEMPLATE = "DishPrepared{0}";
         
         [Inject] private IResourceManager _resourceManager;
         [Inject] private KitchenParameters _kitchenParameters;
@@ -39,7 +39,7 @@ namespace Gameplay.Station.Kitchen
             StartCooking();
             if (playerHasFreeHand)
             {
-                Debug.Log("Player has free hand");
+                //Debug.Log("Player has free hand");
                 return GetDish();
             }
 
