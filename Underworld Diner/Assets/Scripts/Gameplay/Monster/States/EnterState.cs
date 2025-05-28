@@ -7,7 +7,7 @@ namespace Gameplay.Monster.States
 {
     public class EnterState : BaseMonsterState
     {
-        private const string MONSTER_ENTER_ID_TEMPLATE = "MonsterEnter{0}";
+        internal const string MONSTER_ENTER_ID_TEMPLATE = "MonsterEnter{0}";
         
         [Inject] private IStatisticsManager _statisticsManager;
         

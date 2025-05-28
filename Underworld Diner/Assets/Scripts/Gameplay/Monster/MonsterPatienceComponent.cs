@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterPatienceComponent : IInitializable
+    public class MonsterPatienceComponent : IInitializable, ITickable
     {
         [Inject] private MonsterServiceSettings _serviceSettings;
         [Inject] private SignalBus _signalBus;
@@ -29,7 +29,7 @@ namespace Gameplay.Monster
         }
 
 
-        public void UpdatePatience()
+        private void UpdatePatience()
         {
             _patienceMeter.UpdatePatienceMeter(_statusComponent.Patience, _navMeshAgent.transform);
         }
@@ -39,5 +39,9 @@ namespace Gameplay.Monster
             _patienceMeter.Despawn();
         }
 
+        public void Tick()
+        {
+            UpdatePatience();
+        }
     }
 }
