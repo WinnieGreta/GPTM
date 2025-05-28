@@ -29,6 +29,7 @@ namespace Gameplay.Player
             Container.BindInterfacesAndSelfTo<PlayerMovementComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerAnimatorComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerNavigationComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerAttackComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerStationInteractionComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerStatusComponent>().AsSingle();
             Container.DeclareSignal<DestinationReachedSignal>();

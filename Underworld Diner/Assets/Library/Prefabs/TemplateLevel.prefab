@@ -11913,6 +11913,7 @@ GameObject:
   - component: {fileID: 9218532308841039550}
   - component: {fileID: 5207569589725434323}
   - component: {fileID: 8872959158778771444}
+  - component: {fileID: 5021341325854317092}
   m_Layer: 0
   m_Name: TemplateLevel
   m_TagString: Untagged
@@ -11953,13 +11954,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 6451e1ceed195a840b8151f0b9fdbe02, type: 2}
+  - {fileID: 11400000, guid: 86e7ebaec065c3a459e65e56b3a50f36, type: 2}
   _monoInstallers:
   - {fileID: 4079803829758069097}
   - {fileID: 8657505667901073970}
   - {fileID: 9218532308841039550}
   - {fileID: 5207569589725434323}
   - {fileID: 8872959158778771444}
+  - {fileID: 5021341325854317092}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -12054,6 +12058,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patienceMeterFacade: {fileID: 787375600367642026, guid: bfb96c75de1c79348913ee60b2e730bf, type: 3}
   _meterRoot: {fileID: 53558573374855350}
+--- !u!114 &5021341325854317092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598335811370506737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e444d01e4b3a4efda081e8c9857900cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireballFacade: {fileID: 9053136287733415678, guid: 8846b2f47f33b86448d4a25a6e2c1e16, type: 3}
 --- !u!1 &1757848399641128817
 GameObject:
   m_ObjectHideFlags: 0

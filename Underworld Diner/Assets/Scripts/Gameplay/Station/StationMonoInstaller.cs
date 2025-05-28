@@ -1,10 +1,7 @@
 ﻿using System;
-using Interfaces;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Station
 {
