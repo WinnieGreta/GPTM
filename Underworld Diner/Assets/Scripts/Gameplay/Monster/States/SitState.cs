@@ -9,6 +9,7 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         [Inject] private MonsterServiceSettings _monsterServiceSettings;
+        [Inject] private MonsterStatusComponent _statusComponent;
 
         private float _orderDowntime;
         private float _timerTime;
@@ -19,12 +20,12 @@ namespace Gameplay.Monster.States
 
         public override void Enter()
         {
-            if (_aiComponent.MyChair != null)
+            if (_statusComponent.MyChair != null)
             {
                 _orderDowntime = _monsterServiceSettings.OrderDowntime;
                 _timerTime = 0;
                 //Debug.Log("I'm sitting on a chair");
-                _animatorComponent.StartSit(_aiComponent.MyChair.IsFacingRight);
+                _animatorComponent.StartSit(_statusComponent.MyChair.IsFacingRight);
             }
             else
             {
@@ -34,7 +35,7 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (!_aiComponent.MyChair.IsTaken)
+            if (!_statusComponent.MyChair.IsTaken)
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);

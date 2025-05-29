@@ -15,6 +15,8 @@ namespace Gameplay.Monster.States
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private MonsterType _monsterType;
         [Inject] private Transform _transform;
+
+        [Inject] private MonsterAnimatorComponent _animatorComponent;
         
         private bool _isDestinationSet;
         
@@ -25,6 +27,7 @@ namespace Gameplay.Monster.States
 
         public override void Enter()
         {
+            _animatorComponent.Restart();
             _statisticsManager.IncrementStatistics(String.Format(MONSTER_ENTER_ID_TEMPLATE, _monsterType.ToString()));
 
         }

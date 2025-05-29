@@ -30,7 +30,7 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (!_aiComponent.MyChair.IsTaken)
+            if (!_statusComponent.MyChair.IsTaken)
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
@@ -42,7 +42,7 @@ namespace Gameplay.Monster.States
             {
                 //Debug.Log("Eating downtime: " + _eatingDowntime + ", was eating for " + _timerTime);
                 _timerTime -= _eatingDowntime;
-                _aiComponent.MyChair.FreeChair();
+                _aiComponent.FreeChairByMonster();
                 _animatorComponent.StopSit();
                 _statisticsManager.IncrementStatistics(String.Format(MONSTER_FED_ID_TEMPLATE, _monsterType.ToString()));
                 _aiComponent.ChangeState(MonsterState.Leave);

@@ -16,7 +16,8 @@ namespace Gameplay.Monster
         private BaseMonsterState.Factory _monsterStateFactory;
         private BaseMonsterState _currentStateEntity = null;
         private MonsterState _currentState;
-        public IChair MyChair { get; private set; }
+        private bool _isDead;
+        //public IChair MyChair { get; private set; }
 
         [Inject]
         public void Construct(BaseMonsterState.Factory monsterStateFactory)
@@ -40,6 +41,7 @@ namespace Gameplay.Monster
             _statusComponent.FullOrder.Clear();
             _statusComponent.Patience = _monsterSettings.StartingPatience;
             _statusComponent.Health = _monsterSettings.StartingHealth;
+            _isDead = false;
             ChangeState(MonsterState.Enter);
         }
 
@@ -59,18 +61,23 @@ namespace Gameplay.Monster
         public void Tick()
         {
             _currentStateEntity?.OnTick();
+            if (_statusComponent.Health <= 0.01 && !_isDead)
+            {
+                _isDead = true;
+                ChangeState(MonsterState.Die);
+            }
         }
 
         public void TakeChairByMonster(IChair chair, IMonster monster)
         {
             chair.TakeChair(monster);
-            MyChair = chair;
+            _statusComponent.MyChair = chair;
         }
 
-        public void FreeChairByMonster(IChair chair)
+        public void FreeChairByMonster()
         {
-            chair.FreeChair();
-            MyChair = null;
+            _statusComponent.MyChair.FreeChair();
+            _statusComponent.MyChair = null;
         }
     }
     

@@ -10,6 +10,7 @@ namespace Gameplay.Monster.States
         Order,
         Eat,
         Leave,
+        Die,
         Null
     }
     

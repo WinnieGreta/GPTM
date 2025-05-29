@@ -42,5 +42,10 @@ namespace Gameplay.Monster
             }
             return false;
         }
+
+        public void StopOnDeath()
+        {
+            _navMeshAgent.ResetPath();
+        }
     }
 }

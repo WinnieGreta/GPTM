@@ -77,5 +77,18 @@ namespace Gameplay.Monster
             _navMeshAgent.enabled = true;
         }
 
+        public void DeathAnimation()
+        {
+            _animator.SetBool("isDead", true);
+        }
+
+        public void Restart()
+        {
+            StopSit();
+            _isMoving = false;
+            _animator.SetBool("isDead", false);
+            _animator.Rebind();
+        }
+
     }
 }

@@ -59,7 +59,7 @@ namespace UI.PatienceMeter
                 patience = _patienceMax;
             }
 
-            if (patience <= 0)
+            if (newHeartAmount <= 0)
             {
                 _patienceMax = 0.01f;
             }

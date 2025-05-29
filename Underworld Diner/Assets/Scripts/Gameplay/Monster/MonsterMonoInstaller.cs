@@ -55,6 +55,8 @@ namespace Gameplay.Monster
                     return container.Instantiate<EatState>();
                 case MonsterState.Leave:
                     return container.Instantiate<LeaveState>();
+                case MonsterState.Die:
+                    return container.Instantiate<DieState>();
                 case MonsterState.Null:
                     return container.Instantiate<NullState>();
             }

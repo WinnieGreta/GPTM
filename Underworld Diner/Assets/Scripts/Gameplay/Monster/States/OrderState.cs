@@ -38,13 +38,13 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (!_aiComponent.MyChair.IsTaken)
+            if (!_status.MyChair.IsTaken)
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
 
-            if (_aiComponent.MyChair.ExpectedDish == DishType.None)
+            if (_status.MyChair.ExpectedDish == DishType.None)
             {
                 _status.Patience += 1;
                 _aiComponent.ChangeState(MonsterState.Eat);
@@ -59,6 +59,7 @@ namespace Gameplay.Monster.States
                 _statisticsManager.IncrementStatistics(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
                 //Debug.Log("I'm out of patience!");
                 //Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
+                _aiComponent.FreeChairByMonster();
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
