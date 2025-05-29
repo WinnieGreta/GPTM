@@ -11,14 +11,13 @@ namespace Gameplay.Weapon.Fireball
         [Inject] private MonoPoolableMemoryPool<Vector3, FireballFacade> _memoryPool;
         [Inject] private Rigidbody2D _rigidbody2D;
         [SerializeField] private float _speed = 10f;
+        [SerializeField] private float _damage = 1;
         
         private Vector3 _shootDirection;
         
         private void Awake()
         {
-            var HITABLE_LAYER = LayerMask.NameToLayer("Hitable");
-            //Debug.Log(_weaponParameters.BaseDamage);
-            
+                
         }
         public void Shoot(Vector3 shootDirection)
         {
@@ -38,12 +37,12 @@ namespace Gameplay.Weapon.Fireball
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"Fireball hit {other}");
+            //Debug.Log($"Fireball hit {other}");
             var target = other.GetComponent<IDamagable>();
             if (target != null)
             {
-                Debug.Log("Damaged something");
-                target.GetDamaged(1);
+                //Debug.Log("Damaged something");
+                target.GetDamaged(_damage);
             }
         }
 

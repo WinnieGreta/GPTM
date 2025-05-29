@@ -24,5 +24,7 @@ namespace Gameplay.Monster
             
             [field:SerializeField] public float StartingPatience { get; private set; }
             [field:SerializeField] public float PatienceDropSpeed { get; private set; }
+            
+            [field:SerializeField] public float StartingHealth { get; private set; }
         }
 }

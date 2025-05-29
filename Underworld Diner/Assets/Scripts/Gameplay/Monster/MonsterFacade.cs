@@ -63,7 +63,7 @@ namespace Gameplay.Monster
 
         public bool GetDamaged(float damage)
         {
-            Debug.Log("Monster damaged!");
+            _status.Health -= damage;
             return true;
         }
     }

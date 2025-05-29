@@ -11,5 +11,7 @@ namespace Gameplay.Monster
         public List<DishType> FullOrder { get; } = new();
         
         public float Patience { get; set; }
+        
+        public float Health { get; set; }
     }
 }

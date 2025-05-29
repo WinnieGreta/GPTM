@@ -34,6 +34,12 @@ namespace Gameplay.Monster
             _patienceMeter.UpdatePatienceMeter(_statusComponent.Patience, _navMeshAgent.transform);
         }
 
+        private void UpdateHealth()
+        {
+            _statusComponent.Patience = _patienceMeter.UpdateHeartAmount(_statusComponent.Patience,
+                _navMeshAgent.transform, _statusComponent.Health);
+        }
+
         private void OnDespawn()
         {
             _patienceMeter.Despawn();
@@ -41,6 +47,7 @@ namespace Gameplay.Monster
 
         public void Tick()
         {
+            UpdateHealth();
             UpdatePatience();
         }
     }

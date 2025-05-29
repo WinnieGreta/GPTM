@@ -39,6 +39,7 @@ namespace Gameplay.Monster
         {
             _statusComponent.FullOrder.Clear();
             _statusComponent.Patience = _monsterSettings.StartingPatience;
+            _statusComponent.Health = _monsterSettings.StartingHealth;
             ChangeState(MonsterState.Enter);
         }
 

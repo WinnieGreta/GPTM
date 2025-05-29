@@ -47,5 +47,20 @@ namespace UI.PatienceMeter
             }
         }
 
+        public float UpdateHeartAmount(float patience, Transform anchor, float newHeartAmount)
+        {
+            if (newHeartAmount == _patienceMax)
+            {
+                return patience;
+            }
+            _patienceMax = newHeartAmount;
+            if (patience > _patienceMax)
+            {
+                patience = _patienceMax;
+            }
+            _containerTransform.sizeDelta = new Vector2(UNITS_PER_HEART * _patienceMax, _containerTransform.sizeDelta.y);
+            return patience;
+        }
+
     }
 }
