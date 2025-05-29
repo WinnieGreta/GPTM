@@ -58,6 +58,11 @@ namespace UI.PatienceMeter
             {
                 patience = _patienceMax;
             }
+
+            if (patience <= 0)
+            {
+                _patienceMax = 0.01f;
+            }
             _containerTransform.sizeDelta = new Vector2(UNITS_PER_HEART * _patienceMax, _containerTransform.sizeDelta.y);
             return patience;
         }

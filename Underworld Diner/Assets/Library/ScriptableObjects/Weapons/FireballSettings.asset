@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5cf708d3e70483d93b258205a5928de, type: 3}
-  m_Name: Level_0_Settings
+  m_Script: {fileID: 11500000, guid: 5ef6d99933c745d093d2b5f8c9f667d3, type: 3}
+  m_Name: FireballSettings
   m_EditorClassIdentifier: 
-  _levelSettings:
-    <LevelDuration>k__BackingField: 70
+  _fireballSimpleSettings:
+    <Speed>k__BackingField: 15
+    <Damage>k__BackingField: 1
+    <HitsLeft>k__BackingField: 2

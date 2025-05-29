@@ -17,3 +17,4 @@ MonoBehaviour:
     <EatingDowntime>k__BackingField: 5
     <StartingPatience>k__BackingField: 4
     <PatienceDropSpeed>k__BackingField: 0.4
+    <StartingHealth>k__BackingField: 4

@@ -1,6 +1,6 @@
 ﻿namespace Interfaces.Weapons
 {
-    public interface IDamageDealer : IDespawnable
+    public interface IDamageDealer
     {
         void DoDamage(IDamagable target);
     }

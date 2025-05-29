@@ -8,8 +8,6 @@ namespace Gameplay.Weapon
 {
     public class DamageDealerFacade : MonoBehaviour, IDamageDealer
     {
-
-        private int _hitsLeft;
         
         private int HITABLE_LAYER;
 
@@ -30,11 +28,6 @@ namespace Gameplay.Weapon
                 
             }*/
         }
-
-        public void Despawn()
-        {
-            Debug.Log("weapon despawned");
-            Destroy(gameObject);
-        }
+        
     }
 }

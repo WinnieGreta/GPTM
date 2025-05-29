@@ -29,7 +29,7 @@ namespace Gameplay.Monster.States
         public override void Enter()
         {
             DishType orderedDish = SelectDish();
-            Debug.Log("I'm ordering " + orderedDish);
+            //Debug.Log("I'm ordering " + orderedDish);
             _currentOrderIcon = _orderIconFactory.Create(orderedDish, _navMeshAgent.transform);
             _status.ExpectedDish = orderedDish;
             _status.FullOrder.Add(_status.ExpectedDish);
@@ -46,6 +46,7 @@ namespace Gameplay.Monster.States
 
             if (_aiComponent.MyChair.ExpectedDish == DishType.None)
             {
+                _status.Patience += 1;
                 _aiComponent.ChangeState(MonsterState.Eat);
             }
             
@@ -56,8 +57,8 @@ namespace Gameplay.Monster.States
             else
             {
                 _statisticsManager.IncrementStatistics(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
-                Debug.Log("I'm out of patience!");
-                Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
+                //Debug.Log("I'm out of patience!");
+                //Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
