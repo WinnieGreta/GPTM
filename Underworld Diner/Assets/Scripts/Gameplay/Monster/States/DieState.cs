@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Abstract;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -6,9 +7,9 @@ namespace Gameplay.Monster.States
 {
     public class DieState : BaseMonsterState
     {
-        [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterNavigationComponent _navigationComponent;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private INavigationComponent _navigationComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
         [Inject] private IDespawnable _despawnable;
         
         private float _corpseTime;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Monster.Abstract;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,10 @@ namespace Gameplay.Monster.States
 
         [Inject] private IStatisticsManager _statisticsManager;
         
-        [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
+        [Inject] private IScoringComponent _scoringComponent;
         [Inject] private MonsterServiceSettings _monsterServiceSettings;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
-        [Inject] private MonsterScoringComponent _scoringComponent;
         [Inject] private MonsterStatusComponent _statusComponent;
         [Inject] private MonsterType _monsterType;
 

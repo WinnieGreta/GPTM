@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Monster.Abstract;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -11,19 +12,14 @@ namespace Gameplay.Monster.States
         
         [Inject] private IStatisticsManager _statisticsManager;
         
-        [Inject] private MonsterNavigationComponent _navigation;
-        [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private INavigationComponent _navigation;
+        [Inject] private IAiComponent _aiComponent;
         [Inject] private MonsterType _monsterType;
         [Inject] private Transform _transform;
 
         [Inject] private MonsterAnimatorComponent _animatorComponent;
         
         private bool _isDestinationSet;
-        
-        public override void Initialize()
-        {
-            
-        }
 
         public override void Enter()
         {
@@ -31,12 +27,6 @@ namespace Gameplay.Monster.States
             _statisticsManager.IncrementStatistics(String.Format(MONSTER_ENTER_ID_TEMPLATE, _monsterType.ToString()));
 
         }
-
-        public override void Exit()
-        {
-            //Debug.Log("EnterState exited");
-        }
-        
 
         public override void OnTick()
         {

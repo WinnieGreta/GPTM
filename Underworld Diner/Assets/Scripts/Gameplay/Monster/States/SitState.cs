@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Abstract;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -6,17 +7,13 @@ namespace Gameplay.Monster.States
 {
     public class SitState : BaseMonsterState
     {
-        [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
         [Inject] private MonsterServiceSettings _monsterServiceSettings;
         [Inject] private MonsterStatusComponent _statusComponent;
 
         private float _orderDowntime;
         private float _timerTime;
-        public override void Initialize()
-        {
-            
-        }
 
         public override void Enter()
         {

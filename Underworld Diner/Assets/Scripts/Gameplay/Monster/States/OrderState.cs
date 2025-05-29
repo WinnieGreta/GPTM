@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Monster.Abstract;
 using Interfaces;
 using Interfaces.UI;
 using UnityEngine;
@@ -15,8 +16,8 @@ namespace Gameplay.Monster.States
 
         [Inject] private IStatisticsManager _statisticsManager;
         
-        [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
         [Inject] private NavMeshAgent _navMeshAgent;
         [Inject] private List<DishType> _favoriteDishes;
         [Inject] private IOrderIcon.Factory _orderIconFactory;
