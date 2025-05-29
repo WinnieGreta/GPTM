@@ -14,10 +14,9 @@ namespace Gameplay.Monster.States
         
         [Inject] private INavigationComponent _navigation;
         [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
         [Inject] private MonsterType _monsterType;
         [Inject] private Transform _transform;
-
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
         
         private bool _isDestinationSet;
 
