@@ -5,7 +5,6 @@ namespace Gameplay.Monster.States
 {
     public class GoSitState : BaseMonsterState
     {
-        [Inject] private IMonster _monster;
         [Inject] private MonsterNavigationComponent _navigation;
         [Inject] private MonsterAIComponent _aiComponent;
         [Inject] private IChairManager _chairManager;
@@ -40,7 +39,7 @@ namespace Gameplay.Monster.States
             {
                 if (!chair.IsTaken && chair.IsClean)
                 {
-                    _aiComponent.TakeChairByMonster(chair, _monster);
+                    _aiComponent.TakeChairByMonster(chair);
                     _navigation.ProcessStationMovement(chair);
                     //Debug.Log("Found free chair");
                     return true;

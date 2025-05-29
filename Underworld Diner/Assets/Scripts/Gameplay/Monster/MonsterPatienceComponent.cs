@@ -1,4 +1,5 @@
-﻿using Interfaces.UI;
+﻿using Gameplay.Monster.Abstract;
+using Interfaces.UI;
 using Signals;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,7 +7,7 @@ using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterPatienceComponent : IInitializable, ITickable
+    internal class MonsterPatienceComponent : IInitializable, ITickable, IPatienceComponent
     {
         [Inject] private MonsterServiceSettings _serviceSettings;
         [Inject] private SignalBus _signalBus;

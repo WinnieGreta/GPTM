@@ -1,15 +1,17 @@
-﻿using Gameplay.Monster.States;
+﻿using Gameplay.Monster.Abstract;
+using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
 using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterAIComponent : IInitializable, ITickable
+    internal class MonsterAIComponent : ITickable, IAiComponent
     {
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _statusComponent;
         [Inject] private MonsterServiceSettings _monsterSettings;
+        [Inject] private IMonster _monster;
 
         private BaseMonsterState.Factory _monsterStateFactory;
         private BaseMonsterState _currentStateEntity = null;
@@ -18,19 +20,9 @@ namespace Gameplay.Monster
         //public IChair MyChair { get; private set; }
 
         [Inject]
-        public void Construct(BaseMonsterState.Factory monsterStateFactory)
+        private void Construct(BaseMonsterState.Factory monsterStateFactory)
         {
             _monsterStateFactory = monsterStateFactory;
-        }
-        
-        public void Initialize()
-        {
-            
-        }
-
-        [Inject]
-        private void OnInject()
-        {
             _signalBus.Subscribe<OnSpawnedSignal>(StartMonster);
         }
         
@@ -43,7 +35,7 @@ namespace Gameplay.Monster
             ChangeState(MonsterState.Enter);
         }
 
-        internal void ChangeState(MonsterState monsterState)
+        public void ChangeState(MonsterState monsterState)
         {
             if (_currentStateEntity != null)
             {
@@ -65,10 +57,10 @@ namespace Gameplay.Monster
                 ChangeState(MonsterState.Die);
             }
         }
-
-        public void TakeChairByMonster(IChair chair, IMonster monster)
+        
+        public void TakeChairByMonster(IChair chair)
         {
-            chair.TakeChair(monster);
+            chair.TakeChair(_monster);
             _statusComponent.MyChair = chair;
         }
 

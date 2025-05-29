@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using Gameplay.Monster.Abstract;
+using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterAnimatorComponent : IInitializable, ILateTickable, IFixedTickable
+    internal class MonsterAnimatorComponent : IInitializable, ILateTickable, IFixedTickable, IAnimatorComponent
     {
         [Inject] private Animator _animator;
         [Inject] private SpriteRenderer _spriteRenderer;
         [Inject] private NavMeshAgent _navMeshAgent;
+        
+        private static readonly int IsDead = Animator.StringToHash("isDead");
+        private static readonly int IsMoving = Animator.StringToHash("isMoving");
+        private static readonly int IsSitting = Animator.StringToHash("isSitting");
         
         private Transform _transform;
         private Vector3 _moveOffset;
@@ -37,8 +42,8 @@ namespace Gameplay.Monster
             {
                 _spriteRenderer.flipX = !_isFacingRight;
             }
-            _animator.SetBool("isMoving", _isMoving);
-            _animator.SetBool("isSitting", _isSitting);
+            _animator.SetBool(IsMoving, _isMoving);
+            _animator.SetBool(IsSitting, _isSitting);
         }
 
         private void MovementCheck()
@@ -79,14 +84,14 @@ namespace Gameplay.Monster
 
         public void DeathAnimation()
         {
-            _animator.SetBool("isDead", true);
+            _animator.SetBool(IsDead, true);
         }
 
         public void Restart()
         {
             StopSit();
             _isMoving = false;
-            _animator.SetBool("isDead", false);
+            _animator.SetBool(IsDead, false);
             _animator.Rebind();
         }
 
