@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Gameplay.Monster.States;
+﻿using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster
@@ -76,8 +74,11 @@ namespace Gameplay.Monster
 
         public void FreeChairByMonster()
         {
-            _statusComponent.MyChair.FreeChair();
-            _statusComponent.MyChair = null;
+            if (_statusComponent.MyChair != null)
+            {
+                _statusComponent.MyChair.FreeChair();
+                _statusComponent.MyChair = null;
+            }
         }
     }
     

@@ -45,7 +45,10 @@ namespace Gameplay.Monster
 
         public void StopOnDeath()
         {
-            _navMeshAgent.ResetPath();
+            if (_navMeshAgent.isOnNavMesh)
+            {
+                _navMeshAgent.ResetPath();
+            }
         }
     }
 }
