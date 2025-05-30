@@ -4,7 +4,6 @@ using Gameplay.Monster.States;
 using Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -12,13 +11,6 @@ namespace Gameplay.Monster.Tests
 {
     public class EnterStateTests : ZenjectUnitTestFixture
     {
-        /*[Inject] private IStatisticsManager _statisticsManager;
-        
-        [Inject] private MonsterNavigationComponent _navigation;
-        [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterType _monsterType;
-        [Inject] private Transform _transform;*/
-        
         [SetUp]
         public override void Setup()
         {
