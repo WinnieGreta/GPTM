@@ -1,13 +1,12 @@
 ﻿using System;
 using Gameplay.Monster.Abstract;
-using Gameplay.Monster.States;
 using Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Monster.Tests
+namespace Gameplay.Monster.States.Tests
 {
     public class EnterStateTests : ZenjectUnitTestFixture
     {
@@ -62,7 +61,7 @@ namespace Gameplay.Monster.Tests
         }
 
         [Test]
-        public void EnterState_OnTick_SetDestination()
+        public void EnterState_OnTick_Set_Destination()
         {
             var navigationComponent = Substitute.For<INavigationComponent>();
             navigationComponent.HasReachedDestination().Returns(false);
@@ -85,7 +84,7 @@ namespace Gameplay.Monster.Tests
         }
 
         [Test]
-        public void EnterState_OnTick_ChangeState()
+        public void EnterState_OnTick_Change_State_GoSit()
         {
             var navigationComponent = Substitute.For<INavigationComponent>();
             navigationComponent.HasReachedDestination()

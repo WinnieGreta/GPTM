@@ -42,7 +42,7 @@ namespace Gameplay.Monster.States
             _timerTime += Time.deltaTime;
             if (_timerTime > _orderDowntime)
             {
-                Debug.Log("Order downtime: " + _orderDowntime + ", was waiting for " + _timerTime);
+                //Debug.Log("Order downtime: " + _orderDowntime + ", was waiting for " + _timerTime);
                 _timerTime -= _orderDowntime;
                 _aiComponent.ChangeState(MonsterState.Order);
             }

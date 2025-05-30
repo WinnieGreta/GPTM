@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Monster.Abstract;
-using Gameplay.Monster.States;
 using Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 using Zenject;
 
-namespace Gameplay.Monster.Tests
+namespace Gameplay.Monster.States.Tests
 {
     public class GoSitStateTests : ZenjectUnitTestFixture
     {
@@ -27,7 +26,7 @@ namespace Gameplay.Monster.Tests
         }
 
         [Test]
-        public void GoSitState_FindFreeChair()
+        public void GoSitState_Find_Free_Chair()
         {
             var aiComponent = Substitute.For<IAiComponent>();
             Container.Rebind<IAiComponent>()
