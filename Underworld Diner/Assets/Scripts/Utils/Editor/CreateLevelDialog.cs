@@ -60,7 +60,7 @@ namespace Utils.Editor
 
         private void CreateScene()
         {
-            AssetDatabase.CreateFolder($"Assets/Scenes/Levels", _sceneName);
+            AssetDatabase.CreateFolder("Assets/Scenes/Levels", _sceneName);
             _workingDirectory = $"Assets/Scenes/Levels/{_sceneName}";
             AssetDatabase.CreateFolder(_workingDirectory, "Settings");
             var settingsDirectory = Path.Combine(_workingDirectory, "Settings");

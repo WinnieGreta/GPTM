@@ -7,11 +7,11 @@ namespace UI.MainMenu
     public class MainMenuBackground : MonoBehaviour
     {
         [Serializable]
-        public struct Layer
+        public class Layer
         {
             public Transform layer;
             public float magnitude;
-            public Vector3 startLocalPos;
+            public Vector3 StartLocalPos { get; set; }
         }
 
         [Header("Layers")] 
@@ -31,7 +31,7 @@ namespace UI.MainMenu
         {
             for (int i = 0; i < _layers.Length; i++)
             {
-                _layers[i].startLocalPos = _layers[i].layer.localPosition;
+                _layers[i].StartLocalPos = _layers[i].layer.localPosition;
             }
         }
 
@@ -96,7 +96,7 @@ namespace UI.MainMenu
         {
             foreach (var l in _layers)
             {
-                l.layer.localPosition = l.startLocalPos + (Vector3)_current * l.magnitude;
+                l.layer.localPosition = l.StartLocalPos + (Vector3)_current * l.magnitude;
             }
         }
 

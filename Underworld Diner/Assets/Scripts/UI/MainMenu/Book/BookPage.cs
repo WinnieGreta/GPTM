@@ -1,7 +1,5 @@
 ﻿using Interfaces.UI;
-using UI.MainMenu.Signals;
 using UnityEngine;
-using Zenject;
 
 namespace UI.MainMenu.Book
 {

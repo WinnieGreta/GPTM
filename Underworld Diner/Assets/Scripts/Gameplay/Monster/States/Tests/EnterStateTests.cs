@@ -38,14 +38,14 @@ namespace Gameplay.Monster.States.Tests
         {
             // test setup
             var animatorComponent = Substitute.For<IAnimatorComponent>();
-            Container.Unbind<IAnimatorComponent>();
-            Container.Bind<IAnimatorComponent>()
+            //Container.Unbind<IAnimatorComponent>();
+            Container.Rebind<IAnimatorComponent>()
                 .FromInstance(animatorComponent)
                 .AsCached();
             
             var statisticsManager = Substitute.For<IStatisticsManager>();
-            Container.Unbind<IStatisticsManager>();
-            Container.Bind<IStatisticsManager>()
+            //Container.Unbind<IStatisticsManager>();
+            Container.Rebind<IStatisticsManager>()
                 .FromInstance(statisticsManager)
                 .AsCached();
             

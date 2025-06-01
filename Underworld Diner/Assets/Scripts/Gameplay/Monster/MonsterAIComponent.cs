@@ -1,5 +1,4 @@
 ﻿using Gameplay.Monster.Abstract;
-using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
 using Zenject;
@@ -14,7 +13,7 @@ namespace Gameplay.Monster
         [Inject] private IMonster _monster;
 
         private BaseMonsterState.Factory _monsterStateFactory;
-        private BaseMonsterState _currentStateEntity = null;
+        private BaseMonsterState _currentStateEntity;
         private MonsterState _currentState;
         private bool _isDead;
         //public IChair MyChair { get; private set; }

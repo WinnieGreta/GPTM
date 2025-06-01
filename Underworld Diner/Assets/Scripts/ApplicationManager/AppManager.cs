@@ -12,7 +12,7 @@ namespace ApplicationManager
         GamePlay
     }
     
-    public class ApplicationManager: IApplicationManager, IAppInitializedCallback
+    public class AppManager: IApplicationManager, IAppInitializedCallback
     {
         [Inject] private SceneLoadingManager _sceneLoadingManager;
 

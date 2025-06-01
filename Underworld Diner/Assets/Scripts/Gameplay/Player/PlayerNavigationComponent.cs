@@ -110,7 +110,7 @@ namespace Gameplay.Player
         {
             if (_status.StationImMovingTo != null)
             {
-                _commandQueue.Enqueue(new QueueCommand() { TargetStation = station});
+                _commandQueue.Enqueue(new QueueCommand { TargetStation = station});
             }
             else
             {

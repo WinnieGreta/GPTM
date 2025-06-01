@@ -1,7 +1,6 @@
 ﻿using System;
 using Interfaces;
 using Signals;
-using Zenject;
 
 namespace Gameplay.GameManager
 {

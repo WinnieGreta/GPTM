@@ -1,5 +1,4 @@
-﻿using Gameplay.Monster.States;
-using Interfaces;
+﻿using Interfaces;
 
 namespace Gameplay.Monster.Abstract
 {

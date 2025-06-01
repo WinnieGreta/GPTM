@@ -2,11 +2,11 @@
 
 namespace ApplicationManager
 {
-    public class ApplicationManagerInstaller : MonoInstaller
+    public class AppManagerInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<ApplicationManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AppManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoadingManager>().AsSingle();
         }
     }

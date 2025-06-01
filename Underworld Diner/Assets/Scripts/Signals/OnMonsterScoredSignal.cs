@@ -2,6 +2,6 @@
 {
     public class OnMonsterScoredSignal
     {
-        public float Score;
+        public float Score { get; set; }
     }
 }

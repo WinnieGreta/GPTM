@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Gameplay.GameManager.LevelTimerManager;
-using Interfaces;
 using Interfaces.Player;
 using UnityEngine;
 using Zenject;
@@ -8,7 +6,7 @@ using Signals;
 
 namespace Gameplay.GameManager
 {
-    public class GameManagerInstaller : MonoInstaller
+    public class GameplayManagerInstaller : MonoInstaller
     {
         [SerializeField] private Transform _monsterSpawnAnchor;
         [SerializeField] private GameObjectContext _player;
@@ -16,7 +14,7 @@ namespace Gameplay.GameManager
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSpawnManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<ResourceManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelTimerComponent>().AsSingle();

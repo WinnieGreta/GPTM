@@ -1,5 +1,4 @@
 ﻿using Gameplay.Monster.Abstract;
-using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -24,10 +23,7 @@ namespace Gameplay.Monster.States
                 //Debug.Log("I'm sitting on a chair");
                 _animatorComponent.StartSit(_statusComponent.MyChair.IsFacingRight);
             }
-            else
-            {
-                //Debug.Log("I don't have a chair");
-            }
+            //Debug.Log("I don't have a chair");
         }
 
         public override void OnTick()

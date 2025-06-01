@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Installer;
+using Interfaces;
 using Signals;
 using UnityEngine;
 using Zenject;

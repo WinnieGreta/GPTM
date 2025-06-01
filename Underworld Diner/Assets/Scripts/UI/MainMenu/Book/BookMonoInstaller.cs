@@ -56,7 +56,7 @@ namespace UI.MainMenu.Book
                     return container.Instantiate<BookNullState>();
             }
 
-            throw new Exception("No book state!");
+            return null;
         }
     }
 }

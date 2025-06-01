@@ -5,7 +5,7 @@ using Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Monster
+namespace Gameplay.Monster.Installer
 {
     [Serializable]
     public class MonsterPrefabPair

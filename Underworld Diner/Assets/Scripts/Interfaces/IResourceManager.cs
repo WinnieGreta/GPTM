@@ -2,12 +2,6 @@
 
 namespace Interfaces
 {
-    public enum ResourceType
-    {
-        Red,
-        Green,
-        Blue
-    }
     
     public interface IResourceManager
     {

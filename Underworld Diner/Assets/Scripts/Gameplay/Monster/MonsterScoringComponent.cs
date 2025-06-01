@@ -23,7 +23,7 @@ namespace Gameplay.Monster
                 }
                 score += _recipeBook[dish].CookingTime;
             }
-            _signalBus.Fire(new OnMonsterScoredSignal() { Score = score * _serviceSettings.EatingDowntime * _statusComponent.Patience});
+            _signalBus.Fire(new OnMonsterScoredSignal { Score = score * _serviceSettings.EatingDowntime * _statusComponent.Patience});
         }
     }
 }

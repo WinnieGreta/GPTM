@@ -22,11 +22,11 @@ namespace Gameplay.Monster.States
         {
             if (_navigation.HasReachedDestination())
             {
-                Dispose();
+                Leave();
             }
         }
 
-        public void Dispose()
+        private void Leave()
         {
             _aiComponent.ChangeState(MonsterState.Null);
             _despawnable.Despawn();

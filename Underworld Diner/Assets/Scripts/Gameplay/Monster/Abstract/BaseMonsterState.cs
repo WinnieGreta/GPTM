@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Gameplay.Monster.States
+namespace Gameplay.Monster.Abstract
 {
     public enum MonsterState
     {

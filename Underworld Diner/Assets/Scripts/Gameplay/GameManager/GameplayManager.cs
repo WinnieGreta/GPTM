@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay.GameManager
 {
-    public class GameManager : IGameManager, IFixedTickable, IInitializable, IChairManager
+    public class GameplayManager : IGameManager, IFixedTickable, IInitializable, IChairManager
     {
         [Inject] private GameSpawnManager _spawnManager;
         [Inject] private SignalBus _signalBus;

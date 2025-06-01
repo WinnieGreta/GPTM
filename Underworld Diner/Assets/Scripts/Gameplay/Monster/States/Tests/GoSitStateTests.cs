@@ -56,7 +56,7 @@ namespace Gameplay.Monster.States.Tests
             freeChair.IsClean.Returns(true);
 
             // all seats are either dirty or taken
-            chairManager.Chairs.Returns(new List<IChair>() { takenChair, dirtyChair, takenChair, dirtyChair });
+            chairManager.Chairs.Returns(new List<IChair> { takenChair, dirtyChair, takenChair, dirtyChair });
             // we don't care about destination reached check in this OnTick
             navigationComponent.HasReachedDestination().Returns(false, false);
             var goSitState1 = Container.Resolve<GoSitState>();
@@ -71,7 +71,7 @@ namespace Gameplay.Monster.States.Tests
             navigationComponent.ClearReceivedCalls();
             
             // there is a clean chair
-            chairManager.Chairs.Returns(new List<IChair>() { takenChair, dirtyChair, freeChair, freeChair });
+            chairManager.Chairs.Returns(new List<IChair> { takenChair, dirtyChair, freeChair, freeChair });
             // we need to have a different GoSitState, as the one we used already raised private flag
             var goSitState2 = Container.Resolve<GoSitState>();
             goSitState2.OnTick();
@@ -110,7 +110,7 @@ namespace Gameplay.Monster.States.Tests
             freeChair.IsClean.Returns(true);
 
             // all seats are either dirty or taken
-            chairManager.Chairs.Returns(new List<IChair>() { takenChair, dirtyChair, takenChair, dirtyChair }, new List<IChair>() { takenChair, dirtyChair, freeChair, freeChair });
+            chairManager.Chairs.Returns(new List<IChair> { takenChair, dirtyChair, takenChair, dirtyChair }, new List<IChair> { takenChair, dirtyChair, freeChair, freeChair });
             // we don't care about destination reached check in this OnTick
             navigationComponent.HasReachedDestination().Returns(false, false);
             var goSitState1 = Container.Resolve<GoSitState>();
@@ -123,7 +123,7 @@ namespace Gameplay.Monster.States.Tests
             aiComponent.ClearReceivedCalls();
             
             // there is a clean chair
-            chairManager.Chairs.Returns(new List<IChair>() { freeChair, takenChair, dirtyChair, freeChair, freeChair });
+            chairManager.Chairs.Returns(new List<IChair> { freeChair, takenChair, dirtyChair, freeChair, freeChair });
             // we need to have a different GoSitState, as the one we used already raised private flag
             var goSitState2 = Container.Resolve<GoSitState>();
             goSitState2.OnTick();
@@ -156,7 +156,7 @@ namespace Gameplay.Monster.States.Tests
             freeChair.IsClean.Returns(true);
             
             // there is a clean chair in both checks
-            chairManager.Chairs.Returns(new List<IChair>() { freeChair, freeChair });
+            chairManager.Chairs.Returns(new List<IChair> { freeChair, freeChair });
 
             var goSitState3 = Container.Resolve<GoSitState>();
             

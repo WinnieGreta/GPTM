@@ -3,7 +3,7 @@ using Signals;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.GameManager.LevelTimerManager
+namespace Gameplay.GameManager
 {
     public class LevelTimerComponent : ITickable, ITimeManager, IInitializable
     {

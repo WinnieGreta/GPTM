@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Monster
+namespace Gameplay.Monster.Installer
 {
     public class MonsterPool : MonoPoolableMemoryPool<Transform, MonsterFacade>
     {

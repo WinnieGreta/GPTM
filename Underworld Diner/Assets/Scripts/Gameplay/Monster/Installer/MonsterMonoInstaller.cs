@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Gameplay.Monster.Abstract;
 using Gameplay.Monster.States;
 using Interfaces;
 using Signals;
@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace Gameplay.Monster
+namespace Gameplay.Monster.Installer
 {
     public class MonsterMonoInstaller : MonoInstaller
     {
@@ -60,7 +60,7 @@ namespace Gameplay.Monster
                 case MonsterState.Null:
                     return container.Instantiate<NullState>();
             }
-            throw new Exception("No monster state!");
+            return null;
         }
     }
 }

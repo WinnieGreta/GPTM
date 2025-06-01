@@ -35,17 +35,14 @@ namespace UI.MainMenu.Book.States
         
         private void OnNewPageFromButton(PageFromButtonSignal args)
         {
-            Debug.Log("New page from button received!");
-            var newPage = args.Page;
-            int pageNumber = newPage.PageOrder;
+            //Debug.Log("New page from button received!");
+            int pageNumber = args.PageOrder;
 
             var pageToRemove = _bookStatus.ActivePages[pageNumber];
             pageToRemove.HidePage();
             pageToRemove.gameObject.SetActive(false);
 
-            string rawName = newPage.name + "(Clone)";
-
-            var pageToShow = _pages.FirstOrDefault(p => p.name == rawName);
+            var pageToShow = _pages.FirstOrDefault(p => p.name == args.Name);
             pageToShow.gameObject.SetActive(true);
             pageToShow.transform.position = _pagesAnchors[pageNumber].transform.position;
             pageToShow.ShowPage();

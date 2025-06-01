@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Bootstrap
 {
-    public class Bootstrap : MonoBehaviour
+    public class BootstrapManager : MonoBehaviour
     {
         [Inject] private IAppInitializedCallback[] _appInitializedCallback;
 
