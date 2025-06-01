@@ -142,7 +142,7 @@ namespace Gameplay.Player
             int freeHands = PLAYER_HANDS - _status.Hands.Count;
             if (freeHands > 0)
             {
-                int dirtyDishesTaken = freeHands - table.TryCleaningTable(freeHands);
+                int dirtyDishesTaken = freeHands - table.CleanDirtyPlates(freeHands);
                 if (dirtyDishesTaken == 0)
                 {
                     return false;

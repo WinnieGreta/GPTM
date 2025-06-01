@@ -8,9 +8,12 @@
         "Interfaces",
         "Zenject-TestFramework",
         "Zenject",
-        "TNRD.NSubstitute"
+        "TNRD.NSubstitute",
+        "Signals"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

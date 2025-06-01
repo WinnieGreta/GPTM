@@ -1,4 +1,5 @@
-﻿using Gameplay.Monster.Abstract;
+﻿using System.Diagnostics.CodeAnalysis;
+using Gameplay.Monster.Abstract;
 using UnityEngine.AI;
 using Zenject;
 using UnityEngine;
@@ -6,6 +7,8 @@ using Interfaces;
 
 namespace Gameplay.Monster
 {
+    // wrapper component over navmesh agent
+    [ExcludeFromCodeCoverage]
     internal class MonsterNavigationComponent : INavigationComponent
     {
         [Inject] private NavMeshAgent _navMeshAgent;

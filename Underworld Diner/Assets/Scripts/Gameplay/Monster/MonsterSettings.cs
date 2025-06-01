@@ -1,7 +1,5 @@
 ﻿using System;
-using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Gameplay.Monster

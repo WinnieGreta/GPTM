@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Gameplay.Monster.Abstract;
 using Gameplay.Monster.States;
 using Interfaces;
@@ -38,7 +39,8 @@ namespace Gameplay.Monster.Installer
             
             Container.BindInstance(_favoriteDishes).AsSingle();
         }
-
+        
+        [ExcludeFromCodeCoverage]
         private BaseMonsterState CreateMonsterState(DiContainer container, MonsterState monsterState)
         {
             switch (monsterState)

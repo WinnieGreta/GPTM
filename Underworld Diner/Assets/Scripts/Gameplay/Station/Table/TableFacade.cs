@@ -45,7 +45,7 @@ namespace Gameplay.Station.Table
             return false;
         }
 
-        public int TryCleaningTable(int freeHands)
+        public int CleanDirtyPlates(int freeHands)
         {
             int freeHandsLeft = freeHands;
             for (int i = 0; i < _myChairs.Count && freeHandsLeft > 0; i++)

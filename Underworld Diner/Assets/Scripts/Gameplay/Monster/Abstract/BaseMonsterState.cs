@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System.Diagnostics.CodeAnalysis;
+using Zenject;
 
 namespace Gameplay.Monster.Abstract
 {
@@ -14,6 +15,8 @@ namespace Gameplay.Monster.Abstract
         Null
     }
     
+    // default implementations are empty methods
+    [ExcludeFromCodeCoverage]
     public abstract class BaseMonsterState : IInitializable
     {
         public virtual void Initialize()
