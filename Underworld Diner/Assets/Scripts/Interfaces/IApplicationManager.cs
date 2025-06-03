@@ -4,5 +4,6 @@
     {
         void LoadGameScene(string name);
         void LoadMainMenu();
+        void OnAppExit();
     }
 }

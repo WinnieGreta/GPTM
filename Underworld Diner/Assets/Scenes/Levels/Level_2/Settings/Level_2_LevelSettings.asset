@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelSettings:
     <LevelDuration>k__BackingField: 90
+    <LevelName>k__BackingField: 0
+    <LevelScoreGoal>k__BackingField: 50
+  _levelResourceSettings:
+    <StartingRed>k__BackingField: 5
+    <StartingGreen>k__BackingField: 5
+    <StartingBlue>k__BackingField: 5

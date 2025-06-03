@@ -31,5 +31,10 @@ namespace ApplicationManager
         {
             _sceneLoadingManager.LoadScene("MainMenu").Forget();
         }
+
+        public void OnAppExit()
+        {
+            Application.Quit();
+        }
     }
 }

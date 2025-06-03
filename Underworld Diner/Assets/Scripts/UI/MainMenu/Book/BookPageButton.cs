@@ -1,5 +1,4 @@
-﻿using System;
-using UI.MainMenu.Signals;
+﻿using UI.MainMenu.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

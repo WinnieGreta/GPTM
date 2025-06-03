@@ -1,4 +1,5 @@
-﻿using Analytics.Signals;
+﻿using System.Collections.Generic;
+using Analytics.Signals;
 using Interfaces;
 using Unity.Services.Analytics;
 using UnityEngine;
@@ -20,6 +21,15 @@ namespace Analytics
         {
             Debug.Log("Analytics levelStarted event sent");
             _serviceInstance?.RecordEvent("levelStarted");
+        }
+
+        internal void OnLevelEnd(AnalyticsLevelEndEvent analyticsLevelEndEvent)
+        {
+            CustomEvent levelEnd = new CustomEvent("levelEnded")
+            {
+                { "levelFinalScore", analyticsLevelEndEvent.Score }
+            };
+            _serviceInstance?.RecordEvent(levelEnd);
         }
     }
 }

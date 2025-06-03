@@ -1,7 +1,6 @@
 ﻿using System;
 using Interfaces;
 using Signals;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.GameManager

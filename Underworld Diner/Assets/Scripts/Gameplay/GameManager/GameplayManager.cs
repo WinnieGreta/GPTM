@@ -14,6 +14,7 @@ namespace Gameplay.GameManager
         [Inject] private SignalBus _signalBus;
         [Inject] private List<Canvas> _uiCanvases;
         [Inject] private IResourceManager _resourceManager;
+        [Inject] private IScoringManager _scoringManager;
 
         [Inject]
         private void OnInject()
@@ -58,6 +59,7 @@ namespace Gameplay.GameManager
         private void DisplayScorePopup()
         {
             _uiCanvases[0].gameObject.SetActive(true);
+            _signalBus.TryFire(new AnalyticsLevelEndEvent { Score = _scoringManager.Score});
         }
         
         private void DisplayPausePopup()
