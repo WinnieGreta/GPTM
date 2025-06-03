@@ -25,13 +25,17 @@ namespace Gameplay.GameManager
             Container.Bind<IPlayer>().FromSubContainerResolve().ByInstance(_player.Container).AsSingle();
             
             Container.DeclareSignal<OnMonsterScoredSignal>();
+            Container.DeclareSignal<OnManaUpdateSignal>();
+            Container.DeclareSignal<OnManaSetupSignal>();
             Container.DeclareSignal<OnGameUnpauseSignal>();
             Container.DeclareSignal<OnGamePauseSignal>();
             Container.DeclareSignal<OnLevelFinishedSignal>();
+            Container.DeclareSignal<OnLevelStartSignal>();
             
             Container.BindSignal<OnMonsterScoredSignal>()
                 .ToMethod<ScoringManager>(x => x.UpdateScore)
                 .FromResolve();
+            
         }
     }
 }

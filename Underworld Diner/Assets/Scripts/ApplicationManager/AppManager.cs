@@ -5,12 +5,12 @@ using Zenject;
 
 namespace ApplicationManager
 {
-    internal enum GameState
+    /*internal enum GameState
     {
         Bootstrap,
         MainMenu,
         GamePlay
-    }
+    }*/
     
     public class AppManager: IApplicationManager, IAppInitializedCallback
     {

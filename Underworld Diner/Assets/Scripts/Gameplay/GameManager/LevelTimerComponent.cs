@@ -16,6 +16,12 @@ namespace Gameplay.GameManager
 
         public float TimerTime { get; private set; }
 
+        [Inject]
+        private void OnInject()
+        {
+            _signalBus.Subscribe<OnLevelStartSignal>(PauseTimerOnLevelStart);
+        }
+        
         public void Initialize()
         {
             TimerTime = _levelSettings.LevelDuration;
@@ -69,6 +75,12 @@ namespace Gameplay.GameManager
         private void FinishLevelByTimer()
         {
             _signalBus.Fire<OnLevelFinishedSignal>();
+            Time.timeScale = 0;
+        }
+
+        private void PauseTimerOnLevelStart()
+        {
+            _gamePaused = true;
             Time.timeScale = 0;
         }
     }

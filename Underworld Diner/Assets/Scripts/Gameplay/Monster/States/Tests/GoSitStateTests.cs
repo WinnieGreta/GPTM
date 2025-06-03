@@ -26,7 +26,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void GoSitState_Find_Free_Chair()
+        public void GoSitState_FindFreeChair()
         {
             var aiComponent = Substitute.For<IAiComponent>();
             Container.Rebind<IAiComponent>()
@@ -80,7 +80,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void GoSitState_OnTick_Leave_If_No_Chairs()
+        public void GoSitState_OnTick_LeaveIfNoChairs()
         {
             var aiComponent = Substitute.For<IAiComponent>();
             Container.Rebind<IAiComponent>()
@@ -132,7 +132,7 @@ namespace Gameplay.Monster.States.Tests
         }
         
         [Test]
-        public void GoSitState_OnTick_Sit_If_Reached_Chair()
+        public void GoSitState_OnTick_SitIfReachedChair()
         {
             var aiComponent = Substitute.For<IAiComponent>();
             Container.Rebind<IAiComponent>()

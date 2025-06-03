@@ -16,7 +16,5 @@ MonoBehaviour:
     <MaxSpeed>k__BackingField: 6.51
   _playerHealthManaSettings:
     <HpMax>k__BackingField: 0
-    <ManaMax>k__BackingField: 0
-    <ManaRegainSpeed>k__BackingField: 0
-  _playerAttackWeaponSettings:
-    <WeaponPrefab>k__BackingField: {fileID: 3679376911292077542, guid: 8846b2f47f33b86448d4a25a6e2c1e16, type: 3}
+    <ManaMax>k__BackingField: 200
+    <ManaRegainSpeed>k__BackingField: 0.1

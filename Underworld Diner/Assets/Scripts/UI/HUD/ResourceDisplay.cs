@@ -1,5 +1,4 @@
-﻿using System;
-using Interfaces;
+﻿using Interfaces;
 using TMPro;
 using UnityEngine;
 using Zenject;

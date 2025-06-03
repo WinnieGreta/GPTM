@@ -77,7 +77,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void OrderState_OnTick_Leave_If_Chair_Frees()
+        public void OrderState_OnTick_LeaveIfChairFrees()
         {
             var favoriteDishes = new List<DishType> { DishType.Burger, DishType.Pudding, DishType.Pudding };
             Container.Rebind<List<DishType>>()
@@ -136,7 +136,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void OrderState_OnTick_Eat_If_Food_Given()
+        public void OrderState_OnTick_EatIfFoodGiven()
         {
             var favoriteDishes = new List<DishType> { DishType.Burger, DishType.Pudding, DishType.Pudding };
             Container.Rebind<List<DishType>>()
@@ -189,7 +189,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void OrderState_OnTick_Eat_Patience()
+        public void OrderState_OnTick_EatPatience()
         {
             var favoriteDishes = new List<DishType> { DishType.Burger, DishType.Pudding, DishType.Pudding };
             Container.Rebind<List<DishType>>()
@@ -216,7 +216,6 @@ namespace Gameplay.Monster.States.Tests
             chair1.ExpectedDish.Returns(DishType.Burger);
 
             const float STARTING_PATIENCE_1 = 1f;
-            const float STARTING_PATIENCE_2 = -1f;
             const float PATIENCE_DROP_1 = 0.5f;
             
             var statusComponent1 = new MonsterStatusComponent { MyChair = chair1, Patience = STARTING_PATIENCE_1 };

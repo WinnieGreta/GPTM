@@ -13,19 +13,23 @@ namespace Gameplay.GameManager
         [Inject] private GameSpawnManager _spawnManager;
         [Inject] private SignalBus _signalBus;
         [Inject] private List<Canvas> _uiCanvases;
+        [Inject] private IResourceManager _resourceManager;
 
         [Inject]
         private void OnInject()
         {
-            _signalBus.Subscribe<OnLevelFinishedSignal>(DisplayScore);
-            _signalBus.Subscribe<OnGamePauseSignal>(DisplayPause);
-            _signalBus.Subscribe<OnGameUnpauseSignal>(HidePause);
+            _signalBus.Subscribe<OnLevelFinishedSignal>(DisplayScorePopup);
+            _signalBus.Subscribe<OnGamePauseSignal>(DisplayPausePopup);
+            _signalBus.Subscribe<OnGameUnpauseSignal>(HidePausePopup);
         }
 
         public void Initialize()
         {
            _spawnManager.OnInitialize();
+           _resourceManager.InitializeResources();
            _signalBus.TryFire<AnalyticsLevelStartEvent>();
+           _signalBus.TryFire<OnLevelStartSignal>();
+           DisplayStartLevelPopup();
         }
         
         public void FixedTick()
@@ -51,19 +55,27 @@ namespace Gameplay.GameManager
 
         #endregion
         
-        private void DisplayScore()
+        private void DisplayScorePopup()
         {
             _uiCanvases[0].gameObject.SetActive(true);
         }
         
-        private void DisplayPause()
+        private void DisplayPausePopup()
         {
             _uiCanvases[1].gameObject.SetActive(true);
         }
         
-        private void HidePause()
+        private void HidePausePopup()
         {
             _uiCanvases[1].gameObject.SetActive(false);
+            // start screen is basically a pause popup under the hood
+            _uiCanvases[2].gameObject.SetActive(false);
         }
+
+        private void DisplayStartLevelPopup()
+        {
+            _uiCanvases[2].gameObject.SetActive(true);
+        }
+
     }
 }

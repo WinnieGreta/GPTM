@@ -1,4 +1,5 @@
 using Gameplay.Player.Signals;
+using Interfaces.UI;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -32,6 +33,7 @@ namespace Gameplay.Player
             Container.BindInterfacesAndSelfTo<PlayerAttackComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerStationInteractionComponent>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerStatusComponent>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerManaComponent>().AsSingle();
             Container.DeclareSignal<DestinationReachedSignal>();
         }
 

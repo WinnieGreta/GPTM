@@ -8,6 +8,8 @@ namespace Gameplay.Player
     {
         public LinkedList<DishType> Hands { get; private set; } = new ();
         public IStation StationImMovingTo { get; set; }
+        
+        public float Mana { get; set; }
 
         public override string ToString()
         {
