@@ -20,7 +20,7 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (_navigation.HasReachedDestination())
+            if (_navigation.HasReachedDestination(1f))
             {
                 Leave();
             }

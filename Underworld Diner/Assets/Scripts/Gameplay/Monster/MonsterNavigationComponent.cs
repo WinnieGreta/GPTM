@@ -32,20 +32,27 @@ namespace Gameplay.Monster
             MoveToPosition(target);
         }
 
-        public bool HasReachedDestination()
+        
+        // a crutch to stop monsters mosh pit around exit
+        public bool HasReachedDestination(float offset = 0.01f)
         {
             if (!_navMeshAgent.pathPending)
             {
-                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                if (Vector2.Distance(_navMeshAgent.destination, _navMeshAgent.transform.position) < offset)
+                {
+                    return true;
+                }
+                /*if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 {
                     if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
                     {
                         return true;
                     }
-                }
+                }*/
             }
             return false;
         }
+
 
         public void StopOnDeath()
         {

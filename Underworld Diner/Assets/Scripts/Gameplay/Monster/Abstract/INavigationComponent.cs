@@ -7,7 +7,7 @@ namespace Gameplay.Monster.Abstract
     {
         void ProcessMovement(Vector2 targetPosition);
         void ProcessStationMovement(IStation station);
-        bool HasReachedDestination();
+        bool HasReachedDestination(float offset = 0.01f);
         void StopOnDeath();
     }
 }

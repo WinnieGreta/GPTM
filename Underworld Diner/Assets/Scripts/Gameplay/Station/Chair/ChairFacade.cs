@@ -48,7 +48,6 @@ namespace Gameplay.Station.Chair
             if (dish == DishType.None)
             {
                 _chairParameters.DishSprite.enabled = false;
-                // TODO move to monster
                 _occupantDish = DishType.None;
                 return;
                 

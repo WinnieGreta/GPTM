@@ -1379,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1555499982161973920, guid: eccfdff2ecaffd047ae3eabcfcdab658, type: 3}
+      propertyPath: _sceneName
+      value: Level_3
+      objectReference: {fileID: 0}
     - target: {fileID: 1630976168154531491, guid: eccfdff2ecaffd047ae3eabcfcdab658, type: 3}
       propertyPath: m_Name
       value: LevelRoot

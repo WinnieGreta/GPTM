@@ -61,7 +61,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void EnterState_OnTick_Set_Destination()
+        public void EnterState_OnTick_SetDestination()
         {
             var navigationComponent = Substitute.For<INavigationComponent>();
             navigationComponent.HasReachedDestination().Returns(false);
@@ -84,7 +84,7 @@ namespace Gameplay.Monster.States.Tests
         }
 
         [Test]
-        public void EnterState_OnTick_Change_State_GoSit()
+        public void EnterState_OnTick_ChangeStateGoSit()
         {
             var navigationComponent = Substitute.For<INavigationComponent>();
             navigationComponent.HasReachedDestination()

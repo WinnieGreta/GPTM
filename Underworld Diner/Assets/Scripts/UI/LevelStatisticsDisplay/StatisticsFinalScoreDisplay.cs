@@ -28,7 +28,8 @@ namespace UI.LevelStatisticsDisplay
 
         private void OnScoreUpdated()
         {
-            _text.text = _scoringManager.Score.ToString();
+            int finalScore = (int)_scoringManager.Score;
+            _text.text = finalScore.ToString();
         }
     }
 }
