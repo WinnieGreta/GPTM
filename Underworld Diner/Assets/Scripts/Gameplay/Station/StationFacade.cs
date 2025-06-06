@@ -14,15 +14,15 @@ namespace Gameplay.Station
             
         public Vector2 GetClosestAnchorPosition(NavMeshAgent agent)
         {
-            //Debug.Log("Distance to player " + ((Vector2)_stationTransform.position - playerPosition).magnitude);
-            //Debug.Log("Navmesh Distance to player " + CalculateNavMeshPathLength(playerPosition, _stationTransform));
-            //Debug.Log("Closest anchor position " + GetClosestAnchorInternal(playerPosition).position);
-            //Debug.Log(tag);
             return GetClosestAnchorInternal(agent).position;
         }
 
+        public virtual LinkedList<DishType> PlayerStationInteraction(LinkedList<DishType> playerHands)
+        {
+            return playerHands;
+        }
+
         // general use function to get the length of a navmesh path
-        // TODO make more abstract and move to some module (e.g. Tools) for the maximum DRYness
         private float CalculateNavMeshPathLength(Vector2 agentPosition, Transform stationTransform)
         {
             NavMeshPath path = new NavMeshPath();

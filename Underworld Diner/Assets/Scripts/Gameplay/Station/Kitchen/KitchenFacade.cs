@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -22,6 +23,8 @@ namespace Gameplay.Station.Kitchen
         private IDish _dish;
         private string _dishStatisticsId;
 
+        private int PLAYER_HANDS = 3;
+
         [Inject]
         private void OnInject()
         {
@@ -34,12 +37,23 @@ namespace Gameplay.Station.Kitchen
             _dishStatisticsId = String.Format(DISH_STATISTICS_ID_TEMPLATE, _dishType.ToString());
         }
 
-        public DishType PlayerInteraction(bool playerHasFreeHand)
+        public override LinkedList<DishType> PlayerStationInteraction(LinkedList<DishType> playerHands)
+        {
+            var dish = PlayerInteraction(playerHands.Count < PLAYER_HANDS);
+            if (dish != DishType.None)
+            {
+                playerHands.AddLast(dish);
+            }
+
+            return playerHands;
+        }
+
+
+        private DishType PlayerInteraction(bool playerHasFreeHand)
         {
             StartCooking();
             if (playerHasFreeHand)
             {
-                //Debug.Log("Player has free hand");
                 return GetDish();
             }
 
@@ -50,7 +64,6 @@ namespace Gameplay.Station.Kitchen
         {
             if (_statusComponent.State == CookingState.Idle)
             {
-                //Debug.Log("Started cooking!");
                 if (_resourceManager.TrySpendResources(_dish.RedCost, _dish.GreenCost,
                         _dish.BlueCost))
                 {
@@ -67,7 +80,6 @@ namespace Gameplay.Station.Kitchen
         {
             if (_statusComponent.State == CookingState.Ready)
             {
-                //Debug.Log("Dish is picked up!");
                 _statusComponent.State = CookingState.Idle;
                 return _dishType;
             }
@@ -83,7 +95,7 @@ namespace Gameplay.Station.Kitchen
             _cookingTimer += Time.deltaTime;
             if (_cookingTimer > _dish.CookingTime)
             {
-                Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
+                //Debug.Log($"{_dishType} is cooked! Time: {_cookingTimer}");
                 _statusComponent.State = CookingState.Ready;
                 _cookingTimer = 0;
                 

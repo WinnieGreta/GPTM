@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Interfaces
 {
     public interface IStation
     {
-        public Vector2 GetClosestAnchorPosition(NavMeshAgent agent);
+        Vector2 GetClosestAnchorPosition(NavMeshAgent agent);
+        LinkedList<DishType> PlayerStationInteraction(LinkedList<DishType> playerHands);
     }
 }

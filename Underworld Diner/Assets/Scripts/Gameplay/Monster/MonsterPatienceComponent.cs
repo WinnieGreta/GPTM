@@ -1,6 +1,7 @@
 ﻿using Gameplay.Monster.Abstract;
 using Interfaces.UI;
 using Signals;
+using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
@@ -36,13 +37,15 @@ namespace Gameplay.Monster
 
         private void UpdateHealth()
         {
-            _statusComponent.Patience = _patienceMeter.UpdateHeartAmount(_statusComponent.Patience,
+            _statusComponent.Patience = Mathf.Clamp(_statusComponent.Patience, 0, _statusComponent.Health);
+            _patienceMeter.UpdateHeartAmount(_statusComponent.Patience,
                 _navMeshAgent.transform, _statusComponent.Health);
         }
 
         private void OnDespawn()
         {
-            _patienceMeter.Despawn();
+            _patienceMeter?.Despawn();
+            _patienceMeter = null;
         }
 
         public void Tick()

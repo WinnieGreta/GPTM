@@ -1,4 +1,7 @@
-﻿namespace Interfaces
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+namespace Interfaces
 {
     public interface IChair : IStation
     {
@@ -7,6 +10,8 @@
         bool IsFacingRight { get; }
 
         DishType ExpectedDish { get; }
+
+        List<Transform> PlayerAnchors { get; set; }
 
         void TakeChair(IMonster occupant);
 

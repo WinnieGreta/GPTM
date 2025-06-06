@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Player.Signals;
 using Interfaces;
 using UnityEngine;
@@ -28,67 +29,29 @@ namespace Gameplay.Player
             {
                 return;
             }
+
             
-            switch (_status.StationImMovingTo)
+            var newHands = _status.StationImMovingTo.PlayerStationInteraction(_status.Hands);
+            
+            //_status.StationImMovingTo.PlayerStationInteraction(_status.Hands);
+            //_animatorComponent.PutDown();
+            if (newHands.Count <= _status.Hands.Count)
             {
-                case ITable table:
-                    ProcessTable(table);
-                    break;
-                case IKitchen kitchen:
-                    ProcessKitchen(kitchen);
-                    break;
-                case ISink sink:
-                    ProcessSink(sink);
-                    break;
-                default:
-                    Debug.Log("No station");
-                    break;
+                Debug.Log($"{newHands.Count} <= {_status.Hands.Count}");
+                _animatorComponent.PutDown();
             }
+            else
+            {
+                Debug.Log($"{newHands.Count} > {_status.Hands.Count}");
+                _animatorComponent.PickUp();
+            }
+
+            _status.Hands = newHands;
             _status.StationImMovingTo = null;
+            RenderDishes();
             //Debug.Log(_status.ToString());
         }
         
-        private void ProcessKitchen(IKitchen kitchen)
-        {
-            var dish = kitchen.PlayerInteraction(_status.Hands.Count < PLAYER_HANDS);
-            if (dish != DishType.None)
-            {
-                //Debug.Log($"Player got {dish} from kitchen");
-                _animatorComponent.PickUp();
-                _status.Hands.AddLast(dish);
-                RenderDishes();
-            }
-        }
-
-        private void ProcessTable(ITable table)
-        {
-            if (TryGiveOrder(table))
-            {
-                _animatorComponent.PutDown();
-            }
-            else if (TryCleanTable(table))
-            {
-                _animatorComponent.PickUp();
-            }
-            RenderDishes();
-        }
-
-        private void ProcessSink(ISink sink)
-        {
-            var dishInHand = _status.Hands.First;
-            while (dishInHand != null)
-            { 
-                var nextDishInHand = dishInHand.Next;
-                if (dishInHand.Value == DishType.DirtyPlate)
-                {
-                    _status.Hands.Remove(dishInHand.Value);
-                }
-                dishInHand = nextDishInHand;
-            }
-            sink.WashDirtyPlates();
-            RenderDishes();
-        }
-
         private void RenderDishes()
         {
             foreach (var pair in _playerHandlingParameters.AnchorGroups)
@@ -104,56 +67,12 @@ namespace Gameplay.Player
 
         private void SetSpritesForGroup(PlayerHandlingParameters.AnchorGroup anchorGroup)
         {
-            /* var spritesAndRenderers =
-                anchorGroup.Sprites.Zip(_status.Hands, (sr, d) => new { Renderer = sr, Dish = d });
-            foreach (var pair in spritesAndRenderers)
-            {
-                pair.Renderer.sprite = pair.Dish.DishImage;
-            } */
-
             var statusHands = _status.Hands.ToList();
 
             for (int i = 0; i < anchorGroup.Sprites.Count && i < statusHands.Count; i++)
             {
                 anchorGroup.Sprites[i].sprite = _recipeBook[statusHands[i]].DishImage;
             }
-        }
-
-        private bool TryGiveOrder(ITable table)
-        {
-            bool success = false;
-            var dishInHand = _status.Hands.First;
-            while (dishInHand != null)
-            { 
-                var nextDishInHand = dishInHand.Next;
-                if (table.TryGivingDish(dishInHand.Value))
-                {
-                    _status.Hands.Remove(dishInHand.Value);
-                    success = true;
-                }
-                dishInHand = nextDishInHand;
-            }
-
-            return success;
-        }
-
-        private bool TryCleanTable(ITable table)
-        {
-            int freeHands = PLAYER_HANDS - _status.Hands.Count;
-            if (freeHands > 0)
-            {
-                int dirtyDishesTaken = freeHands - table.CleanDirtyPlates(freeHands);
-                if (dirtyDishesTaken == 0)
-                {
-                    return false;
-                }
-                for (int i = 0; i < dirtyDishesTaken; i++)
-                {
-                    _status.Hands.AddLast(DishType.DirtyPlate);
-                }
-                return true;
-            }
-            return false;
         }
         
     }

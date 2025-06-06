@@ -1,6 +1,4 @@
-﻿using Interfaces;
-using Signals;
-using UnityEngine;
+﻿using Signals;
 using Zenject;
 
 namespace Gameplay.Player

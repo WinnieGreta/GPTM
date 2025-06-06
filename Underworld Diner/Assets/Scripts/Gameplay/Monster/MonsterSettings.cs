@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster
 {
         [CreateAssetMenu(fileName = "MonsterSettings", menuName = "Installers/MonsterSettings")]
+        [ExcludeFromCodeCoverage]
         public class MonsterSettings : ScriptableObjectInstaller<MonsterSettings>
         {
             [SerializeField] private MonsterServiceSettings _monsterServiceSettings;
@@ -18,6 +20,7 @@ namespace Gameplay.Monster
         }
 
         [Serializable]
+        [ExcludeFromCodeCoverage]
         internal class MonsterServiceSettings
         {
             [field:SerializeField] public float OrderDowntime { get; private set; }
@@ -30,6 +33,7 @@ namespace Gameplay.Monster
         }
 
         [Serializable]
+        [ExcludeFromCodeCoverage]
         internal class MonsterLootSettings
         {
             [field: SerializeField] public int RedDrop { get; private set; }

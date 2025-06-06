@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Analytics.Signals;
+﻿using Analytics.Signals;
 using Interfaces;
 using Unity.Services.Analytics;
 using UnityEngine;

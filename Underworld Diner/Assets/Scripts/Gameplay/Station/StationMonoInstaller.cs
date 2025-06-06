@@ -14,7 +14,7 @@ namespace Gameplay.Station
             Container.BindInterfacesAndSelfTo<Transform>().FromInstance(transform).AsSingle();
             Container.BindInstance(_anchorParameters).AsSingle();
             Container.BindInterfacesAndSelfTo<StationFacade>().FromNewComponentOnRoot().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<StationAnchorsDetectionComponent>().AsSingle();
+            
         }
     }
     

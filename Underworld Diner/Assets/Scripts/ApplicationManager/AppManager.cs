@@ -5,12 +5,6 @@ using Zenject;
 
 namespace ApplicationManager
 {
-    /*internal enum GameState
-    {
-        Bootstrap,
-        MainMenu,
-        GamePlay
-    }*/
     
     public class AppManager: IApplicationManager, IAppInitializedCallback
     {
@@ -18,7 +12,7 @@ namespace ApplicationManager
 
         public void OnAppInitialized()
         {
-            _sceneLoadingManager.LoadScene("MainMenu").Forget();
+            LoadMainMenu();
         }
 
         public void LoadGameScene(string name)

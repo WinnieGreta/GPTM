@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 namespace ApplicationManager
 {
-    /*public enum SceneType
-    { 
-        MainMenu
-    }*/
 
     public class SceneLoadingManager
     {

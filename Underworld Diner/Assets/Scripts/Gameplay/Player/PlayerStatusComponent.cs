@@ -6,7 +6,7 @@ namespace Gameplay.Player
 {
     public class PlayerStatusComponent
     {
-        public LinkedList<DishType> Hands { get; private set; } = new ();
+        public LinkedList<DishType> Hands { get; set; } = new ();
         public IStation StationImMovingTo { get; set; }
         
         public float Mana { get; set; }

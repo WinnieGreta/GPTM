@@ -1777,13 +1777,10 @@ MonoBehaviour:
   _layers:
   - layer: {fileID: 1256448717}
     magnitude: -0.05
-    startLocalPos: {x: 0, y: 0, z: 0}
   - layer: {fileID: 1223367443}
     magnitude: -0.3
-    startLocalPos: {x: 0, y: 0, z: 0}
   - layer: {fileID: 846900374}
     magnitude: -0.95
-    startLocalPos: {x: 0, y: 0, z: 0}
   _maxOffset: 0.5
   _smoothSpeed: 5
   _deadZone: {x: 0.7, y: 0.5}

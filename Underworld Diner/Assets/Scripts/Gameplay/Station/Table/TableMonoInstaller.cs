@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Gameplay.Station.Chair;
-using Interfaces;
+﻿using Gameplay.Station.Chair;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +17,6 @@ namespace Gameplay.Station.Table
                 .AsSingle()
                 .NonLazy();
             Container.BindInterfacesAndSelfTo<ChairFacade>().FromComponentsInChildren().AsTransient();
-            Container.BindInterfacesAndSelfTo<StationAnchorsDetectionComponent>().AsSingle();
         }
     }
     

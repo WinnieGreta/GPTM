@@ -1,12 +1,17 @@
-﻿using Interfaces;
+﻿using System.Collections.Generic;
+using Gameplay.Station.Table;
+using Interfaces;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Station.Chair
 {
     public class ChairFacade : StationFacade, IChair
     {
+        [Inject] private StationAnchorParameters _anchorParameters;
         [Inject] private ChairParameters _chairParameters;
         [Inject] private IRecipeBook _recipeBook;
+        [Inject] private TableFacade _parentTable;
 
         
         public bool IsTaken => _occupant != null;
@@ -15,6 +20,8 @@ namespace Gameplay.Station.Chair
 
         private IMonster _occupant;
         public DishType ExpectedDish => _occupant?.ExpectedDish ?? DishType.None;
+        
+        public List<Transform> PlayerAnchors { get; set; }
 
         private DishType _occupantDish;
 
@@ -22,8 +29,15 @@ namespace Gameplay.Station.Chair
         private void OnInject(IChairManager chairManager)
         {
             chairManager.Register(this);
+            _anchorParameters.PlayerAnchors = PlayerAnchors;
         }
-        
+
+        public override LinkedList<DishType> PlayerStationInteraction(LinkedList<DishType> playerHands)
+        {
+            //Debug.Log("Chair redirects to table");
+            return _parentTable.PlayerStationInteraction(playerHands);
+        }
+
         public void TakeChair(IMonster occupant)
         {
             _occupant = occupant;
