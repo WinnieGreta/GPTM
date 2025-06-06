@@ -4,7 +4,6 @@ using Gameplay.Monster.Abstract;
 using Interfaces;
 using Interfaces.UI;
 using NSubstitute;
-using NSubstitute.ClearExtensions;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
