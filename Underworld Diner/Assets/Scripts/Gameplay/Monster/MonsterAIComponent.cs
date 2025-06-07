@@ -1,37 +1,27 @@
-﻿using System.Collections.Generic;
-using Gameplay.Monster.States;
+﻿using Gameplay.Monster.Abstract;
 using Interfaces;
 using Signals;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterAIComponent : IInitializable, ITickable
+    internal class MonsterAIComponent : ITickable, IAiComponent
     {
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _statusComponent;
         [Inject] private MonsterServiceSettings _monsterSettings;
+        [Inject] private IMonster _monster;
 
         private BaseMonsterState.Factory _monsterStateFactory;
-        private BaseMonsterState _currentStateEntity = null;
+        private BaseMonsterState _currentStateEntity;
         private MonsterState _currentState;
-        public IChair MyChair { get; private set; }
+        private bool _isDead;
+        //public IChair MyChair { get; private set; }
 
         [Inject]
-        public void Construct(BaseMonsterState.Factory monsterStateFactory)
+        private void Construct(BaseMonsterState.Factory monsterStateFactory)
         {
             _monsterStateFactory = monsterStateFactory;
-        }
-        
-        public void Initialize()
-        {
-            
-        }
-
-        [Inject]
-        private void OnInject()
-        {
             _signalBus.Subscribe<OnSpawnedSignal>(StartMonster);
         }
         
@@ -39,10 +29,12 @@ namespace Gameplay.Monster
         {
             _statusComponent.FullOrder.Clear();
             _statusComponent.Patience = _monsterSettings.StartingPatience;
+            _statusComponent.Health = _monsterSettings.StartingHealth;
+            _isDead = false;
             ChangeState(MonsterState.Enter);
         }
 
-        internal void ChangeState(MonsterState monsterState)
+        public void ChangeState(MonsterState monsterState)
         {
             if (_currentStateEntity != null)
             {
@@ -58,18 +50,26 @@ namespace Gameplay.Monster
         public void Tick()
         {
             _currentStateEntity?.OnTick();
+            if (_statusComponent.Health <= 0.01 && !_isDead)
+            {
+                _isDead = true;
+                ChangeState(MonsterState.Die);
+            }
+        }
+        
+        public void TakeChairByMonster(IChair chair)
+        {
+            chair.TakeChair(_monster);
+            _statusComponent.MyChair = chair;
         }
 
-        public void TakeChairByMonster(IChair chair, IMonster monster)
+        public void FreeChairByMonster()
         {
-            chair.TakeChair(monster);
-            MyChair = chair;
-        }
-
-        public void FreeChairByMonster(IChair chair)
-        {
-            chair.FreeChair();
-            MyChair = null;
+            if (_statusComponent.MyChair != null)
+            {
+                _statusComponent.MyChair.FreeChair();
+                _statusComponent.MyChair = null;
+            }
         }
     }
     

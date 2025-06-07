@@ -3,7 +3,7 @@ using Signals;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.GameManager.LevelTimerManager
+namespace Gameplay.GameManager
 {
     public class LevelTimerComponent : ITickable, ITimeManager, IInitializable
     {
@@ -16,6 +16,12 @@ namespace Gameplay.GameManager.LevelTimerManager
 
         public float TimerTime { get; private set; }
 
+        [Inject]
+        private void OnInject()
+        {
+            _signalBus.Subscribe<OnLevelStartSignal>(PauseTimerOnLevelStart);
+        }
+        
         public void Initialize()
         {
             TimerTime = _levelSettings.LevelDuration;
@@ -69,6 +75,12 @@ namespace Gameplay.GameManager.LevelTimerManager
         private void FinishLevelByTimer()
         {
             _signalBus.Fire<OnLevelFinishedSignal>();
+            Time.timeScale = 0;
+        }
+
+        private void PauseTimerOnLevelStart()
+        {
+            _gamePaused = true;
             Time.timeScale = 0;
         }
     }

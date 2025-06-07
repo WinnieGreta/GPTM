@@ -9,8 +9,6 @@ namespace UI.HUD.Buttons
     {
         [Inject] private ITimeManager _timeManager;
         [SerializeField] private Button _pauseButton;
-
-        private bool _gamePaused;
         
         public void OnEnable()
         {

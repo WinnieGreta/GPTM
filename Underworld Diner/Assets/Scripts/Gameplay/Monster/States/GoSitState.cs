@@ -1,21 +1,16 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Abstract;
+using Interfaces;
 using Zenject;
 
 namespace Gameplay.Monster.States
 {
     public class GoSitState : BaseMonsterState
     {
-        [Inject] private IMonster _monster;
-        [Inject] private MonsterNavigationComponent _navigation;
-        [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private INavigationComponent _navigation;
+        [Inject] private IAiComponent _aiComponent;
         [Inject] private IChairManager _chairManager;
         
         private bool _isDestinationSet;
-        
-        public override void Enter()
-        {
-            
-        }
 
         public override void OnTick()
         {
@@ -40,7 +35,7 @@ namespace Gameplay.Monster.States
             {
                 if (!chair.IsTaken && chair.IsClean)
                 {
-                    _aiComponent.TakeChairByMonster(chair, _monster);
+                    _aiComponent.TakeChairByMonster(chair);
                     _navigation.ProcessStationMovement(chair);
                     //Debug.Log("Found free chair");
                     return true;

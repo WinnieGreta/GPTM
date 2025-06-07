@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovementSettings:
     <MaxSpeed>k__BackingField: 6.51
+  _playerHealthManaSettings:
+    <HpMax>k__BackingField: 0
+    <ManaMax>k__BackingField: 200
+    <ManaRegainSpeed>k__BackingField: 0.1

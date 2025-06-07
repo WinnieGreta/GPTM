@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level_2_SpawnSettings
   m_EditorClassIdentifier: 
   _monsterSpawnSettings:
-    <SpawnPeriod>k__BackingField: 5
+    <SpawnPeriod>k__BackingField: 2

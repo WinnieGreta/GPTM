@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.GameManager.LevelTimerManager;
+﻿using Gameplay.GameManager;
 using TMPro;
 using UnityEngine;
 using Zenject;

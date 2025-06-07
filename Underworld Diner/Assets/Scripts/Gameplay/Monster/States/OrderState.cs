@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Monster.Abstract;
 using Interfaces;
 using Interfaces.UI;
 using UnityEngine;
@@ -15,8 +16,8 @@ namespace Gameplay.Monster.States
 
         [Inject] private IStatisticsManager _statisticsManager;
         
-        [Inject] private MonsterAIComponent _aiComponent;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
         [Inject] private NavMeshAgent _navMeshAgent;
         [Inject] private List<DishType> _favoriteDishes;
         [Inject] private IOrderIcon.Factory _orderIconFactory;
@@ -29,7 +30,7 @@ namespace Gameplay.Monster.States
         public override void Enter()
         {
             DishType orderedDish = SelectDish();
-            Debug.Log("I'm ordering " + orderedDish);
+            //Debug.Log("I'm ordering " + orderedDish);
             _currentOrderIcon = _orderIconFactory.Create(orderedDish, _navMeshAgent.transform);
             _status.ExpectedDish = orderedDish;
             _status.FullOrder.Add(_status.ExpectedDish);
@@ -38,14 +39,15 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (!_aiComponent.MyChair.IsTaken)
+            if (!_status.MyChair.IsTaken)
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }
 
-            if (_aiComponent.MyChair.ExpectedDish == DishType.None)
+            if (_status.MyChair.ExpectedDish == DishType.None)
             {
+                _status.Patience += 1;
                 _aiComponent.ChangeState(MonsterState.Eat);
             }
             
@@ -56,8 +58,9 @@ namespace Gameplay.Monster.States
             else
             {
                 _statisticsManager.IncrementStatistics(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
-                Debug.Log("I'm out of patience!");
-                Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
+                //Debug.Log("I'm out of patience!");
+                //Debug.Log(String.Format(MONSTER_QUIT_ID_TEMPLATE, _monsterType.ToString()));
+                _aiComponent.FreeChairByMonster();
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
             }

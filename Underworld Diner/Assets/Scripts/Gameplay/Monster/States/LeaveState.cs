@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Abstract;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -6,16 +7,11 @@ namespace Gameplay.Monster.States
 {
     public class LeaveState : BaseMonsterState
     {
-        [Inject] private MonsterNavigationComponent _navigation;
-        [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private INavigationComponent _navigation;
+        [Inject] private IAiComponent _aiComponent;
         [Inject] private IDespawnable _despawnable;
         [Inject] private Transform _transform;
         
-        public override void Initialize()
-        {
-            
-        }
-
         public override void Enter()
         {
             //Debug.Log("Leaving");
@@ -24,13 +20,13 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (_navigation.HasReachedDestination())
+            if (_navigation.HasReachedDestination(1f))
             {
-                Dispose();
+                Leave();
             }
         }
 
-        public void Dispose()
+        private void Leave()
         {
             _aiComponent.ChangeState(MonsterState.Null);
             _despawnable.Despawn();

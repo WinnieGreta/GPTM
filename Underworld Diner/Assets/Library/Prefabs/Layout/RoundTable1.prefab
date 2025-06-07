@@ -457,11 +457,28 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: _tableFacade
+      value: 
+      objectReference: {fileID: 1869367595216743120}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: _chairParameters.MonsterAnchors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: '_chairParameters.MonsterAnchors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 973605793627294489}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+--- !u!4 &973605793627294489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2148279808541703366, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+  m_PrefabInstance: {fileID: 1176222720265779167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8240693126649310773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7065614457157720554, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
@@ -539,6 +556,18 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: _tableFacade
+      value: 
+      objectReference: {fileID: 1869367595216743120}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: _chairParameters.MonsterAnchors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515722739370234527, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+      propertyPath: '_chairParameters.MonsterAnchors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8022373162876082325}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -547,5 +576,10 @@ PrefabInstance:
 --- !u!4 &1192066388049444281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7065614457157720554, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
+  m_PrefabInstance: {fileID: 8252011760830030931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8022373162876082325 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2148279808541703366, guid: 0a2cc44e8416c194d98aa0dd8e46c4a4, type: 3}
   m_PrefabInstance: {fileID: 8252011760830030931}
   m_PrefabAsset: {fileID: 0}

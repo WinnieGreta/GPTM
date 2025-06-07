@@ -2,6 +2,6 @@
 {
     public interface ISink
     {
-        void WashDirtyPlates();
+        
     }
 }

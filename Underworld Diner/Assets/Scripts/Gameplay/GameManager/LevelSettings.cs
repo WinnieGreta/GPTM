@@ -8,9 +8,11 @@ namespace Gameplay.GameManager
     public class LevelSettings : ScriptableObjectInstaller<LevelSettings>
     {
         [SerializeField] private LevelBasicSettings _levelSettings;
+        [SerializeField] private LevelResourceSettings _levelResourceSettings;
         public override void InstallBindings()
         {
             Container.BindInstance(_levelSettings).AsSingle();
+            Container.BindInstance(_levelResourceSettings).AsSingle();
         }
     }
 
@@ -18,5 +20,15 @@ namespace Gameplay.GameManager
     internal class LevelBasicSettings
     {
         [field:SerializeField] public float LevelDuration { get; private set; }
+        [field:SerializeField] public int LevelName { get; private set; }
+        [field:SerializeField] public int LevelScoreGoal { get; private set; }
+    }
+
+    [Serializable]
+    internal class LevelResourceSettings
+    {
+        [field:SerializeField] public int StartingRed { get; private set; }
+        [field:SerializeField] public int StartingGreen { get; private set; }
+        [field:SerializeField] public int StartingBlue { get; private set; }
     }
 }

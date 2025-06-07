@@ -1,10 +1,7 @@
 ﻿using System;
-using Interfaces;
 using UnityEngine;
-using UnityEngine.AI;
 using Zenject;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Station
 {
@@ -17,7 +14,7 @@ namespace Gameplay.Station
             Container.BindInterfacesAndSelfTo<Transform>().FromInstance(transform).AsSingle();
             Container.BindInstance(_anchorParameters).AsSingle();
             Container.BindInterfacesAndSelfTo<StationFacade>().FromNewComponentOnRoot().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<StationAnchorsDetectionComponent>().AsSingle();
+            
         }
     }
     

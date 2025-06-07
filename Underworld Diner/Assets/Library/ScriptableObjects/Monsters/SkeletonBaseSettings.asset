@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de50b838bf9c4726ab5a52c084e778cf, type: 3}
   m_Name: SkeletonBaseSettings
   m_EditorClassIdentifier: 
-  monsterServiceSettings:
-    <OrderDowntime>k__BackingField: 2
+  _monsterServiceSettings:
+    <OrderDowntime>k__BackingField: 5
     <EatingDowntime>k__BackingField: 5
     <StartingPatience>k__BackingField: 4
-    <PatienceDropSpeed>k__BackingField: 0.4
+    <PatienceDropSpeed>k__BackingField: 0.6
+    <StartingHealth>k__BackingField: 4
+  _monsterLootSettings:
+    <RedDrop>k__BackingField: 10
+    <GreenDrop>k__BackingField: 11
+    <BlueDrop>k__BackingField: 12

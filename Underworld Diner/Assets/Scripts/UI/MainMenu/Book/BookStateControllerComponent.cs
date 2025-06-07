@@ -8,7 +8,7 @@ namespace UI.MainMenu.Book
         [Inject] private SignalBus _signalBus;
         
         private BaseBookState.Factory _bookStateFactory;
-        internal BaseBookState CurrentStateEntity = null;
+        internal BaseBookState CurrentStateEntity;
         private BookState _currentState;
 
         [Inject]

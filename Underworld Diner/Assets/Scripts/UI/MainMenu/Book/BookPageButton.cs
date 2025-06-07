@@ -1,5 +1,4 @@
-﻿using System;
-using UI.MainMenu.Signals;
+﻿using UI.MainMenu.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -20,7 +19,11 @@ namespace UI.MainMenu.Book
         private void OpenPage()
         {
             Debug.Log("Book open new page button clicked!");
-            _signalBus.Fire(new PageFromButtonSignal() { Page = _bookPage });
+            _signalBus.Fire(new PageFromButtonSignal
+            {
+                PageOrder = _bookPage.PageOrder,
+                Name = _bookPage.name + "(Clone)"
+            });
         }
     }
 }

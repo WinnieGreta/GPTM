@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Gameplay.Monster.Installer;
 using Interfaces;
 using UnityEngine;
 using Zenject;

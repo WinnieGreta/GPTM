@@ -36,16 +36,5 @@ namespace Gameplay.GameManager
             _monsterFactory.Create(MonsterType.Skeleton, _monsterSpawnAnchor);
         }
 
-        #region TestResourceDisplay
-
-        [Inject] private IResourceManager _resourceManager;
-
-        private void DeductResourcesTest()
-        {
-            _resourceManager.TrySpendResources(10, 20, 30);
-        }
-
-        #endregion
-
     }
 }

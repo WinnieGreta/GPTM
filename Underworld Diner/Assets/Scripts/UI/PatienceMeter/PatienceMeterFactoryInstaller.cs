@@ -1,5 +1,4 @@
-﻿using Interfaces;
-using Interfaces.UI;
+﻿using Interfaces.UI;
 using UnityEngine;
 using Zenject;
 

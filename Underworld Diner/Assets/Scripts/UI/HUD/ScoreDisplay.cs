@@ -24,7 +24,8 @@ namespace UI.HUD
 
         private void UpdateScoreDisplay()
         {
-            _scoreText.text = _scoringManager.Score.ToString();
+            int score = (int)_scoringManager.Score;
+            _scoreText.text = score.ToString();
         }
 
     }

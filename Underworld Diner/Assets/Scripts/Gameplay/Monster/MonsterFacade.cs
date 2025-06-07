@@ -1,11 +1,12 @@
-﻿using Interfaces;
+﻿using Gameplay.Monster.Installer;
+using Interfaces;
 using Signals;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Monster
 {
-    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>, IDespawnable
+    public class MonsterFacade : MonoBehaviour, IMonster, IPoolable<Transform>, IDespawnable, IDamagable
     {
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
@@ -59,6 +60,12 @@ namespace Gameplay.Monster
         public void InjectPool(MonsterPool pool)
         {
             _pool = pool;
+        }
+
+        public bool GetDamaged(float damage)
+        {
+            _status.Health -= damage;
+            return true;
         }
     }
 }

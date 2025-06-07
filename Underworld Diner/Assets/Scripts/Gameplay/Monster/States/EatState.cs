@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Monster.Abstract;
 using Interfaces;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,10 @@ namespace Gameplay.Monster.States
 
         [Inject] private IStatisticsManager _statisticsManager;
         
-        [Inject] private MonsterAIComponent _aiComponent;
+        [Inject] private IAiComponent _aiComponent;
+        [Inject] private IAnimatorComponent _animatorComponent;
+        [Inject] private IScoringComponent _scoringComponent;
         [Inject] private MonsterServiceSettings _monsterServiceSettings;
-        [Inject] private MonsterAnimatorComponent _animatorComponent;
-        [Inject] private MonsterScoringComponent _scoringComponent;
         [Inject] private MonsterStatusComponent _statusComponent;
         [Inject] private MonsterType _monsterType;
 
@@ -30,7 +31,7 @@ namespace Gameplay.Monster.States
 
         public override void OnTick()
         {
-            if (!_aiComponent.MyChair.IsTaken)
+            if (!_statusComponent.MyChair.IsTaken)
             {
                 _animatorComponent.StopSit();
                 _aiComponent.ChangeState(MonsterState.Leave);
@@ -42,7 +43,7 @@ namespace Gameplay.Monster.States
             {
                 //Debug.Log("Eating downtime: " + _eatingDowntime + ", was eating for " + _timerTime);
                 _timerTime -= _eatingDowntime;
-                _aiComponent.MyChair.FreeChair();
+                _aiComponent.FreeChairByMonster();
                 _animatorComponent.StopSit();
                 _statisticsManager.IncrementStatistics(String.Format(MONSTER_FED_ID_TEMPLATE, _monsterType.ToString()));
                 _aiComponent.ChangeState(MonsterState.Leave);

@@ -1,9 +1,8 @@
-﻿using UI.MainMenu.Book;
-
-namespace UI.MainMenu.Signals
+﻿namespace UI.MainMenu.Signals
 {
     public class PageFromButtonSignal
     {
-        public BookPage Page;
+        public int PageOrder { get; set; }
+        public string Name { get; set; }
     }
 }

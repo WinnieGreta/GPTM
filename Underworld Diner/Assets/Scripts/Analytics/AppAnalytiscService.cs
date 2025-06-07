@@ -21,5 +21,14 @@ namespace Analytics
             Debug.Log("Analytics levelStarted event sent");
             _serviceInstance?.RecordEvent("levelStarted");
         }
+
+        internal void OnLevelEnd(AnalyticsLevelEndEvent analyticsLevelEndEvent)
+        {
+            CustomEvent levelEnd = new CustomEvent("levelEnded")
+            {
+                { "levelFinalScore", analyticsLevelEndEvent.Score }
+            };
+            _serviceInstance?.RecordEvent(levelEnd);
+        }
     }
 }
