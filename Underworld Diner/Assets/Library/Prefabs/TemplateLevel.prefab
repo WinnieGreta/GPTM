@@ -10987,7 +10987,6 @@ GameObject:
   - component: {fileID: 7431291831651952305}
   - component: {fileID: 420633517993050697}
   - component: {fileID: 5895581857177694483}
-  - component: {fileID: 3688284878640704680}
   m_Layer: 5
   m_Name: GoalText
   m_TagString: Untagged
@@ -11113,19 +11112,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3688284878640704680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412919199435347920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a4cc8b4b2a48878b2c768112a35754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _goalText: {fileID: 5895581857177694483}
 --- !u!1 &473930598740542223
 GameObject:
   m_ObjectHideFlags: 0
@@ -15292,6 +15278,7 @@ GameObject:
   - component: {fileID: 7970497210043748691}
   - component: {fileID: 4441787716573168632}
   - component: {fileID: 1097476423612018819}
+  - component: {fileID: 1268382015121803858}
   m_Layer: 5
   m_Name: StartPanel
   m_TagString: Untagged
@@ -15385,6 +15372,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1268382015121803858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444351389126658928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a4cc8b4b2a48878b2c768112a35754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelNameText: {fileID: 4691552105652669186}
+  _goalText: {fileID: 5895581857177694483}
 --- !u!1 &4526655411273454853
 GameObject:
   m_ObjectHideFlags: 0
@@ -15722,7 +15723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resources left
+  m_text: Resources stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ee803affb678ce04ba8840894e6eafdf, type: 2}
   m_sharedMaterial: {fileID: -6882671899601521154, guid: ee803affb678ce04ba8840894e6eafdf, type: 2}
@@ -15805,6 +15806,7 @@ GameObject:
   - component: {fileID: 2667635291166910211}
   - component: {fileID: 2800196508259945958}
   - component: {fileID: 8022131241424094090}
+  - component: {fileID: 6975004211807130377}
   m_Layer: 5
   m_Name: DateContainer
   m_TagString: Untagged
@@ -15898,6 +15900,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6975004211807130377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636989951286153069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4967824f91324803a5efb5888f70a367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dateText: {fileID: 5008528524732096536}
 --- !u!1 &4717096034459807721
 GameObject:
   m_ObjectHideFlags: 0

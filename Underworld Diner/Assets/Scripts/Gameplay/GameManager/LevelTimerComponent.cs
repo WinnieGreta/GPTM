@@ -24,7 +24,7 @@ namespace Gameplay.GameManager
         
         public void Initialize()
         {
-            TimerTime = _levelSettings.LevelDuration;
+            TimerTime = _levelSettings.LevelDuration + 1;
             _levelFinished = false;
         }
 

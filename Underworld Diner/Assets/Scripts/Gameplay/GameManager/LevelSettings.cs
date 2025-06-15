@@ -17,15 +17,15 @@ namespace Gameplay.GameManager
     }
 
     [Serializable]
-    internal class LevelBasicSettings
+    public class LevelBasicSettings
     {
         [field:SerializeField] public float LevelDuration { get; private set; }
-        [field:SerializeField] public int LevelName { get; private set; }
+        [field:SerializeField] public string LevelName { get; private set; }
         [field:SerializeField] public int LevelScoreGoal { get; private set; }
     }
 
     [Serializable]
-    internal class LevelResourceSettings
+    public class LevelResourceSettings
     {
         [field:SerializeField] public int StartingRed { get; private set; }
         [field:SerializeField] public int StartingGreen { get; private set; }

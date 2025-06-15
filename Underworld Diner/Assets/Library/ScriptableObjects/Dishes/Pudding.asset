@@ -18,5 +18,5 @@ MonoBehaviour:
   <DishImage>k__BackingField: {fileID: 21300000, guid: efb137b127b5f98479d0885903898666, type: 3}
   <CookingTime>k__BackingField: 3
   <RedCost>k__BackingField: 1
-  <GreenCost>k__BackingField: 3
+  <GreenCost>k__BackingField: 5
   <BlueCost>k__BackingField: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
     <OrderDowntime>k__BackingField: 5
     <EatingDowntime>k__BackingField: 5
     <StartingPatience>k__BackingField: 4
-    <PatienceDropSpeed>k__BackingField: 0.6
+    <PatienceDropSpeed>k__BackingField: 0.3
     <StartingHealth>k__BackingField: 4
   _monsterLootSettings:
     <RedDrop>k__BackingField: 10
