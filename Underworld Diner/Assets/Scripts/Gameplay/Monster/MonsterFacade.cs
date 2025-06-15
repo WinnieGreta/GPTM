@@ -2,6 +2,7 @@
 using Interfaces;
 using Signals;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Gameplay.Monster
@@ -10,6 +11,7 @@ namespace Gameplay.Monster
     {
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
+        [Inject] private NavMeshAgent _agent;
 
         public DishType ExpectedDish => _status.ExpectedDish;
 
@@ -23,6 +25,7 @@ namespace Gameplay.Monster
 
         public void OnSpawned(Transform transform)
         {
+            _agent.enabled = false;
             gameObject.transform.position = transform.position;
             SendOnSpawnedSignal();
         }

@@ -16,7 +16,7 @@ namespace Gameplay.Player
         [Inject] private IRecipeBook _recipeBook;
         
         private PlayerHandlingParameters.AnchorGroup _anchorGroup;
-        private int PLAYER_HANDS = 3;
+        //private int PLAYER_HANDS = 3;
         
         public void Initialize()
         {
@@ -37,12 +37,12 @@ namespace Gameplay.Player
             //_animatorComponent.PutDown();
             if (newHands.Count <= _status.Hands.Count)
             {
-                Debug.Log($"{newHands.Count} <= {_status.Hands.Count}");
+                //Debug.Log($"{newHands.Count} <= {_status.Hands.Count}");
                 _animatorComponent.PutDown();
             }
             else
             {
-                Debug.Log($"{newHands.Count} > {_status.Hands.Count}");
+                //Debug.Log($"{newHands.Count} > {_status.Hands.Count}");
                 _animatorComponent.PickUp();
             }
 

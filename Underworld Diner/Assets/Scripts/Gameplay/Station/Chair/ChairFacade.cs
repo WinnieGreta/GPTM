@@ -8,7 +8,7 @@ namespace Gameplay.Station.Chair
 {
     public class ChairFacade : StationFacade, IChair
     {
-        [Inject] private StationAnchorParameters _anchorParameters;
+        [Inject] private StationAnchorParameters _chairAnchorParameters;
         [Inject] private ChairParameters _chairParameters;
         [Inject] private IRecipeBook _recipeBook;
         [Inject] private TableFacade _parentTable;
@@ -29,7 +29,7 @@ namespace Gameplay.Station.Chair
         private void OnInject(IChairManager chairManager)
         {
             chairManager.Register(this);
-            _anchorParameters.PlayerAnchors = PlayerAnchors;
+            _chairAnchorParameters.PlayerAnchors = PlayerAnchors;
         }
 
         public override LinkedList<DishType> PlayerStationInteraction(LinkedList<DishType> playerHands)

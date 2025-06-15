@@ -32,13 +32,13 @@ namespace Gameplay.Monster
 
         private void UpdatePatience()
         {
-            _patienceMeter.UpdatePatienceMeter(_statusComponent.Patience, _navMeshAgent.transform);
+            _patienceMeter?.UpdatePatienceMeter(_statusComponent.Patience, _navMeshAgent.transform);
         }
 
         private void UpdateHealth()
         {
             _statusComponent.Patience = Mathf.Clamp(_statusComponent.Patience, 0, _statusComponent.Health);
-            _patienceMeter.UpdateHeartAmount(_statusComponent.Patience,
+            _patienceMeter?.UpdateHeartAmount(_statusComponent.Patience,
                 _navMeshAgent.transform, _statusComponent.Health);
         }
 
