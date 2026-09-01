@@ -41,13 +41,13 @@ namespace UI.LevelStatisticsDisplay
             switch (_resourceType)
             {
                 case ResourceType.Red:
-                    _text.text = (_resourceSettings.StartingRed - _resourceManager.RedCount).ToString();
+                    _text.text = (_resourceManager.RedCount - _resourceSettings.StartingRed).ToString();
                     break;
                 case ResourceType.Green:
-                    _text.text = (_resourceSettings.StartingGreen - _resourceManager.GreenCount).ToString();
+                    _text.text = (_resourceManager.GreenCount - _resourceSettings.StartingGreen).ToString();
                     break;
                 case ResourceType.Blue:
-                    _text.text = (_resourceSettings.StartingBlue - _resourceManager.BlueCount).ToString();
+                    _text.text = (_resourceManager.BlueCount - _resourceSettings.StartingBlue).ToString();
                     break;
                 default:
                     Debug.LogError("No resource type");
