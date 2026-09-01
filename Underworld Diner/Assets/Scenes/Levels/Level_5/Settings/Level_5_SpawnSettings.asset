@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62a73a6085444a61810e1c3dab839c57, type: 3}
-  m_Name: MonsterSpawnSettingsTemplate
+  m_Name: Level_5_SpawnSettings
   m_EditorClassIdentifier: 
   _monsterSpawnSettings:
     <SpawnConfig>k__BackingField:
     - <Type>k__BackingField: 0
       <SpawnPeriod>k__BackingField: 5
+    - <Type>k__BackingField: 1
+      <SpawnPeriod>k__BackingField: 2

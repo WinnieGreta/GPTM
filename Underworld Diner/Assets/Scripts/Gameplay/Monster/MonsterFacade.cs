@@ -12,6 +12,7 @@ namespace Gameplay.Monster
         [Inject] private SignalBus _signalBus;
         [Inject] private MonsterStatusComponent _status;
         [Inject] private NavMeshAgent _agent;
+        [Inject] private MonsterType _type;
 
         public DishType ExpectedDish => _status.ExpectedDish;
 
@@ -57,11 +58,13 @@ namespace Gameplay.Monster
 
         public void Despawn()
         {
+            //Debug.Log($"Despawning {_type}");
             _pool.Despawn(this);
         }
 
         public void InjectPool(MonsterPool pool)
         {
+            //Debug.Log($"Pool injected {_type} - {pool}");
             _pool = pool;
         }
 

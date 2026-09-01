@@ -11,6 +11,7 @@ namespace Gameplay.Monster.Installer
         [Inject]
         public void OnInject(MonsterType type)
         {
+            //Debug.Log($"Initialized pool {type}");
             Type = type;
         }
         

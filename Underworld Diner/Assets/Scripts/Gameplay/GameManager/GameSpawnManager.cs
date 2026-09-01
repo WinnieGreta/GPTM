@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -9,31 +10,34 @@ namespace Gameplay.GameManager
         [Inject] private MonsterSpawnSettings _monsterSpawnSettings;
         [Inject] private IMonster.Factory _monsterFactory;
         [Inject] private Transform _monsterSpawnAnchor;
-        private float _spawnPeriod;
-        private float _spawnTimerTime;
+        private readonly Dictionary<MonsterType, float> _spawnTimers = new();
         
         public void OnInitialize()
         {
-            _spawnTimerTime = 0;
-            _spawnPeriod = _monsterSpawnSettings.SpawnPeriod;
-            _spawnTimerTime = _spawnPeriod;
+            foreach (var config in _monsterSpawnSettings.SpawnConfig)
+            {
+                _spawnTimers[config.Type] = 0;
+            }
         }
         
         public void OnFixedTick()
         {
-            _spawnTimerTime += Time.deltaTime;
-            if (_spawnTimerTime > _spawnPeriod)
+            foreach (var config in _monsterSpawnSettings.SpawnConfig)
             {
-                SpawnMonster();
-                //DeductResourcesTest();
-                _spawnTimerTime -= _spawnPeriod;
+                _spawnTimers[config.Type] += Time.deltaTime;
+
+                if (_spawnTimers[config.Type] >= config.SpawnPeriod)
+                {
+                    SpawnMonster(config.Type);
+                    _spawnTimers[config.Type] -= config.SpawnPeriod;
+                }
             }
         }
 
-        private void SpawnMonster()
+        private void SpawnMonster(MonsterType monsterType)
         {
-            //Debug.Log("Spawn MONSTER!!!!");
-            _monsterFactory.Create(MonsterType.Skeleton, _monsterSpawnAnchor);
+            //Debug.Log("Spawn " + monsterType);
+            _monsterFactory.Create(monsterType, _monsterSpawnAnchor);
         }
 
     }

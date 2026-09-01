@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 320074804797969179}
   - component: {fileID: 6279524719814642216}
   m_Layer: 0
-  m_Name: SkeletonBase
+  m_Name: OrkBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,12 +191,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2602926c77074f3689016cc5510d2f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MonsterType>k__BackingField: 0
+  <MonsterType>k__BackingField: 1
   _animator: {fileID: 1166559513490922393}
   _transform: {fileID: 570152165550608713}
   _navMeshAgent: {fileID: 5996462103259561571}
   _spriteRenderer: {fileID: 6533138095986988839}
-  _favoriteDishes: 02000000020000000200000002000000
+  _favoriteDishes: 04000000040000000400000004000000
 --- !u!195 &5996462103259561571
 NavMeshAgent:
   m_ObjectHideFlags: 0

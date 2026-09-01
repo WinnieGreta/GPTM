@@ -10,7 +10,6 @@ namespace Gameplay.Monster.Installer
     [Serializable]
     public class MonsterPrefabPair
     {
-        //public MonsterType Type;
         public GameObject Prefab;
         public int InitialSize = 10;
     }
@@ -25,7 +24,9 @@ namespace Gameplay.Monster.Installer
             {
                 var type = pair.Prefab.GetComponent<MonsterMonoInstaller>().MonsterType;
                 Container.BindMemoryPool<MonsterFacade, MonsterPool>()
-                    .WithInitialSize(pair.InitialSize)
+                    // setting initial size to a non-zero value results in a bug: monsters other than default do not despawn
+                    // caused by the nullref pool being injected before it is initialized
+                    .WithInitialSize(0)
                     .WithFactoryArguments(type)
                     .FromComponentInNewPrefab(pair.Prefab)
                     .UnderTransformGroup("MonsterPools")

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +19,13 @@ namespace Gameplay.GameManager
         [Serializable]
         internal class MonsterSpawnSettings
         {
-            [field:SerializeField] public float SpawnPeriod { get; private set; }
+            [field:SerializeField] public List<MonsterSpawnConfig> SpawnConfig { get; private set; }
+        }
+
+        [Serializable]
+        public class MonsterSpawnConfig
+        {
+            [field: SerializeField] public MonsterType Type { get; private set; }
+            [field: SerializeField] public float SpawnPeriod { get; private set; }
         }
 }
